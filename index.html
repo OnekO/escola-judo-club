@@ -1,0 +1,2277 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Escola Judo Club · Judo para peques al pie del Pico Sacro</title>
+  <meta name="description" content="Escola Judo Club: un club de judo rural y familiar al pie del Pico Sacro (Galicia). Judo para niños y niñas desde 4 años, jóvenes y adultos.">
+  <meta name="theme-color" content="#ffd23f">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23ffd23f'/%3E%3Cpath d='M8 34h48' stroke='%23241f5c' stroke-width='8' stroke-linecap='round'/%3E%3Cpath d='M30 34l-8 18M34 34l8 18' stroke='%23241f5c' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Fuentes: Baloo 2 (títulos) + Nunito (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. TOKENS DE DISEÑO
+       ========================================================= */
+    :root {
+      /* Base tatami + colores de cinturón */
+      --cream: #fff8ea;
+      --cream-2: #fbecd0;
+      --white: #ffffff;
+      --ink: #241f5c;          /* índigo para texto */
+      --ink-soft: #464281;     /* texto secundario (AA sobre fondos claros) */
+      --yellow: #ffd23f;
+      --coral: #ff7f5c;
+      --sky: #49b6f2;
+      --mint: #4fd1a0;
+      --red: #e94b5f;
+      --gi-blue: #3f8fe0;
+      --skin: #ffe3c4;
+
+      /* Tintes suaves para fondos de sección */
+      --t-yellow: #fff1c2;
+      --t-sky: #dff2fd;
+      --t-mint: #dcf7ec;
+      --t-coral: #ffe4da;
+
+      /* Tipografía */
+      --font-display: "Baloo 2", "Fredoka", "Nunito", system-ui, sans-serif;
+      --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --fs-hero: clamp(2.6rem, 1.6rem + 5vw, 5rem);
+      --fs-h2: clamp(2rem, 1.4rem + 2.8vw, 3.3rem);
+      --fs-h3: clamp(1.45rem, 1.2rem + 1.1vw, 2rem);
+      --fs-h4: clamp(1.15rem, 1.05rem + .4vw, 1.35rem);
+      --fs-body: clamp(1.05rem, 1rem + .25vw, 1.2rem);
+      --fs-small: .95rem;
+
+      /* Formas */
+      --radius-s: 14px;
+      --radius: 26px;
+      --radius-l: 40px;
+      --border: 3px solid var(--ink);
+      --shadow-sticker: 6px 7px 0 rgba(36, 31, 92, .16);
+      --shadow-soft: 0 14px 30px -14px rgba(36, 31, 92, .35);
+
+      --header-h: 72px;
+      --wrap: 1180px;
+      --ease: cubic-bezier(.45, .05, .35, 1);
+    }
+
+    /* =========================================================
+       2. RESET Y BASE
+       ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--header-h) + 20px);
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+    img, svg { display: block; max-width: 100%; }
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      line-height: 1.1;
+      margin: 0 0 .4em;
+      font-weight: 800;
+      letter-spacing: -.01em;
+    }
+    p { margin: 0 0 1em; }
+    ul, ol { margin: 0; padding: 0; }
+    a { color: inherit; }
+    button { font: inherit; color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--ink);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px; height: 1px;
+      margin: -1px; padding: 0; border: 0;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+    }
+    .skip-link {
+      position: absolute; left: 1rem; top: -100px; z-index: 100;
+      background: var(--ink); color: var(--white);
+      padding: .7rem 1.1rem; border-radius: 12px; font-weight: 800;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+
+    /* Iconos del sprite */
+    .icon { width: 1.6em; height: 1.6em; flex: none; }
+
+    /* =========================================================
+       3. COMPONENTES COMUNES
+       ========================================================= */
+
+    /* Botones */
+    .btn {
+      display: inline-flex; align-items: center; gap: .55em;
+      min-height: 52px; padding: .7em 1.4em;
+      font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;
+      text-decoration: none; line-height: 1;
+      border: var(--border); border-radius: 999px;
+      box-shadow: 4px 5px 0 var(--ink);
+      cursor: pointer;
+      transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+    }
+    .btn:hover { transform: translate(-2px, -3px); box-shadow: 6px 8px 0 var(--ink); }
+    .btn:active { transform: translate(2px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+    .btn .icon { width: 1.25em; height: 1.25em; }
+    .btn-primary { background: var(--coral); }
+    .btn-secondary { background: var(--white); }
+    .btn-yellow { background: var(--yellow); }
+
+    /* Tarjetas "pegatina" */
+    .sticker {
+      background: var(--white);
+      border: var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sticker);
+    }
+    .lift { transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+    .lift:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 8px 12px 0 rgba(36, 31, 92, .18); }
+    .lift:nth-child(even):hover { transform: translateY(-6px) rotate(1deg); }
+    .lift:hover .bubble { animation: bounce .6s var(--ease); }
+
+    /* Burbuja de icono */
+    .bubble {
+      display: grid; place-items: center; flex: none;
+      width: 64px; height: 64px;
+      border: var(--border); border-radius: 50%;
+      background: var(--yellow);
+      margin-bottom: .8rem;
+    }
+    .bubble .icon { width: 32px; height: 32px; }
+    .bg-yellow { background: var(--yellow); }
+    .bg-coral { background: var(--coral); }
+    .bg-sky { background: var(--sky); }
+    .bg-mint { background: var(--mint); }
+    .bg-red { background: #ff9aa6; }
+
+    /* Etiquetas / chips */
+    .chip {
+      display: inline-flex; align-items: center; gap: .4em;
+      padding: .35em .9em;
+      font-weight: 800; font-size: var(--fs-small);
+      border: 2.5px solid var(--ink); border-radius: 999px;
+      background: var(--white);
+    }
+    .chip .icon { width: 1.2em; height: 1.2em; }
+
+    /* Secciones */
+    .section {
+      position: relative;
+      padding: clamp(4rem, 3rem + 5vw, 7rem) 0;
+    }
+    .section-head { max-width: 46rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.2rem); }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head h2 { font-size: var(--fs-h2); }
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
+      background: var(--yellow); border: 2.5px solid var(--ink);
+      border-radius: 999px; padding: .15em .9em; margin-bottom: .8rem;
+      rotate: -2deg;
+    }
+    .lead { font-size: clamp(1.15rem, 1.05rem + .5vw, 1.4rem); font-weight: 600; color: var(--ink-soft); }
+    .section h3 { font-size: var(--fs-h3); }
+    .section h4 { font-size: var(--fs-h4); margin-bottom: .3em; }
+
+    /* Divisor ondulado: se coloca arriba de cada sección con su mismo color */
+    .wave {
+      position: absolute; left: 0; right: 0; top: 1px;
+      height: clamp(30px, 5vw, 70px);
+      transform: translateY(-100%);
+      width: 100%;
+      pointer-events: none;
+    }
+    .wave path { fill: var(--section-bg, var(--cream)); }
+
+    /* Fondo tatami (cuadrícula suave) */
+    .tatami {
+      background-color: var(--section-bg, var(--cream));
+      background-image:
+        linear-gradient(90deg, rgba(36, 31, 92, .045) 3px, transparent 3px),
+        linear-gradient(rgba(36, 31, 92, .045) 3px, transparent 3px);
+      background-size: 140px 70px;
+    }
+
+    /* Grids */
+    .grid { display: grid; gap: clamp(1rem, .8rem + 1vw, 1.6rem); list-style: none; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+    .grid-5 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); }
+
+    .card { padding: clamp(1.3rem, 1rem + 1vw, 1.8rem); }
+    .card p { margin: 0; color: var(--ink-soft); }
+
+    /* Pestañas accesibles (Ventajas + Técnicas) */
+    .tablist {
+      display: flex; flex-wrap: wrap; gap: .7rem;
+      margin-bottom: 1.8rem;
+    }
+    .tab {
+      display: inline-flex; align-items: center; gap: .5em;
+      min-height: 52px; padding: .55em 1.2em;
+      font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+      background: var(--white);
+      border: var(--border); border-radius: 999px;
+      cursor: pointer;
+      transition: transform .2s var(--ease), background-color .2s;
+    }
+    .tab:hover { transform: translateY(-2px); }
+    .tab[aria-selected="true"] { background: var(--yellow); box-shadow: 4px 5px 0 var(--ink); }
+    .tab .icon { width: 1.3em; height: 1.3em; }
+    .tab small { font-family: var(--font-body); font-weight: 700; font-size: .85rem; color: var(--ink-soft); }
+    [role="tabpanel"]:focus-visible { outline-offset: 8px; }
+    /* Deja sitio para la cabecera y la cinta de cinturones al saltar a las pestañas */
+    [data-hash-tabs] { scroll-margin-top: calc(var(--header-h) + 50px); }
+
+    /* =========================================================
+       4. CABECERA / NAVEGACIÓN
+       ========================================================= */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255, 248, 234, .92);
+      backdrop-filter: blur(8px);
+      border-bottom: 3px solid var(--ink);
+    }
+    .nav {
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      min-height: var(--header-h);
+    }
+    .brand {
+      display: flex; align-items: center; gap: .6rem;
+      text-decoration: none;
+      font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; line-height: 1;
+    }
+    .brand-logo { width: 46px; height: 46px; transition: transform .4s var(--ease); }
+    .brand:hover .brand-logo { transform: rotate(-12deg) scale(1.06); }
+    .brand small { display: block; font-family: var(--font-body); font-size: .75rem; font-weight: 700; color: var(--ink-soft); }
+
+    .nav-menu { display: flex; align-items: center; gap: .3rem; }
+    .nav-links { display: flex; list-style: none; gap: .15rem; }
+    .nav-links a {
+      display: block; padding: .5rem .75rem;
+      font-weight: 800; font-size: 1rem; text-decoration: none;
+      border-radius: 999px;
+      transition: background-color .2s;
+    }
+    .nav-links a:hover { background: var(--t-yellow); }
+    .nav-links a[aria-current="true"] { background: var(--yellow); }
+
+    .icon-btn {
+      display: inline-grid; place-items: center;
+      width: 48px; height: 48px;
+      background: var(--white);
+      border: var(--border); border-radius: 50%;
+      cursor: pointer;
+      transition: transform .2s var(--ease), background-color .2s;
+    }
+    .icon-btn:hover { transform: rotate(-8deg) scale(1.05); background: var(--t-yellow); }
+    .icon-btn .icon { width: 22px; height: 22px; }
+    .motion-toggle .i-play { display: none; }
+    .motion-toggle[aria-pressed="true"] { background: var(--yellow); }
+    .motion-toggle[aria-pressed="true"] .i-play { display: block; }
+    .motion-toggle[aria-pressed="true"] .i-pause { display: none; }
+    .nav-cta { min-height: 46px; font-size: 1rem; padding: .55em 1.1em; }
+    .menu-toggle { display: none; }
+
+    @media (max-width: 1020px) {
+      .menu-toggle { display: inline-grid; }
+      .nav-menu {
+        position: absolute; left: 0; right: 0; top: 100%;
+        flex-direction: column; align-items: stretch; gap: 1rem;
+        padding: 1rem 1.25rem 1.5rem;
+        background: var(--cream);
+        border-bottom: 3px solid var(--ink);
+        box-shadow: var(--shadow-soft);
+        display: none;
+      }
+      .nav-menu.is-open { display: flex; }
+      .nav-links { flex-direction: column; }
+      .nav-links a { padding: .8rem 1rem; font-size: 1.15rem; }
+      .nav-cta { justify-content: center; }
+      .nav-tools { display: flex; gap: .6rem; align-items: center; justify-content: center; }
+    }
+    .nav-tools { display: flex; gap: .5rem; align-items: center; }
+    .menu-toggle .i-close { display: none; }
+    .menu-toggle[aria-expanded="true"] .i-close { display: block; }
+    .menu-toggle[aria-expanded="true"] .i-menu { display: none; }
+
+    /* =========================================================
+       5. HERO
+       ========================================================= */
+    .hero { --section-bg: var(--cream); padding: clamp(2.5rem, 2rem + 3vw, 4.5rem) 0 clamp(5rem, 4rem + 4vw, 7rem); overflow: hidden; }
+    .hero-grid {
+      display: grid; gap: 2rem; align-items: center;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px) { .hero-grid { grid-template-columns: 1.02fr 1fr; } }
+    .hero h1 { font-size: var(--fs-hero); margin-bottom: .25em; }
+    .hero h1 .club-name { display: block; }
+    .hero h1 .hl {
+      position: relative; display: inline-block; z-index: 0;
+    }
+    .hero h1 .hl::after {
+      content: ""; position: absolute; z-index: -1;
+      left: -.08em; right: -.08em; bottom: .08em; height: .32em;
+      background: var(--yellow); border-radius: 999px; rotate: -1.5deg;
+    }
+    .tagline { font-size: clamp(1.2rem, 1.05rem + .7vw, 1.6rem); font-weight: 700; color: var(--ink-soft); max-width: 30rem; }
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.6rem 0 1.8rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; }
+    .badges li:nth-child(1) { background: var(--t-yellow); rotate: -2deg; }
+    .badges li:nth-child(2) { background: var(--t-mint); rotate: 1.5deg; }
+    .badges li:nth-child(3) { background: var(--t-sky); rotate: -1deg; }
+
+    .hero-art { position: relative; }
+    .hero-art svg { width: 100%; height: auto; overflow: visible; }
+    .hero-art .mountain { will-change: transform; }
+    /* Reverencia (rei) del compañero en la ilustración */
+    .hero-art .uke .body { rotate: 22deg; }
+
+    /* =========================================================
+       6. EL CLUB
+       ========================================================= */
+    .club { --section-bg: var(--t-yellow); background: var(--section-bg); }
+    .club-intro { display: grid; gap: 2rem; align-items: start; }
+    @media (min-width: 900px) { .club-intro { grid-template-columns: 1.1fr .9fr; } }
+    .history p { color: var(--ink-soft); max-width: 36rem; }
+    .history p:first-of-type::first-letter {
+      float: left; font-family: var(--font-display); font-weight: 800;
+      font-size: 3.4em; line-height: .9; margin: .05em .12em 0 0; color: var(--coral);
+    }
+
+    /* Línea de tiempo */
+    .timeline { list-style: none; display: grid; gap: 1rem; position: relative; }
+    .timeline::before {
+      content: ""; position: absolute; left: 27px; top: 10px; bottom: 10px;
+      width: 6px; border-radius: 6px;
+      background: repeating-linear-gradient(var(--ink) 0 10px, transparent 10px 18px);
+      opacity: .25;
+    }
+    .timeline li { display: grid; grid-template-columns: 60px 1fr; gap: 1rem; align-items: center; position: relative; }
+    .timeline .dot {
+      display: grid; place-items: center;
+      width: 60px; height: 60px; border-radius: 50%;
+      border: var(--border); background: var(--yellow);
+      font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+    }
+    .timeline li:nth-child(2) .dot { background: var(--coral); }
+    .timeline li:nth-child(3) .dot { background: var(--mint); }
+    .timeline .card { padding: 1rem 1.2rem; }
+    .timeline h4 { margin: 0; }
+    .timeline .date { font-weight: 800; font-size: var(--fs-small); color: var(--ink-soft); }
+
+    /* Mosaico de fotos (marcadores de posición) */
+    .photo-grid {
+      display: grid; gap: 1rem; margin: clamp(2.5rem, 2rem + 2vw, 4rem) 0;
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .photo-grid .photo:first-child { grid-column: span 2; aspect-ratio: 2 / 1; }
+    @media (min-width: 760px) {
+      .photo-grid { grid-template-columns: repeat(4, 1fr); }
+      .photo-grid .photo:first-child { grid-row: span 2; aspect-ratio: auto; }
+    }
+    .photo {
+      position: relative; margin: 0;
+      aspect-ratio: 1; display: grid; place-items: center;
+      border: var(--border); border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sticker);
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .6) 0 18%, transparent 19%),
+        var(--photo-bg, var(--sky));
+    }
+    .photo:nth-child(2) { --photo-bg: var(--coral); }
+    .photo:nth-child(3) { --photo-bg: var(--mint); }
+    .photo:nth-child(4) { --photo-bg: var(--yellow); }
+    .photo:nth-child(5) { --photo-bg: #ff9aa6; }
+    .photo svg { width: 38%; max-width: 120px; height: auto; opacity: .55; }
+    .photo figcaption {
+      position: absolute; left: .7rem; bottom: .7rem;
+      background: var(--white); border: 2.5px solid var(--ink);
+      border-radius: 999px; padding: .1em .8em;
+      font-weight: 800; font-size: .9rem;
+    }
+
+    /* Valores */
+    .value-card { text-align: center; }
+    .value-card .bubble { margin-inline: auto; width: 76px; height: 76px; }
+    .value-card .bubble .icon { width: 38px; height: 38px; }
+
+    /* =========================================================
+       7. QUÉ ES EL JUDO
+       ========================================================= */
+    .what { --section-bg: var(--t-sky); background: var(--section-bg); }
+    .what-intro { display: grid; gap: 2rem; align-items: center; margin-bottom: 3.5rem; }
+    @media (min-width: 900px) { .what-intro { grid-template-columns: 1.2fr .8fr; } }
+    .fact-chips { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; }
+    .meaning {
+      padding: 1.6rem; text-align: center;
+      background: var(--yellow);
+      rotate: 2deg;
+    }
+    .meaning .kanji-free { font-family: var(--font-display); font-size: clamp(2.4rem, 2rem + 2vw, 3.4rem); font-weight: 800; line-height: 1; margin: .1em 0; }
+    .meaning p { margin: 0; font-weight: 700; }
+
+    /* Mini línea de tiempo de la historia */
+    .history-cards { list-style: none; counter-reset: hist; margin-bottom: 3.5rem; }
+    .history-cards li { position: relative; padding-top: 2.4rem; }
+    .history-cards .step {
+      position: absolute; top: -1.1rem; left: 1.4rem;
+      font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+      background: var(--coral); border: var(--border); border-radius: 999px;
+      padding: .15em .9em;
+    }
+    .history-cards li:nth-child(2) .step { background: var(--yellow); }
+    .history-cards li:nth-child(3) .step { background: var(--mint); }
+    .history-cards li:nth-child(4) .step { background: var(--sky); }
+    .history-cards em { font-style: normal; font-weight: 800; color: var(--ink); }
+
+    .principles { list-style: none; }
+    .principles li { display: flex; gap: 1rem; align-items: flex-start; }
+    .principles .bubble { margin: 0; width: 58px; height: 58px; }
+    .principles .bubble .icon { width: 30px; height: 30px; }
+    .principles h4 { margin-top: .2rem; }
+    .belt-row { display: flex; gap: 4px; margin-top: .6rem; flex-wrap: wrap; }
+    .belt-row span { width: 26px; height: 10px; border-radius: 6px; border: 2px solid var(--ink); }
+
+    /* =========================================================
+       8. VENTAJAS
+       ========================================================= */
+    .benefits { --section-bg: var(--cream); }
+    .benefit-card h4 { display: flex; align-items: center; gap: .5rem; }
+    .callout {
+      display: grid; gap: 1.5rem;
+      margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+      padding: clamp(1.5rem, 1rem + 2vw, 2.6rem);
+      background: var(--t-mint);
+      border: var(--border); border-radius: var(--radius-l);
+      box-shadow: var(--shadow-sticker);
+      position: relative; overflow: hidden;
+    }
+    @media (min-width: 860px) { .callout { grid-template-columns: 1.1fr 1fr; } }
+    .callout::after {
+      /* Mancha decorativa */
+      content: ""; position: absolute; right: -70px; bottom: -70px;
+      width: 200px; height: 200px; border-radius: 42% 58% 60% 40%;
+      background: var(--yellow); opacity: .5; z-index: 0;
+    }
+    .callout > * { position: relative; z-index: 1; }
+    .callout h3 { display: flex; align-items: center; gap: .5rem; }
+    .kid-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; margin-top: 1rem; }
+    .kid-list li {
+      display: flex; align-items: center; gap: .5rem;
+      background: var(--white); border: 2.5px solid var(--ink); border-radius: 18px;
+      padding: .5rem .8rem; font-weight: 800;
+    }
+    .kid-list .icon { width: 1.4em; height: 1.4em; }
+    .ages { list-style: none; display: grid; gap: .8rem; }
+    .ages li { background: var(--white); border: 2.5px solid var(--ink); border-radius: 20px; padding: .8rem 1rem; }
+    .ages strong { display: block; font-family: var(--font-display); font-size: 1.15rem; }
+    .ages span { color: var(--ink-soft); }
+
+    /* =========================================================
+       9. TÉCNICAS + DEMOS ANIMADAS
+       ========================================================= */
+    .techniques { --section-bg: var(--t-coral); }
+    .families { list-style: none; margin-bottom: 2.5rem; }
+    .family {
+      display: block; height: 100%; text-decoration: none;
+      padding: 1.3rem 1.4rem;
+    }
+    .family strong { display: block; font-family: var(--font-display); font-size: 1.4rem; line-height: 1.15; }
+    .family span { color: var(--ink-soft); }
+    .family .pill { display: inline-block; margin-bottom: .5rem; font-weight: 800; font-size: .85rem; padding: .1em .7em; border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); }
+
+    /* Cinta de cinturones que se rellena con el scroll */
+    .belt-progress {
+      position: sticky; top: calc(var(--header-h) + 8px); z-index: 20;
+      height: 22px; margin: 0 0 2rem;
+      border: var(--border); border-radius: 999px;
+      background: var(--white);
+      overflow: hidden;
+      box-shadow: 3px 4px 0 rgba(36, 31, 92, .15);
+    }
+    .belt-progress::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(90deg,
+        #ffffff 0 14.28%, var(--yellow) 0 28.56%, #ff9f43 0 42.84%,
+        var(--mint) 0 57.12%, var(--gi-blue) 0 71.4%, #8b5a3c 0 85.68%, #222 0);
+      transform-origin: left;
+      transform: scaleX(var(--p, 0));
+      transition: transform .15s linear;
+    }
+    /* Las demos usan su ancho real, la cinta solo tapa lo justo */
+
+    .tech-panel-head { display: grid; gap: 1rem 2rem; align-items: end; margin-bottom: 1.8rem; }
+    @media (min-width: 900px) { .tech-panel-head { grid-template-columns: 1fr 1fr; } }
+    .tech-panel-head p { margin: 0; color: var(--ink-soft); }
+    .tech-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+
+    .tech-card { padding: 1.2rem 1.2rem 1rem; display: flex; flex-direction: column; }
+    .tech-name { font-size: 1.5rem; margin: 0; }
+    .tech-es { margin: 0 0 .4rem; font-weight: 800; color: var(--coral-ink, #b23a1d); }
+    .tech-desc { font-size: 1rem; color: var(--ink-soft); margin-bottom: .9rem; }
+
+    .demo { margin: auto 0 0; }
+    .demo-stage {
+      position: relative;
+      border: 2.5px solid var(--ink); border-radius: 20px;
+      overflow: hidden;
+      background: radial-gradient(120% 90% at 50% 0%, #ffffff 0 45%, var(--t-sky) 100%);
+    }
+    .demo-svg { width: 100%; height: auto; aspect-ratio: 320 / 200; }
+    .demo-btn {
+      position: absolute; right: 10px; top: 10px;
+      display: grid; place-items: center;
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2.5px solid var(--ink); background: var(--yellow);
+      cursor: pointer;
+      transition: transform .2s var(--ease);
+    }
+    .demo-btn:hover { transform: scale(1.08); }
+    .demo-btn svg { width: 18px; height: 18px; }
+    .demo .i-play { display: none; }
+    .demo.is-paused .i-play { display: block; }
+    .demo.is-paused .i-pause { display: none; }
+
+    /* Pie con la fase actual: las 4 frases se apilan y se van mostrando */
+    .phase {
+      display: grid; margin-top: .6rem;
+      font-weight: 800; font-size: .98rem; line-height: 1.3;
+    }
+    .phase .ph { grid-area: 1 / 1; display: flex; gap: .45rem; align-items: center; }
+    .phase b {
+      display: inline-grid; place-items: center; flex: none;
+      width: 1.6rem; height: 1.6rem; border-radius: 50%;
+      border: 2px solid var(--ink); background: var(--t-yellow); font-size: .85rem;
+    }
+
+    /* --- Dibujo compartido de los muñecos --- */
+    .demo-svg line, .demo-svg path, .hero-art .fig line, .hero-art .fig path {
+      fill: none; stroke: var(--ink); stroke-width: 5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .fig .lb line, .fig .lb path, .fig .ab line { stroke: #5d59a0; }
+    .fig .gi { fill: var(--white); stroke-width: 3.5; }
+    .fig.tori .gi { fill: var(--gi-blue); }
+    .fig .lapel { stroke-width: 3; stroke: var(--gi-blue); }
+    .fig.tori .lapel { stroke: var(--white); }
+    .fig .obi { stroke: #ff9f43; stroke-width: 4.5; }
+    .fig.tori .obi { stroke: var(--yellow); }
+    .fig .face { fill: var(--skin); stroke: var(--ink); stroke-width: 3.5; }
+    .fig .eye { fill: var(--ink); }
+    .fig .blush { fill: #ff9aa6; opacity: .8; }
+    .fig .smile { stroke-width: 2.5; }
+
+    /* Articulaciones: cada pieza gira sobre su propio origen */
+    /* --r se reinicia en cada pieza para que no herede el ángulo de la articulación padre */
+    .fig .body, .fig .thigh, .fig .shin, .fig .arm, .fig .fore { --r: 0deg; rotate: var(--r); }
+    .fig .arm { translate: 0 -40px; }
+    .fig .shin { translate: 0 24px; }
+    .fig .fore { translate: 0 19px; }
+
+    .demo-svg .mat { fill: #ffe08a; stroke: none; }
+    .demo-svg .mat-line { stroke: #e6bf55; stroke-width: 3; }
+    .demo-svg .cue .trail { stroke: var(--coral); stroke-width: 3.5; stroke-dasharray: 7 7; }
+    .demo-svg .cue .head-arrow { stroke: var(--coral); stroke-width: 4; }
+    .demo-svg .burst path { stroke: var(--coral); stroke-width: 3.5; }
+    .demo-svg .tap circle { fill: none; stroke: var(--red); stroke-width: 3; }
+    .demo-svg .kudos path { fill: var(--red); stroke: var(--ink); stroke-width: 2; }
+    .demo-svg .timer-bg { fill: var(--white); stroke: #d9d6f0; stroke-width: 5; }
+    .demo-svg .timer-fg { fill: none; stroke: var(--mint); stroke-width: 5; stroke-dasharray: 88 88; stroke-dashoffset: 88; stroke-linecap: round; }
+
+    /* Aviso de seguridad */
+    .safety {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-top: 1.6rem; padding: 1.2rem 1.4rem;
+      background: var(--t-mint); border: var(--border); border-radius: var(--radius);
+    }
+    .safety .bubble { margin: 0; flex: none; background: var(--mint); }
+    .safety p { margin: 0; }
+
+    /* =========================================================
+       10. ANIMACIONES DE LAS TÉCNICAS
+       Todas las piezas de una demo comparten duración y empiezan a la vez,
+       así se pueden pausar o congelar en un fotograma con un solo retraso.
+       Fases comunes: 0-20% acercarse · 20-40% kuzushi · 40-60% ejecutar ·
+       60-80% caída / control · 80-100% volver al inicio.
+       ========================================================= */
+    .demo { --dur: 4s; }
+    .demo-svg *, .demo .ph {
+      animation-duration: var(--dur);
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+    }
+    .demo.is-paused .demo-svg *, .demo.is-paused .ph,
+    .demo.is-offscreen .demo-svg *, .demo.is-offscreen .ph { animation-play-state: paused; }
+
+    /* Pie de fase sincronizado */
+    .demo .ph1 { animation-name: ph1; }
+    .demo .ph2 { animation-name: ph2; }
+    .demo .ph3 { animation-name: ph3; }
+    .demo .ph4 { animation-name: ph4; }
+    /* Una frase se apaga antes de que se encienda la siguiente: nunca se solapan */
+    @keyframes ph1 { 0%, 18% { opacity: 1; } 19.5%, 98.5% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes ph2 { 0%, 20% { opacity: 0; } 21.5%, 38% { opacity: 1; } 39.5%, 100% { opacity: 0; } }
+    @keyframes ph3 { 0%, 40% { opacity: 0; } 41.5%, 58% { opacity: 1; } 59.5%, 100% { opacity: 0; } }
+    @keyframes ph4 { 0%, 60% { opacity: 0; } 61.5%, 95% { opacity: 1; } 96.5%, 100% { opacity: 0; } }
+
+    /* Señales comunes: flecha, impacto, palmadas, temporizador, corazón */
+    .demo .cue { animation-name: cue; }
+    .demo .cue .trail { animation-name: trail; animation-timing-function: linear; }
+    .demo .burst { animation-name: burst; }
+    .demo .tap { animation-name: tap; }
+    .demo .timer { animation-name: timer; }
+    .demo .timer-fg { animation-name: timer-fill; }
+    .demo .kudos { animation-name: kudos; }
+    @keyframes cue { 0%, 22% { opacity: 0; } 30%, 56% { opacity: 1; } 64%, 100% { opacity: 0; } }
+    @keyframes trail { to { stroke-dashoffset: -56; } }
+    @keyframes burst { 0%, 58% { opacity: 0; scale: .4; } 64% { opacity: 1; scale: 1; } 74%, 100% { opacity: 0; scale: 1.2; } }
+    @keyframes tap {
+      0%, 61% { opacity: 0; scale: .3; } 64% { opacity: 1; scale: .9; } 66.5% { opacity: 0; scale: 1.3; }
+      67.5% { opacity: 0; scale: .3; } 70% { opacity: 1; scale: .9; } 73%, 100% { opacity: 0; scale: 1.3; }
+    }
+    @keyframes timer { 0%, 54% { opacity: 0; } 58%, 82% { opacity: 1; } 88%, 100% { opacity: 0; } }
+    @keyframes timer-fill { 0%, 58% { stroke-dashoffset: 88; } 80%, 100% { stroke-dashoffset: 0; } }
+    @keyframes kudos { 0%, 80% { opacity: 0; translate: 0 6px; scale: .5; } 86%, 94% { opacity: 1; translate: 0 0; scale: 1; } 99%, 100% { opacity: 0; translate: 0 -6px; scale: .8; } }
+
+    /* ---------- O-soto-gari ---------- */
+    #demo-osoto .tori .body { animation-name: osoto-tori; }
+    #demo-osoto .tori .lf { animation-name: osoto-tleg; }
+    #demo-osoto .tori .lb { animation-name: osoto-tlegb; }
+    #demo-osoto .uke .body { animation-name: osoto-uke; }
+    #demo-osoto .uke .lf { animation-name: osoto-uleg; }
+    #demo-osoto .uke .af { animation-name: osoto-uarm; }
+    @keyframes osoto-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 26px 0; rotate: 0deg; }
+      40% { translate: 30px 0; rotate: 8deg; }
+      55% { translate: 34px 0; rotate: 22deg; }
+      72% { translate: 32px 0; rotate: 14deg; }
+      88% { translate: 12px 0; rotate: 0deg; }
+    }
+    @keyframes osoto-tleg { 0%, 28%, 88%, 100% { rotate: -12deg; } 42% { rotate: -55deg; } 55% { rotate: 36deg; } 72% { rotate: 22deg; } }
+    @keyframes osoto-tlegb { 0%, 28%, 88%, 100% { rotate: 12deg; } 55%, 72% { rotate: -16deg; } }
+    @keyframes osoto-uke {
+      0%, 22%, 100% { translate: 0 0; rotate: 0deg; }
+      40% { translate: 0 0; rotate: -14deg; }
+      54% { translate: -8px 14px; rotate: -55deg; }
+      64%, 80% { translate: -18px 37px; rotate: -90deg; }
+    }
+    @keyframes osoto-uleg { 0%, 40%, 100% { rotate: -12deg; } 55% { rotate: -50deg; } 66%, 80% { rotate: -22deg; } }
+    @keyframes osoto-uarm { 0%, 50%, 100% { rotate: -78deg; } 64%, 80% { rotate: -5deg; } }
+
+    /* ---------- Ippon-seoi-nage ---------- */
+    #demo-seoi .tori .body { animation-name: seoi-tori; }
+    #demo-seoi .tori .thigh { animation-name: seoi-tleg; }
+    #demo-seoi .tori .shin { animation-name: seoi-tshin; }
+    #demo-seoi .tori .af { animation-name: seoi-taf; }
+    #demo-seoi .tori .af .fore { animation-name: seoi-tafore; }
+    #demo-seoi .tori .ab { animation-name: seoi-tab; }
+    #demo-seoi .uke .body { animation-name: seoi-uke; }
+    @keyframes seoi-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; scale: 1 1; }
+      9% { translate: 18px 0; rotate: 0deg; scale: 1 1; }
+      20% { translate: 42px 4px; rotate: 0deg; scale: -1 1; }
+      40% { translate: 44px 4px; rotate: -14deg; scale: -1 1; }
+      55% { translate: 44px 4px; rotate: -48deg; scale: -1 1; }
+      70% { translate: 44px 3px; rotate: -18deg; scale: -1 1; }
+      84% { translate: 26px 0; rotate: 0deg; scale: -1 1; }
+    }
+    @keyframes seoi-tleg { 0%, 9%, 100% { rotate: -12deg; } 20% { rotate: -30deg; } 40% { rotate: -44deg; } 55% { rotate: -78deg; } 70% { rotate: -48deg; } 84% { rotate: -12deg; } }
+    @keyframes seoi-tshin { 0%, 9%, 84%, 100% { rotate: 0deg; } 20%, 70% { rotate: 45deg; } }
+    @keyframes seoi-taf { 0%, 9%, 84%, 100% { rotate: -85deg; } 20% { rotate: -160deg; } 40% { rotate: -150deg; } 55% { rotate: -70deg; } 70% { rotate: -40deg; } }
+    @keyframes seoi-tafore { 0%, 9%, 84%, 100% { rotate: -10deg; } 20%, 40% { rotate: -70deg; } 55%, 70% { rotate: -20deg; } }
+    @keyframes seoi-tab { 0%, 9%, 84%, 100% { rotate: -70deg; } 20%, 40% { rotate: -100deg; } 55%, 70% { rotate: -10deg; } }
+    @keyframes seoi-uke {
+      0%, 16% { translate: 0 0; rotate: 0deg; }
+      40% { translate: 24px -2px; rotate: 32deg; }
+      50% { translate: 52px -50px; rotate: 150deg; }
+      60%, 80% { translate: 124px 37px; rotate: 270deg; }
+      100% { translate: 0 0; rotate: 360deg; }
+    }
+
+    /* ---------- De-ashi-barai ---------- */
+    #demo-deashi .tori .body { animation-name: deashi-tori; }
+    #demo-deashi .tori .lf { animation-name: deashi-tleg; }
+    #demo-deashi .uke .body { animation-name: deashi-uke; }
+    #demo-deashi .uke .lf { animation-name: deashi-uleg; }
+    @keyframes deashi-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 4px 0; rotate: 0deg; }
+      40% { translate: 14px 0; rotate: -5deg; }
+      52% { translate: 16px 0; rotate: -10deg; }
+      66% { translate: 16px 0; rotate: -4deg; }
+      84% { translate: 6px 0; rotate: 0deg; }
+    }
+    @keyframes deashi-tleg { 0%, 38%, 84%, 100% { rotate: -12deg; } 52% { rotate: -38deg; } 66% { rotate: -18deg; } }
+    @keyframes deashi-uke {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 14px 0; rotate: 0deg; }
+      40% { translate: 16px 0; rotate: 6deg; }
+      52% { translate: 12px 6px; rotate: -35deg; }
+      62%, 80% { translate: -4px 37px; rotate: -90deg; }
+    }
+    @keyframes deashi-uleg { 0%, 100% { rotate: -12deg; } 20%, 40% { rotate: -26deg; } 52% { rotate: -72deg; } 62%, 80% { rotate: -30deg; } }
+
+    /* ---------- Ne waza: el compañero intenta escapar (común) ---------- */
+    .demo.ne .uke .body { animation-name: ne-uke; }
+    .demo.ne .uke .lf { animation-name: ne-ukeleg; }
+    .demo.ne .uke .lf .shin { animation-name: ne-ukeshin; }
+    @keyframes ne-uke { 0%, 58%, 84%, 100% { rotate: 0deg; translate: 0 0; } 64% { rotate: 4deg; } 70% { rotate: -3deg; translate: 4px 0; } 76% { rotate: 4deg; translate: 0 0; } }
+    @keyframes ne-ukeleg { 0%, 58%, 84%, 100% { rotate: -4deg; } 64%, 76% { rotate: -55deg; } 70% { rotate: -15deg; } }
+    @keyframes ne-ukeshin { 0%, 58%, 84%, 100% { rotate: 0deg; } 64%, 76% { rotate: 80deg; } 70% { rotate: 20deg; } }
+
+    /* ---------- Kesa-gatame ---------- */
+    #demo-kesa .tori .body { animation-name: kesa-tori; }
+    #demo-kesa .tori .lf { animation-name: kesa-tlf; }
+    #demo-kesa .tori .lf .shin { animation-name: kesa-tlfs; }
+    #demo-kesa .tori .lb { animation-name: kesa-tlb; }
+    #demo-kesa .tori .lb .shin { animation-name: kesa-tlbs; }
+    #demo-kesa .tori .af { animation-name: kesa-taf; }
+    #demo-kesa .tori .af .fore { animation-name: kesa-tafore; }
+    @keyframes kesa-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 24px 0; rotate: 0deg; }
+      40% { translate: 32px 12px; rotate: 25deg; }
+      55%, 84% { translate: 30px 12px; rotate: 38deg; }
+      92% { translate: 14px 2px; rotate: 10deg; }
+    }
+    @keyframes kesa-tlf { 0%, 20%, 100% { rotate: -4deg; } 40% { rotate: -110deg; } 55%, 84% { rotate: -140deg; } 92% { rotate: -20deg; } }
+    @keyframes kesa-tlfs { 0%, 20%, 100% { rotate: 90deg; } 40%, 84% { rotate: 100deg; } }
+    @keyframes kesa-tlb { 0%, 20%, 100% { rotate: 4deg; } 40% { rotate: 55deg; } 55%, 84% { rotate: 32deg; } 92% { rotate: 6deg; } }
+    @keyframes kesa-tlbs { 0%, 20%, 100% { rotate: 90deg; } 40%, 84% { rotate: 14deg; } 92% { rotate: 80deg; } }
+    @keyframes kesa-taf { 0%, 40%, 100% { rotate: -40deg; } 55%, 84% { rotate: -95deg; } }
+    @keyframes kesa-tafore { 0%, 40%, 100% { rotate: 0deg; } 55%, 84% { rotate: -40deg; } }
+
+    /* ---------- Yoko-shiho-gatame ---------- */
+    #demo-yoko .tori .body { animation-name: yoko-tori; }
+    #demo-yoko .tori .thigh { animation-name: yoko-tleg; }
+    #demo-yoko .tori .shin { animation-name: yoko-tshin; }
+    #demo-yoko .tori .af { animation-name: yoko-taf; }
+    #demo-yoko .tori .ab { animation-name: yoko-tab; }
+    @keyframes yoko-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 22px 0; rotate: 0deg; }
+      40% { translate: 26px 0; rotate: 35deg; }
+      55%, 84% { translate: 26px 2px; rotate: 74deg; }
+      92% { translate: 10px 0; rotate: 12deg; }
+    }
+    @keyframes yoko-tleg { 0%, 20%, 100% { rotate: -4deg; } 40% { rotate: -55deg; } 55%, 84% { rotate: -94deg; } 92% { rotate: -16deg; } }
+    @keyframes yoko-tshin { 0%, 20%, 100% { rotate: 90deg; } 40%, 84% { rotate: 110deg; } 92% { rotate: 95deg; } }
+    @keyframes yoko-taf { 0%, 40%, 100% { rotate: -40deg; } 55%, 84% { rotate: -20deg; } }
+    @keyframes yoko-tab { 0%, 40%, 100% { rotate: -20deg; } 55%, 84% { rotate: 40deg; } }
+
+    /* ---------- Kami-shiho-gatame ---------- */
+    #demo-kami .tori .body { animation-name: kami-tori; }
+    #demo-kami .tori .thigh { animation-name: kami-tleg; }
+    #demo-kami .tori .shin { animation-name: yoko-tshin; }
+    #demo-kami .tori .af, #demo-kami .tori .ab { animation-name: kami-tarm; }
+    @keyframes kami-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 22px 0; rotate: 0deg; }
+      40% { translate: 26px 0; rotate: 35deg; }
+      55%, 84% { translate: 28px 2px; rotate: 76deg; }
+      92% { translate: 10px 0; rotate: 12deg; }
+    }
+    @keyframes kami-tleg { 0%, 20%, 100% { rotate: -4deg; } 40% { rotate: -55deg; } 55%, 84% { rotate: -96deg; } 92% { rotate: -16deg; } }
+    @keyframes kami-tarm { 0%, 40%, 100% { rotate: -40deg; } 55%, 84% { rotate: -12deg; } }
+
+    /* ---------- Shime waza: común (inclinar, palmadas y soltar) ---------- */
+    .demo.shime .tori .body { animation-name: shime-tori; }
+    .demo.shime .uke .body { animation-name: shime-uke; }
+    .demo.shime .uke .af { animation-name: shime-tap; }
+    @keyframes shime-tori {
+      0%, 100% { translate: 0 0; rotate: 0deg; }
+      20% { translate: 32px 0; rotate: 0deg; }
+      40% { translate: 38px 0; rotate: -4deg; }
+      60%, 76% { translate: 42px 0; rotate: -8deg; }
+      82% { translate: 24px 0; rotate: -2deg; }
+    }
+    @keyframes shime-uke { 0%, 20%, 100% { rotate: 0deg; } 40% { rotate: -12deg; } 60%, 76% { rotate: -15deg; } 84% { rotate: 0deg; } }
+    @keyframes shime-tap { 0%, 58%, 76%, 100% { rotate: -45deg; } 61%, 67% { rotate: -110deg; } 64%, 70% { rotate: -25deg; } }
+
+    /* ---------- Hadaka-jime ---------- */
+    #demo-hadaka .tori .af { animation-name: hadaka-taf; }
+    #demo-hadaka .tori .af .fore { animation-name: hadaka-tafore; }
+    #demo-hadaka .tori .ab { animation-name: hadaka-tab; }
+    #demo-hadaka .tori .ab .fore { animation-name: hadaka-tabfore; }
+    @keyframes hadaka-taf { 0%, 20%, 77%, 100% { rotate: -40deg; } 40% { rotate: -50deg; } 50%, 76% { rotate: -27deg; } }
+    @keyframes hadaka-tafore { 0%, 20%, 77%, 100% { rotate: 0deg; } 40% { rotate: -40deg; } 50%, 76% { rotate: -60deg; } }
+    @keyframes hadaka-tab { 0%, 20%, 77%, 100% { rotate: -20deg; } 40%, 76% { rotate: -150deg; } }
+    @keyframes hadaka-tabfore { 0%, 20%, 77%, 100% { rotate: 0deg; } 40%, 76% { rotate: -50deg; } }
+
+    /* ---------- Okuri-eri-jime ---------- */
+    #demo-okuri .tori .af { animation-name: okuri-taf; }
+    #demo-okuri .tori .af .fore { animation-name: okuri-tafore; }
+    #demo-okuri .tori .ab { animation-name: okuri-tab; }
+    #demo-okuri .uke .lapel { animation-name: collar; }
+    @keyframes okuri-taf { 0%, 20%, 77%, 100% { rotate: -40deg; } 40% { rotate: -30deg; } 55%, 76% { rotate: -27deg; } }
+    @keyframes okuri-tafore { 0%, 20%, 77%, 100% { rotate: 0deg; } 40% { rotate: -30deg; } 55%, 76% { rotate: -58deg; } }
+    @keyframes okuri-tab { 0%, 20%, 77%, 100% { rotate: -20deg; } 40%, 76% { rotate: -55deg; } }
+    @keyframes collar { 0%, 34%, 80%, 100% { stroke: var(--gi-blue); stroke-width: 3; } 44%, 76% { stroke: var(--coral); stroke-width: 5; } }
+
+    /* ---------- Kata-ha-jime ---------- */
+    #demo-kataha .tori .af { animation-name: okuri-taf; }
+    #demo-kataha .tori .af .fore { animation-name: okuri-tafore; }
+    #demo-kataha .tori .ab { animation-name: kataha-tab; }
+    #demo-kataha .uke .ab { animation-name: kataha-uab; }
+    #demo-kataha .uke .ab .fore { animation-name: kataha-uabfore; }
+    @keyframes kataha-tab { 0%, 20%, 77%, 100% { rotate: -20deg; } 38%, 76% { rotate: -150deg; } }
+    @keyframes kataha-uab { 0%, 20%, 80%, 100% { rotate: -35deg; } 38%, 76% { rotate: -170deg; } }
+    @keyframes kataha-uabfore { 0%, 20%, 80%, 100% { rotate: -10deg; } 38%, 76% { rotate: -40deg; } }
+
+    /* =========================================================
+       11. COMPETICIÓN
+       ========================================================= */
+    .compete { --section-bg: var(--t-mint); background: var(--section-bg); }
+    .compete-block { padding: clamp(1.4rem, 1rem + 1.5vw, 2.2rem); }
+    .compete-block h3 { display: flex; gap: .6rem; align-items: center; }
+    .rules { list-style: none; display: grid; gap: .8rem; margin-top: 1rem; }
+    .rules li { display: grid; grid-template-columns: auto 1fr; gap: .8rem; align-items: start; }
+    .rules .tag {
+      font-family: var(--font-display); font-weight: 800; font-size: 1rem;
+      background: var(--yellow); border: 2.5px solid var(--ink); border-radius: 12px;
+      padding: .05em .6em; white-space: nowrap; min-width: 6.6rem; text-align: center;
+    }
+    .rules li:nth-child(2) .tag { background: var(--sky); }
+    .rules li:nth-child(3) .tag { background: var(--mint); }
+    .rules li:nth-child(4) .tag { background: #ff9aa6; }
+    .rules li:nth-child(5) .tag { background: #b8a6ff; }
+    .rules li:nth-child(6) .tag { background: var(--coral); }
+    .rules span:last-child { color: var(--ink-soft); }
+    .weights { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: .6rem 0 1rem; }
+    .weights li { font-weight: 800; font-size: .9rem; padding: .15em .65em; border: 2px solid var(--ink); border-radius: 999px; background: var(--t-sky); }
+    .weights.w li { background: var(--t-coral); }
+    .weights-label { font-weight: 800; margin: .6rem 0 0; }
+    .optional {
+      display: flex; gap: 1rem; align-items: center;
+      margin-top: 1.6rem; padding: 1.1rem 1.3rem;
+      border: 3px dashed var(--ink); border-radius: var(--radius); background: var(--white);
+    }
+    .optional p { margin: 0; font-weight: 700; }
+    .dare {
+      display: grid; gap: 1.2rem; align-items: center; justify-items: start;
+      margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+      padding: clamp(1.5rem, 1rem + 2vw, 2.4rem);
+      background: var(--yellow); border: var(--border); border-radius: var(--radius-l);
+      box-shadow: var(--shadow-sticker);
+    }
+    @media (min-width: 760px) { .dare { grid-template-columns: auto 1fr auto; } }
+    .dare h3 { margin: 0; font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem); }
+    .dare p { margin: 0; font-weight: 700; }
+    .dare-icon { width: 84px; height: 84px; }
+
+    /* =========================================================
+       12. PIE DE PÁGINA
+       ========================================================= */
+    .site-footer {
+      --section-bg: var(--ink);
+      position: relative;
+      background: var(--ink); color: #f6f3ff;
+      padding: clamp(3.5rem, 3rem + 3vw, 5rem) 0 2rem;
+    }
+    .site-footer :focus-visible { outline-color: var(--yellow); }
+    .site-footer h2 { font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.5rem); color: var(--yellow); }
+    .site-footer h3 { font-size: 1.35rem; color: var(--white); }
+    .footer-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+    .contact-list, .schedule, .social { list-style: none; display: grid; gap: .7rem; }
+    .contact-list li { display: flex; gap: .7rem; align-items: center; }
+    .contact-list a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+    .contact-list .icon { width: 1.4em; height: 1.4em; color: var(--yellow); }
+    .schedule li { display: flex; flex-direction: column; padding: .55rem .8rem; border: 2px solid rgba(255, 255, 255, .35); border-radius: 16px; }
+    .schedule strong { color: var(--yellow); }
+    .note { font-size: .92rem; opacity: .9; margin-top: .8rem; }
+    .social { grid-auto-flow: column; justify-content: start; gap: .7rem; }
+    .social a {
+      display: grid; place-items: center; width: 52px; height: 52px;
+      border-radius: 50%; background: var(--yellow); color: var(--ink);
+      border: 3px solid var(--white);
+      transition: transform .25s var(--ease);
+    }
+    .social a:hover { transform: translateY(-4px) rotate(-8deg); }
+    .social .icon { width: 24px; height: 24px; }
+    .footer-bottom {
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+      margin-top: 3rem; padding-top: 1.4rem;
+      border-top: 2px dashed rgba(255, 255, 255, .35);
+      font-size: .95rem;
+    }
+    .footer-belt { display: flex; height: 10px; border-radius: 10px; overflow: hidden; margin-top: 1.4rem; }
+    .footer-belt span { flex: 1; }
+
+    /* =========================================================
+       13. MOVIMIENTO DECORATIVO (suave y escaso)
+       ========================================================= */
+    @keyframes float { 0%, 100% { translate: 0 0; rotate: -4deg; } 50% { translate: 0 -12px; rotate: 4deg; } }
+    @keyframes sway { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+    @keyframes waveHand { 0%, 60%, 100% { rotate: -140deg; } 70%, 90% { rotate: -118deg; } 80% { rotate: -150deg; } }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-9px) rotate(-6deg); } 70% { transform: translateY(-3px); } }
+    .float-1 { animation: float 6s var(--ease) infinite; transform-box: fill-box; transform-origin: center; }
+    .float-2 { animation: sway 7s var(--ease) infinite; transform-box: fill-box; transform-origin: 50% 0; }
+    .hero-art .tori .af { animation: waveHand 4.5s var(--ease) infinite; }
+    body.motion-paused .float-1, body.motion-paused .float-2,
+    body.motion-paused .hero-art .tori .af { animation-play-state: paused; }
+
+    /* Aparición al hacer scroll (solo si hay JS) */
+    .js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+    .js .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* =========================================================
+       14. MOVIMIENTO REDUCIDO
+       Congela las demos en un fotograma representativo y elimina
+       el movimiento decorativo infinito.
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+      .float-1, .float-2, .hero-art .tori .af { animation: none !important; }
+      .lift:hover, .btn:hover, .tab:hover, .social a:hover, .icon-btn:hover { transform: none; }
+      .lift:hover .bubble { animation: none; }
+      .js .reveal { opacity: 1; transform: none; }
+
+      .demo:not(.is-playing) .demo-svg * {
+        animation-play-state: paused !important;
+        animation-delay: calc(var(--freeze) * -1) !important;
+      }
+      /* El pie muestra las 4 fases a la vez, en lista */
+      .demo .phase { display: flex; flex-direction: column; gap: .3rem; }
+      .demo .ph { animation: none !important; opacity: 1 !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Sprite de iconos (se reutilizan con <use>) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5z" fill="currentColor"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><rect x="5" y="4" width="5" height="16" rx="2" fill="currentColor"/><rect x="14" y="4" width="5" height="16" rx="2" fill="currentColor"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="currentColor" stroke="#241f5c" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.5" stroke-linecap="round"/></symbol>
+      <symbol id="i-rei" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="15.5" cy="5" r="2.5"/><path d="M13.5 8.5L7 12l1.5 9M7 12l7 2.5M9 13l-1 0"/><path d="M14 14.5l1 6.5"/></symbol>
+      <symbol id="i-friends" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="8" r="3"/><path d="M3 20c0-3.3 2.2-5.5 5-5.5s5 2.2 5 5.5M11.5 20c0-3.3 2.2-5.5 5-5.5S21 16.7 21 20"/></symbol>
+      <symbol id="i-team" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="7" r="2.8"/><circle cx="5" cy="10" r="2.2"/><circle cx="19" cy="10" r="2.2"/><path d="M7.5 20c0-3 2-5 4.5-5s4.5 2 4.5 5M1.8 19c0-2.4 1.4-4 3.2-4M22.2 19c0-2.4-1.4-4-3.2-4"/></symbol>
+      <symbol id="i-muscle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9v6M6 6v12M18 6v12M21 9v6M6 12h12"/></symbol>
+      <symbol id="i-flex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="4.5" r="2"/><path d="M15.5 7.5c-3 1-5 4-5.5 7.5M10 15l-6 2M10 15l4.5 5M14 9.5l5 3"/></symbol>
+      <symbol id="i-coord" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 2.5v4h-4M6 21.5v-4h4"/></symbol>
+      <symbol id="i-balance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h18M12 15l-3.5 5h7z"/><circle cx="6" cy="11" r="2.4"/><rect x="15" y="8.5" width="5" height="5" rx="1.2"/></symbol>
+      <symbol id="i-posture" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2.3"/><path d="M12 7v8M7 10h10M12 15l-3 6M12 15l3 6"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+      <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4a1.5 1.5 0 0 1 3 0v7M14 10.5V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-3 0-4.5-1.6-6-4l-1.6-2.8a1.5 1.5 0 0 1 2.6-1.5L8 15"/></symbol>
+      <symbol id="i-retry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5V8h-4.5"/></symbol>
+      <symbol id="i-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 14.5a4.5 4.5 0 0 0 8 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 2.5v4M16 2.5v4M8.5 14.5l2.5 2.5 4.5-4.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5.5c0 5-3.5 8.3-8 9.5-4.5-1.2-8-4.5-8-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+      <symbol id="i-tatami" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 12h9M12 3v18M12 15h9"/></symbol>
+      <symbol id="i-gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3L3 6l2 5 2-1v11h10V10l2 1 2-5-5-3"/><path d="M8 3l4 7 4-7M7 14h10"/><path d="M11 14l-1.5 4M13 14l1.5 4"/></symbol>
+      <symbol id="i-belt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h20v4H2z"/><path d="M10 14l-3 7M14 14l3 7"/><rect x="9.5" y="8.5" width="5" height="7" rx="1.5"/></symbol>
+      <symbol id="i-play-ball" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.5 9.5c5 1 12 1 17 0M3.5 14.5c5-1 12-1 17 0"/></symbol>
+      <symbol id="i-run" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="4" r="2.2"/><path d="M8 9l4-2 3 3 3 1M12 7l-2 6 4 3v5M10 13l-3 4H4"/></symbol>
+      <symbol id="i-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12C12 7 8.5 5 4 5c0 4.5 3 7 8 7zM12 10c0-4 3-6.5 8-6.5 0 4-3 6.5-8 6.5z"/></symbol>
+      <symbol id="i-medal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l4 7 4-7"/><circle cx="12" cy="15" r="6"/><path d="M12 12.3l.9 1.8 2 .3-1.4 1.4.3 2-1.8-.9-1.8.9.3-2-1.4-1.4 2-.3z"/></symbol>
+      <symbol id="i-torch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8l-2.5 11h-3z"/><path d="M12 2c2.5 2.3 3 4.3 1.5 6.5H10.5C9 6.3 9.6 4.3 12 2z"/></symbol>
+      <symbol id="i-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-9 3 3 2.5-8L22 20z"/><path d="M13.5 9.5l1-3.5 1 3.5"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-insta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.5-3h-3V8.7c0-.9.3-1.6 1.6-1.6h1.6V4.4a20 20 0 0 0-2.4-.1c-2.4 0-4 1.5-4 4.1v2.1H7.5v3h2.8V21z" fill="currentColor"/></symbol>
+      <symbol id="i-yt" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="currentColor"/><path d="M10 9v6l5-3z" fill="#ffd23f"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- =========================== CABECERA =========================== -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Principal">
+      <a class="brand" href="#inicio" aria-label="Escola Judo Club, ir al inicio">
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" fill="#ffd23f" stroke="#241f5c" stroke-width="3.5"/>
+          <path d="M14 46 L26 22 L32 30 L38 18 L50 46 Z" fill="#4fd1a0" stroke="#241f5c" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M9 40 H55" stroke="#241f5c" stroke-width="7" stroke-linecap="round"/>
+          <path d="M9 40 H55" stroke="#ff7f5c" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M30 40 l-5 13 M34 40 l5 13" stroke="#241f5c" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span>Escola Judo Club<small>Pico Sacro · Galicia</small></span>
+      </a>
+
+      <div class="nav-tools">
+        <button class="icon-btn motion-toggle" type="button" aria-pressed="false" aria-label="Pausar animaciones" title="Pausar animaciones">
+          <svg class="icon i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          <svg class="icon i-play" aria-hidden="true"><use href="#i-play"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+          <svg class="icon i-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon i-close" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+
+      <div class="nav-menu" id="menu">
+        <ul class="nav-links">
+          <li><a href="#club">El club</a></li>
+          <li><a href="#que-es">Qué es el judo</a></li>
+          <li><a href="#ventajas">Ventajas</a></li>
+          <li><a href="#tecnicas">Técnicas</a></li>
+          <li><a href="#competicion">Competición</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a class="btn btn-primary nav-cta" href="#contacto">Ven a probar</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <!-- =========================== 1. HERO =========================== -->
+    <section class="hero tatami" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-text reveal">
+          <h1 id="hero-title">
+            <span class="club-name">Escola</span>
+            <span class="hl">Judo Club</span>
+          </h1>
+          <p class="tagline">Crecemos jugando, aprendiendo y cuidándonos, al pie del Pico Sacro.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#contacto">
+              <svg class="icon" aria-hidden="true"><use href="#i-star"/></svg>
+              Ven a probar
+            </a>
+            <a class="btn btn-secondary" href="#que-es">Descubre el judo</a>
+          </div>
+          <ul class="badges" aria-label="Lo que nos define">
+            <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg>Desde 4 años</li>
+            <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-mountain"/></svg>Club rural</li>
+            <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Ambiente familiar</li>
+          </ul>
+        </div>
+
+        <div class="hero-art reveal">
+          <svg viewBox="0 0 560 440" role="img" aria-labelledby="hero-art-title">
+            <title id="hero-art-title">Dos peques con judogi se saludan sobre el tatami, con el Pico Sacro y el sol al fondo</title>
+            <!-- Mancha de cielo -->
+            <path d="M60 120 C70 40 190 10 290 26 C420 44 530 60 540 170 C552 280 500 380 380 392 C250 404 70 398 40 300 C20 230 52 180 60 120Z" fill="#dff2fd" stroke="#241f5c" stroke-width="3"/>
+            <!-- Sol -->
+            <g>
+              <circle cx="448" cy="96" r="34" fill="#ffd23f" stroke="#241f5c" stroke-width="3"/>
+              <path d="M448 44v-14M448 162v-14M396 96h-14M514 96h-14M411 59l-10-10M495 143l-10-10M485 59l10-10M401 143l10-10" stroke="#ff9f43" stroke-width="5" stroke-linecap="round"/>
+            </g>
+            <!-- Pico Sacro (con parallax suave) -->
+            <g class="mountain">
+              <path d="M40 330 C120 300 190 230 236 150 C252 120 262 96 276 86 C290 96 300 120 316 152 C360 236 430 300 530 330 Z" fill="#4fd1a0" stroke="#241f5c" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M276 86 C268 110 262 140 266 170 M276 86 C290 120 300 160 296 200" stroke="#2f9e76" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <!-- Ermita en la cima -->
+              <path d="M268 86 v-12 l8 -7 l8 7 v12 z" fill="#fff" stroke="#241f5c" stroke-width="2.5" stroke-linejoin="round"/>
+              <path d="M276 62 v-7 M273 58 h6" stroke="#241f5c" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Colinas -->
+              <path d="M20 340 C110 290 190 300 260 330 C340 296 450 290 545 336 L545 360 L20 360Z" fill="#9be7c4" stroke="#241f5c" stroke-width="3" stroke-linejoin="round"/>
+            </g>
+            <!-- Tatami -->
+            <rect x="40" y="318" width="480" height="90" rx="22" fill="#ffe08a" stroke="#241f5c" stroke-width="3"/>
+            <path d="M160 318v90M280 318v90M400 318v90M40 362h480" stroke="#e6bf55" stroke-width="3"/>
+            <!-- Nube -->
+            <path d="M90 110 a20 20 0 0 1 36 -10 a24 24 0 0 1 44 8 a16 16 0 0 1 4 32 h-80 a16 16 0 0 1 -4 -30z" fill="#fff" stroke="#241f5c" stroke-width="3"/>
+            <!-- Muñecos con judogi -->
+      <g class="fig tori" transform="translate(188 318) scale(1.55)">
+        <g class="body">
+          <g class="thigh lb" style="--r:10deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+          <g class="arm ab" style="--r:18deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+          <g class="thigh lf" style="--r:-10deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+          <path class="gi" d="M-12-44h24l3 42h-30z"/>
+          <path class="lapel" d="M-8-44l8 16 8-16"/>
+          <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+          <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+          <g class="arm af" style="--r:-140deg"><line y2="19"/><g class="fore" style="--r:-35deg"><line y2="17"/></g></g>
+        </g>
+      </g>
+      <g class="fig uke" transform="translate(370 318) scale(-1.55 1.55)">
+        <g class="body">
+          <g class="thigh lb" style="--r:-10deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+          <g class="arm ab" style="--r:-18deg"><line y2="19"/><g class="fore" style="--r:-6deg"><line y2="17"/></g></g>
+          <g class="thigh lf" style="--r:-34deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+          <path class="gi" d="M-12-44h24l3 42h-30z"/>
+          <path class="lapel" d="M-8-44l8 16 8-16"/>
+          <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+          <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+          <g class="arm af" style="--r:-22deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+        </g>
+      </g>
+            <!-- Gotitas de esfuerzo y estrellas estáticas -->
+            <path d="M232 176 q-6 9 0 12 q6 -3 0 -12z" fill="#49b6f2" stroke="#241f5c" stroke-width="2"/>
+            <path d="M246 192 q-5 7 0 10 q5 -3 0 -10z" fill="#49b6f2" stroke="#241f5c" stroke-width="2"/>
+            <use href="#i-star" x="470" y="230" width="30" height="30" style="color:#ff7f5c"/>
+            <use href="#i-star" x="64" y="236" width="24" height="24" style="color:#ffd23f"/>
+            <!-- Elementos flotantes (máx. 2 + saludo) -->
+            <g class="float-1"><use href="#i-star" x="350" y="150" width="40" height="40" style="color:#ffd23f"/></g>
+            <g class="float-2">
+              <path d="M44 186 c18 -14 34 14 52 0 s34 14 52 0" fill="none" stroke="#241f5c" stroke-width="13" stroke-linecap="round"/>
+              <path d="M44 186 c18 -14 34 14 52 0 s34 14 52 0" fill="none" stroke="#ff7f5c" stroke-width="7" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== 2. EL CLUB =========================== -->
+    <section class="section club" id="club" aria-labelledby="club-title">
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50 C180 10 360 10 540 40 S900 80 1080 46 S1320 10 1440 30 V80 H0Z"/></svg>
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="eyebrow">Nuestro dojo</span>
+          <h2 id="club-title">Escola Judo Club</h2>
+          <p class="lead">Un pequeño club rural con un gran tatami lleno de sonrisas.</p>
+        </header>
+
+        <div class="club-intro">
+          <div class="history reveal">
+            <h3>Nuestra historia</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lorem in arcu aliquet sodales, sed ultrices nibh pharetra.</p>
+            <p>Suspendisse potenti. Curabitur ut felis non ligula tempus bibendum. Nullam luctus, sapien quis gravida tempor, lorem nisl pretium urna.</p>
+            <p>Donec malesuada, velit a viverra tincidunt, nisi magna sollicitudin justo, vitae fermentum ipsum quam sit amet augue.</p>
+          </div>
+
+          <ol class="timeline reveal" aria-label="Hitos del club">
+            <li>
+              <span class="dot" aria-hidden="true">1</span>
+              <div class="card sticker">
+                <h4>Fundación</h4>
+                <p class="date">19XX · Lorem ipsum dolor sit amet</p>
+              </div>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true">2</span>
+              <div class="card sticker">
+                <h4>Primeros campeonatos</h4>
+                <p class="date">20XX · Consectetur adipiscing elit</p>
+              </div>
+            </li>
+            <li>
+              <span class="dot" aria-hidden="true">3</span>
+              <div class="card sticker">
+                <h4>Hoy</h4>
+                <p class="date">Sed do eiusmod tempor incididunt</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Fotos: marcadores hasta tener imágenes reales -->
+        <div class="photo-grid">
+          <figure class="photo reveal" role="img" aria-label="Espacio reservado para una foto de los entrenamientos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-gi"/></svg>
+            <figcaption aria-hidden="true">Entrenos</figcaption>
+          </figure>
+          <figure class="photo reveal" role="img" aria-label="Espacio reservado para una foto de los peques">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-belt"/></svg>
+            <figcaption aria-hidden="true">Peques</figcaption>
+          </figure>
+          <figure class="photo reveal" role="img" aria-label="Espacio reservado para una foto de una exhibición">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-medal"/></svg>
+            <figcaption aria-hidden="true">Exhibiciones</figcaption>
+          </figure>
+          <figure class="photo reveal" role="img" aria-label="Espacio reservado para una foto de una excursión al Pico Sacro">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-mountain"/></svg>
+            <figcaption aria-hidden="true">Excursiones</figcaption>
+          </figure>
+          <figure class="photo reveal" role="img" aria-label="Espacio reservado para una foto con las familias">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-friends"/></svg>
+            <figcaption aria-hidden="true">Familias</figcaption>
+          </figure>
+        </div>
+
+        <h3 class="reveal">Nuestros valores</h3>
+        <ul class="grid grid-3" role="list">
+          <li class="card sticker lift value-card reveal">
+            <span class="bubble bg-yellow"><svg class="icon" aria-hidden="true"><use href="#i-rei"/></svg></span>
+            <h4>Respeto</h4>
+            <p>Saludamos, escuchamos y cuidamos a todos.</p>
+          </li>
+          <li class="card sticker lift value-card reveal">
+            <span class="bubble bg-sky"><svg class="icon" aria-hidden="true"><use href="#i-drop"/></svg></span>
+            <h4>Esfuerzo</h4>
+            <p>Probamos, fallamos y lo volvemos a intentar.</p>
+          </li>
+          <li class="card sticker lift value-card reveal">
+            <span class="bubble bg-coral"><svg class="icon" aria-hidden="true"><use href="#i-friends"/></svg></span>
+            <h4>Amistad</h4>
+            <p>En nuestro tatami nadie se queda solo.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================== 3. QUÉ ES EL JUDO =========================== -->
+    <section class="section what" id="que-es" aria-labelledby="what-title">
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 30 C200 70 400 70 620 40 S1040 0 1240 30 S1400 60 1440 50 V80 H0Z"/></svg>
+      <div class="wrap">
+        <div class="what-intro">
+          <header class="section-head reveal" style="margin-bottom:0">
+            <span class="eyebrow">Aprende</span>
+            <h2 id="what-title">¿Qué es el judo?</h2>
+            <p class="lead">Es un arte marcial japonés y un deporte olímpico. Aquí no gana el más fuerte: gana quien mejor usa el <strong>equilibrio</strong>, la <strong>técnica</strong> y el <strong>respeto</strong>.</p>
+            <ul class="fact-chips" aria-label="En pocas palabras">
+              <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-gi"/></svg>Nació en Japón</li>
+              <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-medal"/></svg>Deporte olímpico</li>
+              <li class="chip"><svg class="icon" aria-hidden="true"><use href="#i-friends"/></svg>Para todas las edades</li>
+            </ul>
+          </header>
+          <div class="meaning sticker reveal">
+            <p>Judo significa…</p>
+            <p class="kanji-free">«camino de la suavidad»</p>
+            <p>Ceder, aprovechar el movimiento del otro y nunca hacer daño.</p>
+          </div>
+        </div>
+
+        <h3 class="reveal">Un poco de historia</h3>
+        <ol class="grid grid-4 history-cards" aria-label="Historia del judo">
+          <li class="card sticker lift reveal">
+            <span class="step">1860</span>
+            <h4>Un profe con una idea</h4>
+            <p><em>Jigoro Kano</em> era un chico pequeño y delgado. Aprendió jujutsu y lo convirtió en algo más seguro para todos.</p>
+          </li>
+          <li class="card sticker lift reveal">
+            <span class="step">1882</span>
+            <h4>El primer dojo</h4>
+            <p>En un templo de Tokio y con solo 12 tatamis nace el <em>Kodokan</em>, la casa del judo.</p>
+          </li>
+          <li class="card sticker lift reveal">
+            <span class="step">Principio 1</span>
+            <h4>Máxima eficiencia</h4>
+            <p><em>Seiryoku zenyo</em>: usar bien tu energía, sin malgastar fuerza.</p>
+          </li>
+          <li class="card sticker lift reveal">
+            <span class="step">Principio 2</span>
+            <h4>Prosperidad mutua</h4>
+            <p><em>Jita kyoei</em>: si tu compañero mejora, tú también mejoras.</p>
+          </li>
+        </ol>
+
+        <h3 class="reveal">Principios básicos</h3>
+        <ul class="grid grid-2 principles" role="list">
+          <li class="card sticker reveal">
+            <span class="bubble bg-yellow"><svg class="icon" aria-hidden="true"><use href="#i-rei"/></svg></span>
+            <div>
+              <h4>El saludo (rei)</h4>
+              <p>Saludamos al subir al tatami y a cada compañero. Es decir «gracias» y «te respeto».</p>
+            </div>
+          </li>
+          <li class="card sticker reveal">
+            <span class="bubble bg-coral"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span>
+            <div>
+              <h4>Cuidar al compañero</h4>
+              <p>Sin compañero no hay judo. Le ayudamos a caer bien y paramos si algo molesta.</p>
+            </div>
+          </li>
+          <li class="card sticker reveal">
+            <span class="bubble bg-mint"><svg class="icon" aria-hidden="true"><use href="#i-tatami"/></svg></span>
+            <div>
+              <h4>El tatami</h4>
+              <p>Nuestro suelo blandito. Se pisa descalzo, con los pies limpios y con cuidado.</p>
+            </div>
+          </li>
+          <li class="card sticker reveal">
+            <span class="bubble bg-sky"><svg class="icon" aria-hidden="true"><use href="#i-belt"/></svg></span>
+            <div>
+              <h4>El judogi y el cinturón</h4>
+              <p>El judogi es nuestro traje. El color del cinturón (obi) muestra todo lo que vas aprendiendo.</p>
+              <div class="belt-row" aria-hidden="true">
+                <span style="background:#fff"></span><span style="background:#ffd23f"></span><span style="background:#ff9f43"></span><span style="background:#4fd1a0"></span><span style="background:#3f8fe0"></span><span style="background:#8b5a3c"></span><span style="background:#222"></span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========================== 4. VENTAJAS =========================== -->
+    <section class="section benefits tatami" id="ventajas" aria-labelledby="benefits-title">
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 46 C240 6 420 20 640 46 S1100 70 1300 30 S1420 30 1440 36 V80 H0Z"/></svg>
+      <div class="wrap">
+        <header class="section-head center reveal">
+          <span class="eyebrow">Beneficios</span>
+          <h2 id="benefits-title">Ventajas de practicar judo</h2>
+          <p class="lead">El judo hace crecer el cuerpo, la cabeza y el corazón.</p>
+        </header>
+
+        <div class="tablist reveal" role="tablist" aria-label="Tipos de ventajas" style="justify-content:center">
+          <button class="tab" role="tab" id="tab-fis" aria-controls="panel-fis" aria-selected="true">
+            <svg class="icon" aria-hidden="true"><use href="#i-muscle"/></svg>Físicas
+          </button>
+          <button class="tab" role="tab" id="tab-men" aria-controls="panel-men" aria-selected="false" tabindex="-1">
+            <svg class="icon" aria-hidden="true"><use href="#i-target"/></svg>Mentales
+          </button>
+          <button class="tab" role="tab" id="tab-soc" aria-controls="panel-soc" aria-selected="false" tabindex="-1">
+            <svg class="icon" aria-hidden="true"><use href="#i-friends"/></svg>Sociales y valores
+          </button>
+        </div>
+
+        <div role="tabpanel" id="panel-fis" aria-labelledby="tab-fis" tabindex="0">
+          <ul class="grid grid-5" role="list">
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-coral"><svg class="icon" aria-hidden="true"><use href="#i-muscle"/></svg></span>
+              <h4>Fuerza</h4><p>Empujar, tirar y levantar jugando fortalece todo el cuerpo.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-mint"><svg class="icon" aria-hidden="true"><use href="#i-flex"/></svg></span>
+              <h4>Flexibilidad</h4><p>Estiramientos y volteretas para un cuerpo más elástico.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-sky"><svg class="icon" aria-hidden="true"><use href="#i-coord"/></svg></span>
+              <h4>Coordinación</h4><p>Brazos y piernas aprenden a moverse en equipo.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-yellow"><svg class="icon" aria-hidden="true"><use href="#i-balance"/></svg></span>
+              <h4>Equilibrio</h4><p>Aprendes a mantenerte de pie… ¡y a caer sin hacerte daño!</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-red"><svg class="icon" aria-hidden="true"><use href="#i-posture"/></svg></span>
+              <h4>Postura</h4><p>Espalda recta y cuerpo fuerte, dentro y fuera del tatami.</p>
+            </li>
+          </ul>
+        </div>
+        <div role="tabpanel" id="panel-men" aria-labelledby="tab-men" tabindex="0">
+          <ul class="grid grid-4" role="list">
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-sky"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></span>
+              <h4>Concentración</h4><p>Mirar, escuchar y pensar antes de moverse.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-mint"><svg class="icon" aria-hidden="true"><use href="#i-hand"/></svg></span>
+              <h4>Autocontrol</h4><p>Usar la fuerza justa y respetar las normas del juego.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-coral"><svg class="icon" aria-hidden="true"><use href="#i-retry"/></svg></span>
+              <h4>Gestión de la frustración</h4><p>Caer es parte del juego: te levantas y lo intentas otra vez.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-yellow"><svg class="icon" aria-hidden="true"><use href="#i-smile"/></svg></span>
+              <h4>Confianza</h4><p>Cada técnica nueva es un pequeño superpoder.</p>
+            </li>
+          </ul>
+        </div>
+        <div role="tabpanel" id="panel-soc" aria-labelledby="tab-soc" tabindex="0">
+          <ul class="grid grid-4" role="list">
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-yellow"><svg class="icon" aria-hidden="true"><use href="#i-rei"/></svg></span>
+              <h4>Respeto</h4><p>Saludo, escucha y cuidado hacia compañeros y profes.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-red"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span>
+              <h4>Compañerismo</h4><p>Entrenamos <em>con</em> el otro, nunca <em>contra</em> el otro.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-sky"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></span>
+              <h4>Disciplina</h4><p>Constancia, puntualidad y ganas de aprender cada día.</p>
+            </li>
+            <li class="card sticker lift benefit-card">
+              <span class="bubble bg-mint"><svg class="icon" aria-hidden="true"><use href="#i-team"/></svg></span>
+              <h4>Trabajo en equipo</h4><p>Juegos y retos donde todos sumamos.</p>
+            </li>
+          </ul>
+        </div>
+
+        <aside class="callout reveal" aria-labelledby="callout-title">
+          <div>
+            <h3 id="callout-title"><svg class="icon" aria-hidden="true"><use href="#i-sprout"/></svg>La infancia, nuestro centro</h3>
+            <p>Para los peques, el judo es un juego: aprenden moviéndose, en un lugar seguro y riendo mucho.</p>
+            <ul class="kid-list" role="list">
+              <li><svg class="icon" aria-hidden="true"><use href="#i-play-ball"/></svg>Jugar</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-run"/></svg>Moverse</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Seguridad</li>
+              <li><svg class="icon" aria-hidden="true"><use href="#i-smile"/></svg>Diversión</li>
+            </ul>
+          </div>
+          <div>
+            <h3>¡Y para todas las edades!</h3>
+            <ul class="ages" role="list">
+              <li><strong>Adolescentes</strong><span>Energía bien canalizada, valores y un grupo de amigos.</span></li>
+              <li><strong>Adultos</strong><span>Salud, desconexión y un reto nuevo, a tu ritmo.</span></li>
+              <li><strong>Mayores</strong><span>Práctica adaptada para ganar equilibrio, movilidad y compañía.</span></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- =========================== 5. TÉCNICAS =========================== -->
+    <section class="section techniques tatami" id="tecnicas" aria-labelledby="tech-title">
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C160 70 380 76 560 46 S920 6 1120 36 S1380 66 1440 50 V80 H0Z"/></svg>
+      <div class="wrap">
+        <header class="section-head reveal">
+          <span class="eyebrow">En movimiento</span>
+          <h2 id="tech-title">Técnicas</h2>
+          <p class="lead">En judo hay muchas técnicas. Las agrupamos en tres grandes familias:</p>
+        </header>
+
+        <ul class="grid grid-3 families" role="list">
+          <li class="reveal">
+            <a class="family sticker lift" href="#tachi-waza">
+              <span class="pill bg-yellow">De pie</span>
+              <strong>Tachi Waza</strong>
+              <span>Proyecciones para hacer caer al compañero con equilibrio… y una buena caída.</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="family sticker lift" href="#ne-waza">
+              <span class="pill bg-sky">Suelo</span>
+              <strong>Ne Waza</strong>
+              <span>Controles en el suelo para mantener al compañero de espaldas.</span>
+            </a>
+          </li>
+          <li class="reveal">
+            <a class="family sticker lift" href="#shime-waza">
+              <span class="pill bg-mint">Avanzadas</span>
+              <strong>Shime Waza</strong>
+              <span>Estrangulaciones, solo para judocas mayores y siempre con supervisión.</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- Cinta de cinturones: se rellena al recorrer la sección -->
+        <div class="belt-progress" aria-hidden="true"></div>
+
+        <div class="tablist" role="tablist" aria-label="Familias de técnicas" data-hash-tabs>
+          <button class="tab" role="tab" id="tab-tachi" aria-controls="tachi-waza" aria-selected="true">Tachi Waza <small>de pie</small></button>
+          <button class="tab" role="tab" id="tab-ne" aria-controls="ne-waza" aria-selected="false" tabindex="-1">Ne Waza <small>suelo</small></button>
+          <button class="tab" role="tab" id="tab-shime" aria-controls="shime-waza" aria-selected="false" tabindex="-1">Shime Waza <small>estrangulación</small></button>
+        </div>
+
+        <!-- ---------- Tachi Waza ---------- -->
+        <div class="tech-panel" role="tabpanel" id="tachi-waza" aria-labelledby="tab-tachi" tabindex="0">
+          <div class="tech-panel-head">
+            <h3>Tachi Waza · técnicas de pie</h3>
+            <p>Primero desequilibras (<strong>kuzushi</strong>), luego entras y proyectas. ¡Y el compañero cae con una buena <strong>ukemi</strong> (caída)!</p>
+          </div>
+          <div class="tech-grid">
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">O-soto-gari</h4>
+              <p class="tech-es">Gran siega exterior</p>
+              <p class="tech-desc">Empujas a tu compañero hacia atrás y «siegas» su pierna como una guadaña.</p>
+              <figure class="demo tachi" id="demo-osoto" style="--freeze:2.2s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-osoto" aria-describedby="d-osoto">
+                    <title id="t-osoto">Animación de O-soto-gari</title>
+                    <desc id="d-osoto">Tori, con judogi azul, desequilibra a uke hacia atrás y le siega la pierna; uke cae de espaldas y se levanta.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(185 126) scale(-1 1)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-62deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-78deg"><line y2="19"/><g class="fore" style="--r:-8deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(110 126)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-70deg"><line y2="19"/><g class="fore" style="--r:-15deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-85deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M176 46Q228 34 252 90"/><path class="head-arrow" d="M254.1 79.2L252 90L242.7 84.1"/></g>
+                    <g transform="translate(232 166)"><g class="burst"><path d="M0-8v-9M10-5l7-6M-10-5l-7-6M16 3h8M-16 3h-8"/></g></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="O-soto-gari" aria-label="Pausar la animación de O-soto-gari">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Se agarran del judogi</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Kuzushi: desequilibrio hacia atrás</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Tori siega la pierna por detrás</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> Uke cae de espaldas… ¡y se levanta!</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Ippon-seoi-nage</h4>
+              <p class="tech-es">Proyección por encima del hombro</p>
+              <p class="tech-desc">Giras, cargas al compañero en tu espalda y lo haces rodar por encima del hombro.</p>
+              <figure class="demo tachi" id="demo-seoi" style="--freeze:2s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-seoi" aria-describedby="d-seoi">
+                    <title id="t-seoi">Animación de Ippon-seoi-nage</title>
+                    <desc id="d-seoi">Tori gira, carga a uke sobre su espalda y lo proyecta por encima del hombro; uke cae de espaldas delante de tori.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(190 126) scale(-1 1)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-62deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-78deg"><line y2="19"/><g class="fore" style="--r:-8deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(110 126)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-70deg"><line y2="19"/><g class="fore" style="--r:-15deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-85deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M214 58Q150 -6 86 66"/><path class="head-arrow" d="M96.7 63.3L86 66L87.4 55.1"/></g>
+                    <g transform="translate(96 166)"><g class="burst"><path d="M0-8v-9M10-5l7-6M-10-5l-7-6M16 3h8M-16 3h-8"/></g></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Ippon-seoi-nage" aria-label="Pausar la animación de Ippon-seoi-nage">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se acerca y agarra la manga</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Gira y carga a uke en la espalda</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Uke rueda por encima del hombro</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> Cae de espaldas con buena caída</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">De-ashi-barai</h4>
+              <p class="tech-es">Barrido del pie adelantado</p>
+              <p class="tech-desc">Justo cuando da un paso, barres su pie con la planta del tuyo.</p>
+              <figure class="demo tachi" id="demo-deashi" style="--freeze:2.08s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-deashi" aria-describedby="d-deashi">
+                    <title id="t-deashi">Animación de De-ashi-barai</title>
+                    <desc id="d-deashi">Uke da un paso adelante y tori le barre el pie con la planta; uke pierde el apoyo y cae de lado.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(190 126) scale(-1 1)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-62deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-78deg"><line y2="19"/><g class="fore" style="--r:-8deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(110 126)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-70deg"><line y2="19"/><g class="fore" style="--r:-15deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-85deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M126 188Q152 198 184 186"/><path class="head-arrow" d="M173.3 183.4L184 186L177.7 195.0"/></g>
+                    <g transform="translate(236 166)"><g class="burst"><path d="M0-8v-9M10-5l7-6M-10-5l-7-6M16 3h8M-16 3h-8"/></g></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="De-ashi-barai" aria-label="Pausar la animación de De-ashi-barai">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Uke da un paso adelante</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Tori le guía con los brazos</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Barre su pie con la planta</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> Uke pierde el apoyo y cae</span>
+                </figcaption>
+              </figure>
+            </article>
+          </div>
+        </div>
+
+        <!-- ---------- Ne Waza ---------- -->
+        <div class="tech-panel" role="tabpanel" id="ne-waza" aria-labelledby="tab-ne" tabindex="0">
+          <div class="tech-panel-head">
+            <h3>Ne Waza · técnicas de suelo</h3>
+            <p>Se hacen en el suelo. El objetivo es mantener al compañero de espaldas y controlado unos segundos (<strong>osaekomi</strong>), sin hacerle daño.</p>
+          </div>
+          <div class="tech-grid">
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Kesa-gatame</h4>
+              <p class="tech-es">Control en banda (como una bufanda)</p>
+              <p class="tech-desc">Te sientas a su lado y abrazas su cabeza y su brazo, como una bufanda.</p>
+              <figure class="demo ne" id="demo-kesa" style="--freeze:2.6s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-kesa" aria-describedby="d-kesa">
+                    <title id="t-kesa">Animación de Kesa-gatame</title>
+                    <desc id="d-kesa">Uke está tumbado de espaldas; tori se acerca de rodillas, se sienta a su lado y le rodea cabeza y brazo mientras uke intenta escapar.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(190 162) rotate(-90)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-25deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(212 146) scale(-1 1)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M246 66Q206 50 186 92"/><path class="head-arrow" d="M195.5 86.5L186 92L184.3 81.1"/></g>
+                    <g class="timer" transform="translate(30 30)"><circle class="timer-bg" r="14"/><circle class="timer-fg" r="14" transform="rotate(-90)"/></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Kesa-gatame" aria-label="Pausar la animación de Kesa-gatame">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se acerca de rodillas</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Se sienta pegado al costado</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Abraza cabeza y brazo</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> Controla: ¡20 segundos son ippon!</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Yoko-shiho-gatame</h4>
+              <p class="tech-es">Control lateral de cuatro puntos</p>
+              <p class="tech-desc">Desde un lado, apoyas tu pecho sobre el suyo y controlas cuatro puntos.</p>
+              <figure class="demo ne" id="demo-yoko" style="--freeze:2.6s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-yoko" aria-describedby="d-yoko">
+                    <title id="t-yoko">Animación de Yoko-shiho-gatame</title>
+                    <desc id="d-yoko">Uke está tumbado de espaldas; tori se acerca de rodillas desde un lado y se tumba atravesado sobre su pecho mientras uke intenta escapar.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(190 162) rotate(-90)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-25deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(250 146) scale(-1 1)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M262 62Q224 48 206 92"/><path class="head-arrow" d="M215.2 85.9L206 92L203.7 81.2"/></g>
+                    <g class="timer" transform="translate(30 30)"><circle class="timer-bg" r="14"/><circle class="timer-fg" r="14" transform="rotate(-90)"/></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Yoko-shiho-gatame" aria-label="Pausar la animación de Yoko-shiho-gatame">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se acerca de rodillas</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Se coloca a un lado</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Apoya el pecho sobre el suyo</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> Controla: ¡20 segundos son ippon!</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Kami-shiho-gatame</h4>
+              <p class="tech-es">Control superior de cuatro puntos</p>
+              <p class="tech-desc">Desde su cabeza, te tumbas sobre su pecho y sujetas su cinturón.</p>
+              <figure class="demo ne" id="demo-kami" style="--freeze:2.6s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-kami" aria-describedby="d-kami">
+                    <title id="t-kami">Animación de Kami-shiho-gatame</title>
+                    <desc id="d-kami">Uke está tumbado de espaldas; tori se acerca de rodillas por el lado de la cabeza y se tumba sobre su pecho sujetándole el cinturón.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(190 162) rotate(-90)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-25deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(70 146)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M58 62Q96 48 116 92"/><path class="head-arrow" d="M117.9 81.2L116 92L106.6 86.3"/></g>
+                    <g class="timer" transform="translate(30 30)"><circle class="timer-bg" r="14"/><circle class="timer-fg" r="14" transform="rotate(-90)"/></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Kami-shiho-gatame" aria-label="Pausar la animación de Kami-shiho-gatame">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se acerca por la cabeza</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Se coloca de rodillas</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Se tumba sobre su pecho</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> Controla: ¡20 segundos son ippon!</span>
+                </figcaption>
+              </figure>
+            </article>
+          </div>
+        </div>
+
+        <!-- ---------- Shime Waza ---------- -->
+        <div class="tech-panel" role="tabpanel" id="shime-waza" aria-labelledby="tab-shime" tabindex="0">
+          <div class="tech-panel-head">
+            <h3>Shime Waza · técnicas de estrangulación</h3>
+            <p>Presionan el cuello con el brazo o con la solapa del judogi. Son técnicas avanzadas: se aprenden despacio, con calma y mucho cuidado.</p>
+          </div>
+          <div class="tech-grid">
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Hadaka-jime</h4>
+              <p class="tech-es">Estrangulación sin agarrar el judogi</p>
+              <p class="tech-desc">Desde detrás, el antebrazo rodea el cuello sin agarrar la ropa.</p>
+              <figure class="demo shime" id="demo-hadaka" style="--freeze:2.3s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-hadaka" aria-describedby="d-hadaka">
+                    <title id="t-hadaka">Animación de Hadaka-jime</title>
+                    <desc id="d-hadaka">Uke está sentado; tori se coloca detrás, le inclina hacia atrás y rodea su cuello con el antebrazo; uke da dos palmadas y tori suelta al instante.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(176 165)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:-84deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-35deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-88deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-45deg"><line y2="19"/><g class="fore" style="--r:-20deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(100 146)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M150 60Q124 50 104 66"/><path class="head-arrow" d="M115.0 65.2L104 66L107.2 55.5"/></g>
+                    <g transform="translate(192 158)"><g class="tap"><circle r="6"/><circle r="12"/></g></g>
+                    <g transform="translate(150 52)"><g class="kudos"><path d="M0 6C-9-1-9-9-4-10c2 0 3 1 4 3 1-2 2-3 4-3 5 1 5 9-4 16z"/></g></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Hadaka-jime" aria-label="Pausar la animación de Hadaka-jime">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se coloca detrás</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Inclina a uke hacia atrás</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Rodea el cuello con el antebrazo</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> ¡Maitta! Dos palmadas y suelta</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Okuri-eri-jime</h4>
+              <p class="tech-es">Estrangulación deslizando la solapa</p>
+              <p class="tech-desc">Desde detrás, una mano desliza la solapa del judogi por el cuello.</p>
+              <figure class="demo shime" id="demo-okuri" style="--freeze:2.3s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-okuri" aria-describedby="d-okuri">
+                    <title id="t-okuri">Animación de Okuri-eri-jime</title>
+                    <desc id="d-okuri">Uke está sentado; tori, detrás, agarra las solapas de su judogi y desliza una por el cuello; uke da dos palmadas y tori suelta al instante.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(176 165)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:-84deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-35deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-88deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-45deg"><line y2="19"/><g class="fore" style="--r:-20deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(100 146)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M150 60Q124 50 104 66"/><path class="head-arrow" d="M115.0 65.2L104 66L107.2 55.5"/></g>
+                    <g transform="translate(192 158)"><g class="tap"><circle r="6"/><circle r="12"/></g></g>
+                    <g transform="translate(150 52)"><g class="kudos"><path d="M0 6C-9-1-9-9-4-10c2 0 3 1 4 3 1-2 2-3 4-3 5 1 5 9-4 16z"/></g></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Okuri-eri-jime" aria-label="Pausar la animación de Okuri-eri-jime">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se coloca detrás</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Agarra las dos solapas</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Desliza la solapa por el cuello</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> ¡Maitta! Dos palmadas y suelta</span>
+                </figcaption>
+              </figure>
+            </article>
+            <article class="tech-card sticker reveal">
+              <h4 class="tech-name">Kata-ha-jime</h4>
+              <p class="tech-es">Estrangulación en ala simple</p>
+              <p class="tech-desc">Una mano en la solapa y el otro brazo levanta el suyo, como un ala.</p>
+              <figure class="demo shime" id="demo-kataha" style="--freeze:2.3s">
+                <div class="demo-stage">
+                  <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-kataha" aria-describedby="d-kataha">
+                    <title id="t-kataha">Animación de Kata-ha-jime</title>
+                    <desc id="d-kataha">Uke está sentado; tori, detrás, le levanta un brazo como un ala y agarra la solapa; uke da dos palmadas y tori suelta al instante.</desc>
+                    <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                    <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                    <g class="fig uke" transform="translate(176 165)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:-84deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-35deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-88deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-45deg"><line y2="19"/><g class="fore" style="--r:-20deg"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="fig tori" transform="translate(100 146)">
+                      <g class="body">
+                        <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                        <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                        <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                        <path class="lapel" d="M-8-44l8 16 8-16"/>
+                        <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                        <g class="head"><circle class="face" cy="-58" r="13"/><circle class="eye" cx="5" cy="-61" r="2"/><circle class="blush" cx="2" cy="-54" r="2.6"/><path class="smile" d="M4-53q4 3 8-2"/></g>
+                        <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/></g></g>
+                      </g>
+                    </g>
+                    <g class="cue"><path class="trail" d="M150 60Q124 50 104 66"/><path class="head-arrow" d="M115.0 65.2L104 66L107.2 55.5"/></g>
+                    <g transform="translate(192 158)"><g class="tap"><circle r="6"/><circle r="12"/></g></g>
+                    <g transform="translate(150 52)"><g class="kudos"><path d="M0 6C-9-1-9-9-4-10c2 0 3 1 4 3 1-2 2-3 4-3 5 1 5 9-4 16z"/></g></g>
+                  </svg>
+                  <button class="demo-btn" type="button" data-name="Kata-ha-jime" aria-label="Pausar la animación de Kata-ha-jime">
+                    <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                    <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+                  </button>
+                </div>
+                <figcaption class="phase">
+                  <span class="visually-hidden">Fases:</span>
+                      <span class="ph ph1"><b aria-hidden="true">1</b> Tori se coloca detrás</span>
+                      <span class="ph ph2"><b aria-hidden="true">2</b> Levanta su brazo como un ala</span>
+                      <span class="ph ph3"><b aria-hidden="true">3</b> Agarra la solapa por el cuello</span>
+                      <span class="ph ph4"><b aria-hidden="true">4</b> ¡Maitta! Dos palmadas y suelta</span>
+                </figcaption>
+              </figure>
+            </article>
+          </div>
+          <aside class="safety" aria-label="Nota de seguridad">
+            <span class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+            <p><strong>Seguridad ante todo.</strong> Estas técnicas se enseñan y practican siempre bajo la supervisión de un adulto responsable. Si el compañero da dos palmadas (<strong>maitta</strong>, «me rindo»), se suelta al instante. Con los peques solo usamos juegos y versiones adaptadas, nunca estrangulaciones reales.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================== 6. COMPETICIÓN =========================== -->
+    <section class="section compete" id="competicion" aria-labelledby="compete-title">
+      <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 36 C220 70 440 66 660 38 S1080 6 1280 40 S1420 56 1440 50 V80 H0Z"/></svg>
+      <div class="wrap">
+        <header class="section-head center reveal">
+          <span class="eyebrow">Si te apetece</span>
+          <h2 id="compete-title">Competición</h2>
+          <p class="lead">Competir es una aventura más, nunca una obligación.</p>
+        </header>
+
+        <div class="grid grid-2">
+          <article class="compete-block sticker reveal">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-tatami"/></svg>El judo de competición</h3>
+            <p>Dos judocas, un tatami y unas reglas sencillas. Se saluda al empezar y al terminar.</p>
+            <ul class="rules" role="list">
+              <li><span class="tag">Ippon</span><span>La técnica perfecta: ¡combate ganado!</span></li>
+              <li><span class="tag">Waza-ari</span><span>Una técnica casi perfecta. Dos waza-ari suman un ippon.</span></li>
+              <li><span class="tag">Osaekomi</span><span>Inmovilizar 20 segundos es ippon; 10 segundos, waza-ari.</span></li>
+              <li><span class="tag">Shido</span><span>Avisos por pasividad o por acciones no permitidas. Al tercero, el combate termina.</span></li>
+              <li><span class="tag">Categorías</span><span>Se compite con judocas de edad y peso parecidos.</span></li>
+              <li><span class="tag">Tatami</span><span>Una zona de combate cuadrada rodeada por una zona de seguridad.</span></li>
+            </ul>
+            <p class="note" style="margin-top:1rem;color:var(--ink-soft)">En las categorías infantiles las reglas se adaptan y algunas técnicas, como las estrangulaciones, no están permitidas.</p>
+          </article>
+
+          <article class="compete-block sticker reveal">
+            <h3><svg class="icon" aria-hidden="true"><use href="#i-torch"/></svg>El judo olímpico</h3>
+            <p>Es deporte olímpico desde <strong>Tokio 1964</strong>. Las mujeres compiten en los Juegos desde <strong>Barcelona 1992</strong>, y desde Tokio 2020 también hay prueba por equipos mixtos.</p>
+            <p class="weights-label">Siete categorías de peso por género:</p>
+            <ul class="weights" aria-label="Categorías femeninas">
+              <li>-48 kg</li><li>-52 kg</li><li>-57 kg</li><li>-63 kg</li><li>-70 kg</li><li>-78 kg</li><li>+78 kg</li>
+            </ul>
+            <ul class="weights w" aria-label="Categorías masculinas">
+              <li>-60 kg</li><li>-66 kg</li><li>-73 kg</li><li>-81 kg</li><li>-90 kg</li><li>-100 kg</li><li>+100 kg</li>
+            </ul>
+            <p>Incluso en unos Juegos, lo más importante es el saludo: respeto y juego limpio antes, durante y después.</p>
+          </article>
+        </div>
+
+        <div class="optional reveal">
+          <span class="bubble bg-yellow" style="margin:0;flex:none"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span>
+          <p>Competir es opcional. En Escola Judo Club lo primero es aprender, disfrutar y crecer. Quien quiera, participa en encuentros y festivales a su ritmo.</p>
+        </div>
+
+        <div class="dare reveal">
+          <svg class="dare-icon" viewBox="0 0 24 24" aria-hidden="true" style="color:#ff7f5c"><use href="#i-star"/></svg>
+          <div>
+            <h3>¿Te animas?</h3>
+            <p>Ven a una clase de prueba con ropa cómoda y muchas ganas de jugar.</p>
+          </div>
+          <a class="btn btn-primary" href="#contacto">Ven a probar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- =========================== PIE =========================== -->
+  <footer class="site-footer" id="contacto" aria-labelledby="footer-title">
+    <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44 C240 10 460 14 700 44 S1140 74 1440 30 V80 H0Z"/></svg>
+    <div class="wrap">
+      <h2 id="footer-title">¡Te esperamos en el tatami!</h2>
+      <div class="footer-grid">
+        <div>
+          <h3>Contacto</h3>
+          <ul class="contact-list" role="list">
+            <li><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg><span>Al pie del Pico Sacro, Galicia</span></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+34600000000">600 000 000</a></li>
+            <li><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:hola@escolajudoclub.gal">hola@escolajudoclub.gal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>Horario</h3>
+          <ul class="schedule" role="list">
+            <li><strong>Peques · 4 a 6 años</strong><span>Lunes y miércoles · 17:30–18:15</span></li>
+            <li><strong>Infantil · 7 a 12 años</strong><span>Lunes y miércoles · 18:15–19:15</span></li>
+            <li><strong>Jóvenes y adultos</strong><span>Martes y jueves · 19:30–21:00</span></li>
+          </ul>
+          <p class="note"><svg class="icon" aria-hidden="true" style="display:inline;width:1.1em;height:1.1em;vertical-align:-.2em"><use href="#i-clock"/></svg> Horario orientativo: pregúntanos antes de venir.</p>
+        </div>
+        <div>
+          <h3>Síguenos</h3>
+          <ul class="social" role="list">
+            <li><a href="#" aria-label="Instagram de Escola Judo Club"><svg class="icon" aria-hidden="true"><use href="#i-insta"/></svg></a></li>
+            <li><a href="#" aria-label="Facebook de Escola Judo Club"><svg class="icon" aria-hidden="true"><use href="#i-fb"/></svg></a></li>
+            <li><a href="#" aria-label="YouTube de Escola Judo Club"><svg class="icon" aria-hidden="true"><use href="#i-yt"/></svg></a></li>
+          </ul>
+          <p class="note">Fotos, avisos y novedades del club.</p>
+        </div>
+      </div>
+      <div class="footer-belt" aria-hidden="true">
+        <span style="background:#fff"></span><span style="background:#ffd23f"></span><span style="background:#ff9f43"></span><span style="background:#4fd1a0"></span><span style="background:#3f8fe0"></span><span style="background:#8b5a3c"></span><span style="background:#000"></span>
+      </div>
+      <div class="footer-bottom">
+        <p>© <span data-year>2026</span> Escola Judo Club</p>
+        <p>Hecho con cariño al pie del Pico Sacro</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* =========================================================
+       Escola Judo Club · interacciones
+       ========================================================= */
+    (function () {
+      "use strict";
+      var root = document.documentElement;
+      root.classList.add("js");
+
+      var reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+      var reduced = reduceMQ.matches;
+
+      /* ---------- Menú móvil ---------- */
+      var menuBtn = document.querySelector(".menu-toggle");
+      var menu = document.getElementById("menu");
+      function closeMenu() {
+        menu.classList.remove("is-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.setAttribute("aria-label", "Abrir menú");
+      }
+      menuBtn.addEventListener("click", function () {
+        var open = menu.classList.toggle("is-open");
+        menuBtn.setAttribute("aria-expanded", String(open));
+        menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+      });
+      menu.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && menu.classList.contains("is-open")) { closeMenu(); menuBtn.focus(); }
+      });
+
+      /* ---------- Enlace activo en la navegación ---------- */
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll(".nav-links a"));
+      if ("IntersectionObserver" in window) {
+        var sectionObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (!entry.isIntersecting) return;
+            navLinks.forEach(function (a) {
+              if (a.getAttribute("href") === "#" + entry.target.id) a.setAttribute("aria-current", "true");
+              else a.removeAttribute("aria-current");
+            });
+          });
+        }, { rootMargin: "-45% 0px -50% 0px" });
+        navLinks.forEach(function (a) {
+          var target = document.querySelector(a.getAttribute("href"));
+          if (target) sectionObs.observe(target);
+        });
+        // En el hero no se marca ningún enlace
+        sectionObs.observe(document.getElementById("inicio"));
+      }
+
+      /* ---------- Aparición al hacer scroll ---------- */
+      var reveals = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window && !reduced) {
+        var revealObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObs.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+        reveals.forEach(function (el) { revealObs.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add("is-visible"); });
+      }
+
+      /* ---------- Pestañas accesibles (flechas, Inicio, Fin) ---------- */
+      function setupTabs(list) {
+        var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+        var useHash = list.hasAttribute("data-hash-tabs");
+        function activate(tab, focus) {
+          tabs.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute("aria-selected", String(on));
+            t.tabIndex = on ? 0 : -1;
+            document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+          });
+          if (focus) tab.focus();
+        }
+        tabs.forEach(function (tab, i) {
+          tab.addEventListener("click", function () {
+            activate(tab, false);
+            if (useHash) history.replaceState(null, "", "#" + tab.getAttribute("aria-controls"));
+          });
+          tab.addEventListener("keydown", function (e) {
+            var next = null;
+            if (e.key === "ArrowRight") next = tabs[(i + 1) % tabs.length];
+            else if (e.key === "ArrowLeft") next = tabs[(i - 1 + tabs.length) % tabs.length];
+            else if (e.key === "Home") next = tabs[0];
+            else if (e.key === "End") next = tabs[tabs.length - 1];
+            if (next) { e.preventDefault(); activate(next, true); }
+          });
+        });
+        // Estado inicial: la pestaña marcada (o la del hash en la URL)
+        var initial = tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0];
+        if (useHash && location.hash) {
+          var fromHash = tabs.filter(function (t) { return "#" + t.getAttribute("aria-controls") === location.hash; })[0];
+          if (fromHash) initial = fromHash;
+        }
+        activate(initial, false);
+        return { tabs: tabs, activate: activate };
+      }
+      var techTabs = null;
+      document.querySelectorAll('[role="tablist"]').forEach(function (list) {
+        var api = setupTabs(list);
+        if (list.hasAttribute("data-hash-tabs")) techTabs = api;
+      });
+
+      // Los enlaces (o la URL) a #tachi-waza, #ne-waza y #shime-waza abren su pestaña
+      function techTabFor(hash) {
+        if (!techTabs) return null;
+        return techTabs.tabs.filter(function (t) { return "#" + t.getAttribute("aria-controls") === hash; })[0] || null;
+      }
+      function openTechTab(tab) {
+        techTabs.activate(tab, false);
+        tab.parentElement.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+        tab.focus({ preventScroll: true });
+      }
+      document.addEventListener("click", function (e) {
+        var link = e.target.closest('a[href^="#"]');
+        var tab = link && techTabFor(link.getAttribute("href"));
+        if (!tab) return;
+        e.preventDefault();
+        history.replaceState(null, "", link.getAttribute("href"));
+        openTechTab(tab);
+      });
+      window.addEventListener("hashchange", function () {
+        var tab = techTabFor(location.hash);
+        if (tab) openTechTab(tab);
+      });
+
+      /* ---------- Demos animadas: pausa individual y global ---------- */
+      var demos = Array.prototype.slice.call(document.querySelectorAll(".demo"));
+      var motionBtn = document.querySelector(".motion-toggle");
+
+      function setDemo(demo, playing) {
+        demo.classList.toggle("is-playing", playing);
+        demo.classList.toggle("is-paused", !playing);
+        var btn = demo.querySelector(".demo-btn");
+        var name = btn.getAttribute("data-name");
+        btn.setAttribute("aria-label", (playing ? "Pausar" : "Reproducir") + " la animación de " + name);
+      }
+      function setGlobal(paused) {
+        motionBtn.setAttribute("aria-pressed", String(paused));
+        motionBtn.setAttribute("title", paused ? "Reanudar animaciones" : "Pausar animaciones");
+        document.body.classList.toggle("motion-paused", paused);
+        demos.forEach(function (d) { setDemo(d, !paused); });
+      }
+
+      demos.forEach(function (demo) {
+        demo.querySelector(".demo-btn").addEventListener("click", function () {
+          setDemo(demo, !demo.classList.contains("is-playing"));
+        });
+      });
+      motionBtn.addEventListener("click", function () {
+        setGlobal(motionBtn.getAttribute("aria-pressed") !== "true");
+      });
+      // Con movimiento reducido todo empieza en pausa (fotograma representativo)
+      setGlobal(reduced);
+      reduceMQ.addEventListener && reduceMQ.addEventListener("change", function (e) { reduced = e.matches; setGlobal(e.matches); });
+
+      // Ahorro: las demos fuera de pantalla no se animan
+      if ("IntersectionObserver" in window) {
+        var demoObs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            entry.target.classList.toggle("is-offscreen", !entry.isIntersecting);
+          });
+        }, { rootMargin: "80px 0px" });
+        demos.forEach(function (d) { demoObs.observe(d); });
+      }
+
+      /* ---------- Parallax suave del Pico Sacro + cinta de cinturones ---------- */
+      var mountain = document.querySelector(".hero-art .mountain");
+      var hero = document.querySelector(".hero");
+      var techSection = document.getElementById("tecnicas");
+      var belt = document.querySelector(".belt-progress");
+      var ticking = false;
+
+      function onScroll() {
+        var y = window.scrollY;
+        if (mountain && !reduced && y < hero.offsetHeight) {
+          mountain.style.transform = "translateY(" + (y * 0.12).toFixed(1) + "px)";
+        }
+        if (belt) {
+          // 0 cuando la sección llega bajo la cabecera, 1 cuando su final llega abajo
+          var r = techSection.getBoundingClientRect();
+          var vh = window.innerHeight;
+          var headerH = document.querySelector(".site-header").offsetHeight;
+          var p = (headerH - r.top) / Math.max(1, r.height - vh + headerH);
+          belt.style.setProperty("--p", Math.max(0, Math.min(1, p)).toFixed(3));
+        }
+        ticking = false;
+      }
+      window.addEventListener("scroll", function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+      }, { passive: true });
+      onScroll();
+
+      /* ---------- Año actual en el pie ---------- */
+      var year = document.querySelector("[data-year]");
+      if (year) year.textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
