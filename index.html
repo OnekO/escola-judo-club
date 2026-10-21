@@ -450,6 +450,17 @@
     .history-cards em { font-style: normal; font-weight: 800; color: var(--ink); }
 
     .principles { list-style: none; }
+    .principles-main { margin-bottom: 3.5rem; }
+    .principles .jp { color: var(--ink); }
+    .sub-lead { margin-top: -.2rem; color: var(--ink-soft); font-weight: 600; }
+    /* Dos columnas fijas en pantallas medianas y grandes */
+    @media (min-width: 760px) { .grid-pair { grid-template-columns: repeat(2, 1fr); } }
+    /* El hito soñado: el oro olímpico gallego */
+    .history-cards .dream { background: var(--t-yellow); }
+    .history-cards .dream::after {
+      content: "★"; position: absolute; right: 1rem; top: .6rem;
+      font-size: 1.8rem; line-height: 1; color: var(--coral);
+    }
     .principles li { display: flex; gap: 1rem; align-items: flex-start; }
     .principles .bubble { margin: 0; width: 58px; height: 58px; }
     .principles .bubble .icon { width: 30px; height: 30px; }
@@ -1305,19 +1316,38 @@
             <p>En un templo de Tokio y con solo 12 tatamis nace el <em>Kodokan</em>, la casa del judo.</p>
           </li>
           <li class="card sticker lift reveal">
-            <span class="step">Principio 1</span>
-            <h4>Máxima eficiencia</h4>
-            <p><em>Seiryoku zenyo</em>: usar bien tu energía, sin malgastar fuerza.</p>
+            <span class="step">1964</span>
+            <h4>¡Deporte olímpico!</h4>
+            <p>El judo llega por primera vez a unos Juegos Olímpicos, en <em>Tokio</em>, la ciudad donde nació.</p>
           </li>
-          <li class="card sticker lift reveal">
-            <span class="step">Principio 2</span>
-            <h4>Prosperidad mutua</h4>
-            <p><em>Jita kyoei</em>: si tu compañero mejora, tú también mejoras.</p>
+          <li class="card sticker lift reveal dream">
+            <span class="step">20XX</span>
+            <h4>¡Oro para Galicia!</h4>
+            <p>Este año Galicia conseguirá su primera medalla de oro olímpica en judo. <em>¡Y puede que sea de nuestro dojo!</em></p>
           </li>
         </ol>
 
         <h3 class="reveal">Principios básicos</h3>
-        <ul class="grid grid-2 principles" role="list">
+        <p class="sub-lead reveal">Las dos grandes ideas que Jigoro Kano puso en el corazón del judo.</p>
+        <ul class="grid grid-pair principles principles-main" role="list">
+          <li class="card sticker reveal">
+            <span class="bubble bg-mint"><svg class="icon" aria-hidden="true"><use href="#i-balance"/></svg></span>
+            <div>
+              <h4>Máxima eficiencia</h4>
+              <p><strong class="jp">Seiryoku zenyo</strong>: usar bien tu energía, con técnica y equilibrio, sin malgastar fuerza.</p>
+            </div>
+          </li>
+          <li class="card sticker reveal">
+            <span class="bubble bg-coral"><svg class="icon" aria-hidden="true"><use href="#i-team"/></svg></span>
+            <div>
+              <h4>Prosperidad mutua</h4>
+              <p><strong class="jp">Jita kyoei</strong>: crecemos juntos. Si tu compañero mejora, tú también mejoras.</p>
+            </div>
+          </li>
+        </ul>
+
+        <h3 class="reveal">Otros fundamentos</h3>
+        <ul class="grid grid-pair principles" role="list">
           <li class="card sticker reveal">
             <span class="bubble bg-yellow"><svg class="icon" aria-hidden="true"><use href="#i-rei"/></svg></span>
             <div>
