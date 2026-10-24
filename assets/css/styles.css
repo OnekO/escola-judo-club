@@ -336,6 +336,31 @@ main > .section:first-child > .wave { display: none; }
 /* Reverencia (rei) del compañero en la ilustración */
 .hero-art .uke .body { rotate: 22deg; }
 
+/* --- Bienvenida (portada, al final del hero) --- */
+.welcome {
+  display: flex; align-items: center; gap: clamp(1rem, .5rem + 2vw, 2rem);
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4rem);
+  padding: clamp(1.3rem, 1rem + 1.5vw, 2rem) clamp(1.3rem, 1rem + 2vw, 2.4rem);
+  background: var(--white);
+}
+.welcome-avatar {
+  width: clamp(64px, 50px + 4vw, 104px); height: auto; aspect-ratio: 1; flex: none;
+  border: 3px solid var(--ink); border-radius: 50%; background: var(--t-sky);
+}
+.welcome-avatar:last-child { background: var(--t-yellow); }
+.welcome-text { flex: 1; text-align: center; }
+.welcome-text h2 { font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.5rem); margin-bottom: .3em; }
+.welcome-text p { margin: 0 auto; max-width: 42rem; color: var(--ink-soft); font-weight: 600; }
+.welcome-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1rem !important; }
+.welcome-links .chip { text-decoration: none; background: var(--t-yellow); transition: transform .2s var(--ease); }
+.welcome-links .chip:last-child { background: var(--t-sky); }
+.welcome-links .chip:hover { transform: translateY(-2px); }
+.welcome-links .chip::after { content: "↓"; }
+@media (max-width: 640px) {
+  .welcome { flex-wrap: wrap; justify-content: center; }
+  .welcome-text { order: 3; flex-basis: 100%; }
+}
+
 /* --- Preguntas de peques (portada) --- */
 .kid-faq { --section-bg: var(--t-sky); background: var(--section-bg); }
 .kid-grid {
