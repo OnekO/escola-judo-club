@@ -5,6 +5,15 @@
   "use strict";
   // La clase "js" en <html> ya la pone un script en el <head> (src/layout/head.html)
 
+  /* ---------- Textos que cambia el JS, en cada idioma (según <html lang>) ---------- */
+  var TEXTS = {
+    es: { menuOpen: "Abrir menú", menuClose: "Cerrar menú", pauseAll: "Pausar animaciones", resumeAll: "Reanudar animaciones",
+          pauseDemo: "Pausar la animación de ", playDemo: "Reproducir la animación de " },
+    gl: { menuOpen: "Abrir menú", menuClose: "Pechar menú", pauseAll: "Pausar animacións", resumeAll: "Retomar animacións",
+          pauseDemo: "Pausar a animación de ", playDemo: "Reproducir a animación de " }
+  };
+  var T = TEXTS[document.documentElement.lang] || TEXTS.es;
+
   var reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
   var reduced = reduceMQ.matches;
 
@@ -14,12 +23,12 @@
   function closeMenu() {
     menu.classList.remove("is-open");
     menuBtn.setAttribute("aria-expanded", "false");
-    menuBtn.setAttribute("aria-label", "Abrir menú");
+    menuBtn.setAttribute("aria-label", T.menuOpen);
   }
   menuBtn.addEventListener("click", function () {
     var open = menu.classList.toggle("is-open");
     menuBtn.setAttribute("aria-expanded", String(open));
-    menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
+    menuBtn.setAttribute("aria-label", open ? T.menuClose : T.menuOpen);
   });
   menu.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
   document.addEventListener("keydown", function (e) {
@@ -116,11 +125,11 @@
     demo.classList.toggle("is-paused", !playing);
     var btn = demo.querySelector(".demo-btn");
     var name = btn.getAttribute("data-name");
-    btn.setAttribute("aria-label", (playing ? "Pausar" : "Reproducir") + " la animación de " + name);
+    btn.setAttribute("aria-label", (playing ? T.pauseDemo : T.playDemo) + name);
   }
   function setGlobal(paused) {
     motionBtn.setAttribute("aria-pressed", String(paused));
-    motionBtn.setAttribute("title", paused ? "Reanudar animaciones" : "Pausar animaciones");
+    motionBtn.setAttribute("title", paused ? T.resumeAll : T.pauseAll);
     document.body.classList.toggle("motion-paused", paused);
     demos.forEach(function (d) { setDemo(d, !paused); });
   }
