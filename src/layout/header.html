@@ -43,12 +43,12 @@
     </defs>
   </svg>
 
-  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <a class="skip-link" href="#contenido">{{t:skip}}</a>
 
   <!-- =========================== CABECERA =========================== -->
   <header class="site-header">
-    <nav class="nav wrap" aria-label="Principal">
-      <a class="brand" href="index.html" aria-label="Escola Judo Club, ir al inicio">
+    <nav class="nav wrap" aria-label="{{t:nav_label}}">
+      <a class="brand" href="index.html" aria-label="{{t:brand_label}}">
         <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
           <circle cx="32" cy="32" r="29" fill="#ffd23f" stroke="#241f5c" stroke-width="3.5"/>
           <path d="M14 46 L26 22 L32 30 L38 18 L50 46 Z" fill="#4fd1a0" stroke="#241f5c" stroke-width="3" stroke-linejoin="round"/>
@@ -60,11 +60,16 @@
       </a>
 
       <div class="nav-tools">
-        <button class="icon-btn motion-toggle" type="button" aria-pressed="false" aria-label="Pausar animaciones" title="Pausar animaciones">
+        <!-- Selector de idioma: lleva a esta misma página en el otro idioma -->
+        <div class="lang-switch" role="group" aria-label="{{t:lang_label}}">
+          <a href="{{url:es}}" hreflang="es" lang="es" title="Castellano"{{current:es}}>ES</a>
+          <a href="{{url:gl}}" hreflang="gl" lang="gl" title="Galego"{{current:gl}}>GL</a>
+        </div>
+        <button class="icon-btn motion-toggle" type="button" aria-pressed="false" aria-label="{{t:pause_all}}" title="{{t:pause_all}}">
           <svg class="icon i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
           <svg class="icon i-play" aria-hidden="true"><use href="#i-play"/></svg>
         </button>
-        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="{{t:menu_open}}">
           <svg class="icon i-menu" aria-hidden="true"><use href="#i-menu"/></svg>
           <svg class="icon i-close" aria-hidden="true"><use href="#i-close"/></svg>
         </button>
@@ -73,14 +78,14 @@
       <div class="nav-menu" id="menu">
         <ul class="nav-links">
           <!-- build.py marca con aria-current="page" el enlace de la página actual (data-page) -->
-          <li><a href="club.html" data-page="club">El club</a></li>
-          <li><a href="que-es-el-judo.html" data-page="que-es-el-judo">Qué es el judo</a></li>
-          <li><a href="ventajas.html" data-page="ventajas">Ventajas</a></li>
-          <li><a href="tecnicas.html" data-page="tecnicas">Técnicas</a></li>
-          <li><a href="competicion.html" data-page="competicion">Competición</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="club.html" data-page="club">{{t:nav_club}}</a></li>
+          <li><a href="que-es-el-judo.html" data-page="que-es-el-judo">{{t:nav_what}}</a></li>
+          <li><a href="ventajas.html" data-page="ventajas">{{t:nav_benefits}}</a></li>
+          <li><a href="tecnicas.html" data-page="tecnicas">{{t:nav_techniques}}</a></li>
+          <li><a href="competicion.html" data-page="competicion">{{t:nav_competition}}</a></li>
+          <li><a href="#contacto">{{t:nav_contact}}</a></li>
         </ul>
-        <a class="btn btn-primary nav-cta" href="#contacto">Ven a probar</a>
+        <a class="btn btn-primary nav-cta" href="#contacto">{{t:cta_try}}</a>
       </div>
     </nav>
   </header>

@@ -279,6 +279,30 @@ main > .section:first-child > .wave { display: none; }
 .motion-toggle[aria-pressed="true"] { background: var(--yellow); }
 .motion-toggle[aria-pressed="true"] .i-play { display: block; }
 .motion-toggle[aria-pressed="true"] .i-pause { display: none; }
+/* Selector de idioma ES · GL */
+.lang-switch {
+  display: inline-flex; padding: 3px; gap: 2px;
+  border: var(--border); border-radius: 999px; background: var(--white);
+}
+.lang-switch a {
+  display: grid; place-items: center; min-width: 40px; height: 36px; padding: 0 .55rem;
+  font-family: var(--font-display); font-weight: 800; font-size: .95rem; line-height: 1;
+  text-decoration: none; border-radius: 999px;
+  transition: background-color .2s;
+}
+.lang-switch a:hover { background: var(--t-yellow); }
+.lang-switch a[aria-current] { background: var(--ink); color: var(--white); }
+/* Móviles estrechos: cabecera compacta para que quepan logo, idiomas y botones */
+@media (max-width: 440px) {
+  .nav { gap: .5rem; }
+  .brand { gap: .45rem; font-size: 1.05rem; }
+  .brand-logo { width: 38px; height: 38px; flex: none; }
+  .brand small { display: none; }
+  .nav .nav-tools { gap: .35rem; }
+  .icon-btn { width: 40px; height: 40px; }
+  .icon-btn .icon { width: 19px; height: 19px; }
+  .lang-switch a { min-width: 30px; height: 30px; padding: 0 .4rem; font-size: .85rem; }
+}
 .nav-cta { min-height: 46px; font-size: 1rem; padding: .55em 1.1em; }
 .menu-toggle { display: none; }
 
