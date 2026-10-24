@@ -21,6 +21,7 @@ src/
       ventajas.html         Ventajas
       tecnicas.html         Técnicas (animaciones de Kumi y Kata)
       competicion.html      Competición
+      contacto.html         Contacto (mapa con los puntos del club)
     gl/            las mismas páginas, en gallego
 assets/
   css/styles.css   estilos de toda la web
