@@ -336,6 +336,111 @@ main > .section:first-child > .wave { display: none; }
 /* Reverencia (rei) del compañero en la ilustración */
 .hero-art .uke .body { rotate: 22deg; }
 
+/* --- Bienvenida (portada, al final del hero) --- */
+.welcome {
+  display: flex; align-items: center; gap: clamp(1rem, .5rem + 2vw, 2rem);
+  margin-top: clamp(2.5rem, 2rem + 3vw, 4rem);
+  padding: clamp(1.3rem, 1rem + 1.5vw, 2rem) clamp(1.3rem, 1rem + 2vw, 2.4rem);
+  background: var(--white);
+}
+.welcome-avatar {
+  width: clamp(64px, 50px + 4vw, 104px); height: auto; aspect-ratio: 1; flex: none;
+  border: 3px solid var(--ink); border-radius: 50%; background: var(--t-sky);
+}
+.welcome-avatar:last-child { background: var(--t-yellow); }
+.welcome-text { flex: 1; text-align: center; }
+.welcome-text h2 { font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.5rem); margin-bottom: .3em; }
+.welcome-text p { margin: 0 auto; max-width: 42rem; color: var(--ink-soft); font-weight: 600; }
+.welcome-links { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin-top: 1rem !important; }
+.welcome-links .chip { text-decoration: none; background: var(--t-yellow); transition: transform .2s var(--ease); }
+.welcome-links .chip:last-child { background: var(--t-sky); }
+.welcome-links .chip:hover { transform: translateY(-2px); }
+.welcome-links .chip::after { content: "↓"; }
+@media (max-width: 640px) {
+  .welcome { flex-wrap: wrap; justify-content: center; }
+  .welcome-text { order: 3; flex-basis: 100%; }
+}
+
+/* --- Preguntas de peques (portada) --- */
+.kid-faq { --section-bg: var(--t-sky); background: var(--section-bg); }
+.kid-grid {
+  display: grid; gap: clamp(1.2rem, 1rem + 1vw, 1.8rem); list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.5rem), 1fr));
+}
+.kid-q { padding: 1.2rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.kid-q:nth-child(odd) { rotate: -.6deg; }
+.kid-q:nth-child(even) { rotate: .6deg; }
+/* La pregunta es un bocadillo de cómic, como si la dijera un peque */
+.q-bubble {
+  position: relative; margin: 0;
+  padding: .7rem 1rem;
+  font-size: clamp(1.15rem, 1.08rem + .3vw, 1.3rem); line-height: 1.2;
+  background: var(--yellow); border: var(--border); border-radius: 20px;
+}
+.q-bubble::after {
+  /* Pico del bocadillo */
+  content: ""; position: absolute; left: 1.4rem; bottom: -12px;
+  width: 18px; height: 18px; background: inherit;
+  border-right: var(--border); border-bottom: var(--border);
+  transform: rotate(45deg); border-bottom-right-radius: 4px;
+}
+.kid-q:nth-child(4n+2) .q-bubble { background: #ffc2b0; }
+.kid-q:nth-child(4n+3) .q-bubble { background: #b9e8d6; }
+.kid-q:nth-child(4n) .q-bubble { background: #c9e7fb; }
+.kid-a { display: flex; gap: .8rem; align-items: flex-start; }
+.kid-a .avatar {
+  width: 46px; height: 46px; flex: none;
+  border: 2.5px solid var(--ink); border-radius: 50%; background: var(--t-sky);
+}
+.kid-a p { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--ink-soft); }
+.kid-a strong { color: var(--ink); }
+.kid-a .avatar:has(.uke) { background: var(--t-yellow); }
+.kid-a em { font-style: normal; font-weight: 800; color: var(--ink); }
+.lift.kid-q:hover { rotate: 0deg; }
+
+/* --- Preguntas de familias (portada) --- */
+.parent-faq { --section-bg: var(--t-yellow); background: var(--section-bg); }
+.faq-list { display: grid; gap: 1rem; max-width: 52rem; margin-inline: auto; }
+.faq { padding: 0; overflow: hidden; }
+.faq summary {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.2rem; cursor: pointer; list-style: none;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(1.1rem, 1.02rem + .35vw, 1.3rem); line-height: 1.25;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:focus-visible { outline-offset: -4px; }
+.faq summary .bubble { margin: 0; width: 48px; height: 48px; }
+.faq summary .bubble .icon { width: 24px; height: 24px; }
+.faq-q { flex: 1; }
+.faq-chev {
+  flex: none; width: 34px; height: 34px; border-radius: 50%;
+  border: 2.5px solid var(--ink); background: var(--white);
+  display: grid; place-items: center; transition: rotate .25s var(--ease);
+}
+.faq-chev::before { content: ""; width: 9px; height: 9px; border-right: 3px solid var(--ink); border-bottom: 3px solid var(--ink); translate: 0 -2px; rotate: 45deg; }
+.faq[open] .faq-chev { rotate: 180deg; }
+.faq-a { padding: 0 1.4rem 1.3rem calc(1.2rem + 48px + 1rem); color: var(--ink-soft); font-size: 1.02rem; }
+.faq-a p { margin: 0 0 .7rem; }
+.faq-a p:last-child { margin-bottom: 0; }
+.faq-a ul { margin: 0 0 .8rem; padding-left: 1.2rem; }
+.faq-a li { margin-bottom: .35rem; }
+.faq-a strong { color: var(--ink); }
+.faq-note { font-weight: 700; color: var(--ink); }
+@media (max-width: 560px) { .faq-a { padding-left: 1.2rem; } }
+/* Pregunta destacada: judo y neurodivergencia */
+.faq-featured { border-width: 3.5px; box-shadow: 7px 8px 0 rgba(36, 31, 92, .2); }
+.faq-featured summary { background: linear-gradient(90deg, #fde7f0, #e4f0ff 50%, #e3f8ec); }
+.faq-featured .faq-a { padding-top: 1rem; }
+.bg-neuro { background: linear-gradient(135deg, #ff9aa6, #ffd23f 35%, #4fd1a0 65%, #49b6f2); }
+.faq-badge {
+  display: inline-block; margin: 0 .5rem .25rem 0; padding: .05em .65em;
+  font-family: var(--font-body); font-size: .8rem; font-weight: 800; vertical-align: middle;
+  background: var(--white); border: 2px solid var(--ink); border-radius: 999px;
+}
+.faq-more { text-align: center; margin: 2rem 0 0; font-weight: 700; }
+.faq-more a { font-weight: 800; text-underline-offset: 3px; }
+
 /* =========================================================
    6. EL CLUB
    ========================================================= */
