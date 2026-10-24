@@ -336,6 +336,43 @@ main > .section:first-child > .wave { display: none; }
 /* Reverencia (rei) del compañero en la ilustración */
 .hero-art .uke .body { rotate: 22deg; }
 
+/* --- Preguntas de peques (portada) --- */
+.kid-faq { --section-bg: var(--t-sky); background: var(--section-bg); }
+.kid-grid {
+  display: grid; gap: clamp(1.2rem, 1rem + 1vw, 1.8rem); list-style: none;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16.5rem), 1fr));
+}
+.kid-q { padding: 1.2rem 1.2rem 1.3rem; display: flex; flex-direction: column; gap: 1.1rem; }
+.kid-q:nth-child(odd) { rotate: -.6deg; }
+.kid-q:nth-child(even) { rotate: .6deg; }
+/* La pregunta es un bocadillo de cómic, como si la dijera un peque */
+.q-bubble {
+  position: relative; margin: 0;
+  padding: .7rem 1rem;
+  font-size: clamp(1.15rem, 1.08rem + .3vw, 1.3rem); line-height: 1.2;
+  background: var(--yellow); border: var(--border); border-radius: 20px;
+}
+.q-bubble::after {
+  /* Pico del bocadillo */
+  content: ""; position: absolute; left: 1.4rem; bottom: -12px;
+  width: 18px; height: 18px; background: inherit;
+  border-right: var(--border); border-bottom: var(--border);
+  transform: rotate(45deg); border-bottom-right-radius: 4px;
+}
+.kid-q:nth-child(4n+2) .q-bubble { background: #ffc2b0; }
+.kid-q:nth-child(4n+3) .q-bubble { background: #b9e8d6; }
+.kid-q:nth-child(4n) .q-bubble { background: #c9e7fb; }
+.kid-a { display: flex; gap: .8rem; align-items: flex-start; }
+.kid-a .avatar {
+  width: 46px; height: 46px; flex: none;
+  border: 2.5px solid var(--ink); border-radius: 50%; background: var(--t-sky);
+}
+.kid-a p { margin: 0; font-size: 1rem; line-height: 1.5; color: var(--ink-soft); }
+.kid-a strong { color: var(--ink); }
+.kid-a .avatar:has(.uke) { background: var(--t-yellow); }
+.kid-a em { font-style: normal; font-weight: 800; color: var(--ink); }
+.lift.kid-q:hover { rotate: 0deg; }
+
 /* =========================================================
    6. EL CLUB
    ========================================================= */
