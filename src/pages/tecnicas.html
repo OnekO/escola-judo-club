@@ -1,0 +1,573 @@
+<!--
+title: Técnicas de judo · Escola Judo Club
+description: Tachi waza, ne waza y shime waza con animaciones de Kumi, el panda, y Kata, el mapache.
+-->
+<section class="section techniques tatami" id="tecnicas" aria-labelledby="tech-title">
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 40 C160 70 380 76 560 46 S920 6 1120 36 S1380 66 1440 50 V80 H0Z"/></svg>
+  <div class="wrap">
+    <header class="section-head reveal">
+      <span class="eyebrow">En movimiento</span>
+      <h2 id="tech-title">Técnicas</h2>
+      <p class="lead">En judo hay muchas técnicas. Las agrupamos en tres grandes familias:</p>
+    </header>
+
+    <!-- Los protagonistas de las animaciones -->
+    <div class="meet reveal">
+      <div class="meet-card kumi sticker">
+        <svg viewBox="-21 -85 44 44" aria-hidden="true"><g class="fig tori"><g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g></g></svg>
+        <p><strong>Kumi, el panda</strong>Hace de <em>tori</em>: es quien hace la técnica.</p>
+      </div>
+      <div class="meet-card kata sticker">
+        <svg viewBox="-21 -85 44 44" aria-hidden="true"><g class="fig uke"><g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g></g></svg>
+        <p><strong>Kata, el mapache</strong>Hace de <em>uke</em>: recibe la técnica y aprende a caer bien.</p>
+      </div>
+    </div>
+
+    <ul class="grid grid-3 families" role="list">
+      <li class="reveal">
+        <a class="family sticker lift" href="#tachi-waza">
+          <span class="pill bg-yellow">De pie</span>
+          <strong>Tachi Waza</strong>
+          <span>Proyecciones para hacer caer al compañero con equilibrio… y una buena caída.</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="family sticker lift" href="#ne-waza">
+          <span class="pill bg-sky">Suelo</span>
+          <strong>Ne Waza</strong>
+          <span>Controles en el suelo para mantener al compañero de espaldas.</span>
+        </a>
+      </li>
+      <li class="reveal">
+        <a class="family sticker lift" href="#shime-waza">
+          <span class="pill bg-mint">Avanzadas</span>
+          <strong>Shime Waza</strong>
+          <span>Estrangulaciones, solo para judocas mayores y siempre con supervisión.</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Cinta de cinturones: se rellena al recorrer la sección -->
+    <div class="belt-progress" aria-hidden="true"></div>
+
+    <div class="tablist" role="tablist" aria-label="Familias de técnicas" data-hash-tabs>
+      <button class="tab" role="tab" id="tab-tachi" aria-controls="tachi-waza" aria-selected="true">Tachi Waza <small>de pie</small></button>
+      <button class="tab" role="tab" id="tab-ne" aria-controls="ne-waza" aria-selected="false" tabindex="-1">Ne Waza <small>suelo</small></button>
+      <button class="tab" role="tab" id="tab-shime" aria-controls="shime-waza" aria-selected="false" tabindex="-1">Shime Waza <small>estrangulación</small></button>
+    </div>
+
+    <!-- ---------- Tachi Waza ---------- -->
+    <div class="tech-panel" role="tabpanel" id="tachi-waza" aria-labelledby="tab-tachi" tabindex="0">
+      <div class="tech-panel-head">
+        <h3>Tachi Waza · técnicas de pie</h3>
+        <p>Primero desequilibras (<strong>kuzushi</strong>), luego entras y proyectas. ¡Y el compañero cae con una buena <strong>ukemi</strong> (caída)!</p>
+      </div>
+      <div class="tech-grid">
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">O-soto-gari</h4>
+          <p class="tech-es">Gran siega exterior</p>
+          <p class="tech-desc">Empujas a tu compañero hacia atrás y «siegas» su pierna como una guadaña.</p>
+          <figure class="demo tachi" id="demo-osoto" style="--freeze:3.3s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-osoto" aria-describedby="d-osoto">
+                <title id="t-osoto">Animación de O-soto-gari</title>
+                <desc id="d-osoto">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kumi desequilibra a Kata hacia atrás y le siega la pierna; Kata cae de espaldas y se levanta.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(185 126) scale(-1 1)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-62deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-78deg"><line y2="19"/><g class="fore" style="--r:-8deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(110 126)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-70deg"><line y2="19"/><g class="fore" style="--r:-15deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-85deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M176 46Q228 34 252 90"/><path class="head-arrow" d="M254.1 79.2L252 90L242.7 84.1"/></g>
+                <g transform="translate(232 166)"><g class="burst"><path d="M0-8v-9M10-5l7-6M-10-5l-7-6M16 3h8M-16 3h-8"/></g></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="O-soto-gari" aria-label="Pausar la animación de O-soto-gari">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Se agarran del judogi</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Kuzushi: desequilibrio hacia atrás</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Kumi siega la pierna por detrás</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> Kata cae de espaldas… ¡y se levanta!</span>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Ippon-seoi-nage</h4>
+          <p class="tech-es">Proyección por encima del hombro</p>
+          <p class="tech-desc">Giras, cargas al compañero en tu espalda y lo haces rodar por encima del hombro.</p>
+          <figure class="demo tachi" id="demo-seoi" style="--freeze:3s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-seoi" aria-describedby="d-seoi">
+                <title id="t-seoi">Animación de Ippon-seoi-nage</title>
+                <desc id="d-seoi">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kumi gira, carga a Kata sobre su espalda y lo proyecta por encima del hombro; Kata cae de espaldas delante de Kumi.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(190 126) scale(-1 1)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-62deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-78deg"><line y2="19"/><g class="fore" style="--r:-8deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(110 126)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-70deg"><line y2="19"/><g class="fore" style="--r:-15deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-85deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M214 58Q150 -6 86 66"/><path class="head-arrow" d="M96.7 63.3L86 66L87.4 55.1"/></g>
+                <g transform="translate(96 166)"><g class="burst"><path d="M0-8v-9M10-5l7-6M-10-5l-7-6M16 3h8M-16 3h-8"/></g></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Ippon-seoi-nage" aria-label="Pausar la animación de Ippon-seoi-nage">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se acerca y agarra la manga</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Gira y carga a Kata en la espalda</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Kata rueda por encima del hombro</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> Cae de espaldas con buena caída</span>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">De-ashi-barai</h4>
+          <p class="tech-es">Barrido del pie adelantado</p>
+          <p class="tech-desc">Justo cuando da un paso, barres su pie con la planta del tuyo.</p>
+          <figure class="demo tachi" id="demo-deashi" style="--freeze:3.12s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-deashi" aria-describedby="d-deashi">
+                <title id="t-deashi">Animación de De-ashi-barai</title>
+                <desc id="d-deashi">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata da un paso adelante y Kumi le barre el pie con la planta; Kata pierde el apoyo y cae de lado.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(190 126) scale(-1 1)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-62deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-78deg"><line y2="19"/><g class="fore" style="--r:-8deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(110 126)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-70deg"><line y2="19"/><g class="fore" style="--r:-15deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-12deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-85deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M126 188Q152 198 184 186"/><path class="head-arrow" d="M173.3 183.4L184 186L177.7 195.0"/></g>
+                <g transform="translate(236 166)"><g class="burst"><path d="M0-8v-9M10-5l7-6M-10-5l-7-6M16 3h8M-16 3h-8"/></g></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="De-ashi-barai" aria-label="Pausar la animación de De-ashi-barai">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kata da un paso adelante</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Kumi le guía con los brazos</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Barre su pie con la planta</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> Kata pierde el apoyo y cae</span>
+            </figcaption>
+          </figure>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- Ne Waza ---------- -->
+    <div class="tech-panel" role="tabpanel" id="ne-waza" aria-labelledby="tab-ne" tabindex="0">
+      <div class="tech-panel-head">
+        <h3>Ne Waza · técnicas de suelo</h3>
+        <p>Se hacen en el suelo. El objetivo es mantener al compañero de espaldas y controlado unos segundos (<strong>osaekomi</strong>), sin hacerle daño.</p>
+      </div>
+      <div class="tech-grid">
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Kesa-gatame</h4>
+          <p class="tech-es">Control en banda (como una bufanda)</p>
+          <p class="tech-desc">Te sientas a su lado y abrazas su cabeza y su brazo, como una bufanda.</p>
+          <figure class="demo ne" id="demo-kesa" style="--freeze:3.9s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-kesa" aria-describedby="d-kesa">
+                <title id="t-kesa">Animación de Kesa-gatame</title>
+                <desc id="d-kesa">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata está tumbado de espaldas; Kumi se acerca de rodillas, se sienta a su lado y le rodea cabeza y brazo mientras Kata intenta escapar.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(190 162) rotate(-90)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-25deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(212 146) scale(-1 1)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M246 66Q206 50 186 92"/><path class="head-arrow" d="M195.5 86.5L186 92L184.3 81.1"/></g>
+                <g class="timer" transform="translate(30 30)"><circle class="timer-bg" r="14"/><circle class="timer-fg" r="14" transform="rotate(-90)"/></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Kesa-gatame" aria-label="Pausar la animación de Kesa-gatame">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se acerca de rodillas</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Se sienta pegado al costado</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Abraza cabeza y brazo</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> Controla: ¡20 segundos son ippon!</span>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Yoko-shiho-gatame</h4>
+          <p class="tech-es">Control lateral de cuatro puntos</p>
+          <p class="tech-desc">Desde un lado, apoyas tu pecho sobre el suyo y controlas cuatro puntos.</p>
+          <figure class="demo ne" id="demo-yoko" style="--freeze:3.9s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-yoko" aria-describedby="d-yoko">
+                <title id="t-yoko">Animación de Yoko-shiho-gatame</title>
+                <desc id="d-yoko">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata está tumbado de espaldas; Kumi se acerca de rodillas desde un lado y se tumba atravesado sobre su pecho mientras Kata intenta escapar.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(190 162) rotate(-90)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-25deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(250 146) scale(-1 1)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M262 62Q224 48 206 92"/><path class="head-arrow" d="M215.2 85.9L206 92L203.7 81.2"/></g>
+                <g class="timer" transform="translate(30 30)"><circle class="timer-bg" r="14"/><circle class="timer-fg" r="14" transform="rotate(-90)"/></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Yoko-shiho-gatame" aria-label="Pausar la animación de Yoko-shiho-gatame">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se acerca de rodillas</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Se coloca a un lado</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Apoya el pecho sobre el suyo</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> Controla: ¡20 segundos son ippon!</span>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Kami-shiho-gatame</h4>
+          <p class="tech-es">Control superior de cuatro puntos</p>
+          <p class="tech-desc">Desde su cabeza, te tumbas sobre su pecho y sujetas su cinturón.</p>
+          <figure class="demo ne" id="demo-kami" style="--freeze:3.9s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-kami" aria-describedby="d-kami">
+                <title id="t-kami">Animación de Kami-shiho-gatame</title>
+                <desc id="d-kami">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata está tumbado de espaldas; Kumi se acerca de rodillas por el lado de la cabeza y se tumba sobre su pecho sujetándole el cinturón.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(190 162) rotate(-90)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-25deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(70 146)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M58 62Q96 48 116 92"/><path class="head-arrow" d="M117.9 81.2L116 92L106.6 86.3"/></g>
+                <g class="timer" transform="translate(30 30)"><circle class="timer-bg" r="14"/><circle class="timer-fg" r="14" transform="rotate(-90)"/></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Kami-shiho-gatame" aria-label="Pausar la animación de Kami-shiho-gatame">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se acerca por la cabeza</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Se coloca de rodillas</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Se tumba sobre su pecho</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> Controla: ¡20 segundos son ippon!</span>
+            </figcaption>
+          </figure>
+        </article>
+      </div>
+    </div>
+
+    <!-- ---------- Shime Waza ---------- -->
+    <div class="tech-panel" role="tabpanel" id="shime-waza" aria-labelledby="tab-shime" tabindex="0">
+      <div class="tech-panel-head">
+        <h3>Shime Waza · técnicas de estrangulación</h3>
+        <p>Presionan el cuello con el brazo o con la solapa del judogi. Son técnicas avanzadas: se aprenden despacio, con calma y mucho cuidado.</p>
+      </div>
+      <div class="tech-grid">
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Hadaka-jime</h4>
+          <p class="tech-es">Estrangulación sin agarrar el judogi</p>
+          <p class="tech-desc">Desde detrás, el antebrazo rodea el cuello sin agarrar la ropa.</p>
+          <figure class="demo shime" id="demo-hadaka" style="--freeze:3.45s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-hadaka" aria-describedby="d-hadaka">
+                <title id="t-hadaka">Animación de Hadaka-jime</title>
+                <desc id="d-hadaka">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata está sentado; Kumi se coloca detrás, le inclina hacia atrás y rodea su cuello con el antebrazo; Kata da dos palmadas y Kumi suelta al instante.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(176 165)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:-84deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-35deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-88deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-45deg"><line y2="19"/><g class="fore" style="--r:-20deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(100 146)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M150 60Q124 50 104 66"/><path class="head-arrow" d="M115.0 65.2L104 66L107.2 55.5"/></g>
+                <g transform="translate(192 158)"><g class="tap"><circle r="6"/><circle r="12"/></g></g>
+                <g transform="translate(150 52)"><g class="kudos"><path d="M0 6C-9-1-9-9-4-10c2 0 3 1 4 3 1-2 2-3 4-3 5 1 5 9-4 16z"/></g></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Hadaka-jime" aria-label="Pausar la animación de Hadaka-jime">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se coloca detrás</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Inclina a Kata hacia atrás</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Rodea el cuello con el antebrazo</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> ¡Maitta! Dos palmadas y suelta</span>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Okuri-eri-jime</h4>
+          <p class="tech-es">Estrangulación deslizando la solapa</p>
+          <p class="tech-desc">Desde detrás, una mano desliza la solapa del judogi por el cuello.</p>
+          <figure class="demo shime" id="demo-okuri" style="--freeze:3.45s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-okuri" aria-describedby="d-okuri">
+                <title id="t-okuri">Animación de Okuri-eri-jime</title>
+                <desc id="d-okuri">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata está sentado; Kumi, detrás, agarra las solapas de su judogi y desliza una por el cuello; Kata da dos palmadas y Kumi suelta al instante.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(176 165)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:-84deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-35deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-88deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-45deg"><line y2="19"/><g class="fore" style="--r:-20deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(100 146)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M150 60Q124 50 104 66"/><path class="head-arrow" d="M115.0 65.2L104 66L107.2 55.5"/></g>
+                <g transform="translate(192 158)"><g class="tap"><circle r="6"/><circle r="12"/></g></g>
+                <g transform="translate(150 52)"><g class="kudos"><path d="M0 6C-9-1-9-9-4-10c2 0 3 1 4 3 1-2 2-3 4-3 5 1 5 9-4 16z"/></g></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Okuri-eri-jime" aria-label="Pausar la animación de Okuri-eri-jime">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se coloca detrás</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Agarra las dos solapas</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Desliza la solapa por el cuello</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> ¡Maitta! Dos palmadas y suelta</span>
+            </figcaption>
+          </figure>
+        </article>
+        <article class="tech-card sticker reveal">
+          <h4 class="tech-name">Kata-ha-jime</h4>
+          <p class="tech-es">Estrangulación en ala simple</p>
+          <p class="tech-desc">Una mano en la solapa y el otro brazo levanta el suyo, como un ala.</p>
+          <figure class="demo shime" id="demo-kataha" style="--freeze:3.45s">
+            <div class="demo-stage">
+              <svg class="demo-svg" viewBox="0 0 320 200" role="img" aria-labelledby="t-kataha" aria-describedby="d-kataha">
+                <title id="t-kataha">Animación de Kata-ha-jime</title>
+                <desc id="d-kataha">Kumi, el panda, hace de tori y Kata, el mapache, de uke. Kata está sentado; Kumi, detrás, le levanta un brazo como un ala y agarra la solapa; Kata da dos palmadas y Kumi suelta al instante.</desc>
+                <rect class="mat" x="-10" y="172" width="340" height="40"/>
+                <path class="mat-line" d="M80 172v40M160 172v40M240 172v40"/>
+                <g class="fig uke" transform="translate(176 165)">
+                  <g class="body">
+                    <g class="tail"><path class="tail-base" d="M-11-8q-20 2-24-16"/><path class="tail-ring" d="M-11-8q-20 2-24-16"/></g>
+                    <g class="thigh lb" style="--r:-84deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-35deg"><line y2="19"/><g class="fore" style="--r:-10deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-88deg"><line y2="24"/><g class="shin"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><path class="ear" d="M-12-64l-2-13 10 6zM2-70l5-11 5 11z"/><circle class="face" cy="-59" r="14"/><path class="mask" d="M-9-63q10-7 22-1q-1 6-6 5q-3-2-5 0q-5 2-11-4z"/><circle class="shine" cx="-1" cy="-62" r="1.4"/><circle class="shine" cx="8" cy="-62" r="1.4"/><ellipse class="muzzle" cx="9" cy="-53" rx="6" ry="4"/><ellipse class="nose" cx="13" cy="-55" rx="2.2" ry="1.7"/><path class="smile" d="M7-50q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-45deg"><line y2="19"/><g class="fore" style="--r:-20deg"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="fig tori" transform="translate(100 146)">
+                  <g class="body">
+                    <g class="thigh lb" style="--r:4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <g class="arm ab" style="--r:-20deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                    <g class="thigh lf" style="--r:-4deg"><line y2="24"/><g class="shin" style="--r:90deg"><line y2="22"/><path d="M0 22h7"/></g></g>
+                    <path class="gi" d="M-12-44h24l3 42h-30z"/>
+                    <path class="lapel" d="M-8-44l8 16 8-16"/>
+                    <path class="obi" d="M-15-6h30M5-6l5 11M5-6l-1 12"/>
+                    <g class="head"><circle class="ear" cx="-9" cy="-71" r="5.5"/><circle class="ear" cx="6" cy="-72" r="5.5"/><circle class="face" cy="-59" r="14"/><ellipse class="patch" cx="-1" cy="-61" rx="3.6" ry="4.8" transform="rotate(20 -1 -61)"/><ellipse class="patch" cx="8" cy="-61" rx="3.6" ry="4.8" transform="rotate(-20 8 -61)"/><circle class="shine" cx="-.5" cy="-62" r="1.4"/><circle class="shine" cx="8.5" cy="-62" r="1.4"/><ellipse class="nose" cx="12" cy="-55" rx="2.4" ry="1.8"/><circle class="blush" cx="2" cy="-53" r="2.4"/><path class="smile" d="M7-51q3 2 6-1"/></g>
+                    <g class="arm af" style="--r:-40deg"><line y2="19"/><g class="fore"><line y2="17"/><circle class="paw" cy="17" r="3.6"/></g></g>
+                  </g>
+                </g>
+                <g class="cue"><path class="trail" d="M150 60Q124 50 104 66"/><path class="head-arrow" d="M115.0 65.2L104 66L107.2 55.5"/></g>
+                <g transform="translate(192 158)"><g class="tap"><circle r="6"/><circle r="12"/></g></g>
+                <g transform="translate(150 52)"><g class="kudos"><path d="M0 6C-9-1-9-9-4-10c2 0 3 1 4 3 1-2 2-3 4-3 5 1 5 9-4 16z"/></g></g>
+              </svg>
+              <button class="demo-btn" type="button" data-name="Kata-ha-jime" aria-label="Pausar la animación de Kata-ha-jime">
+                <svg class="i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+                <svg class="i-play" aria-hidden="true"><use href="#i-play"/></svg>
+              </button>
+            </div>
+            <figcaption class="phase">
+              <span class="visually-hidden">Fases:</span>
+                  <span class="ph ph1"><b aria-hidden="true">1</b> Kumi se coloca detrás</span>
+                  <span class="ph ph2"><b aria-hidden="true">2</b> Levanta su brazo como un ala</span>
+                  <span class="ph ph3"><b aria-hidden="true">3</b> Agarra la solapa por el cuello</span>
+                  <span class="ph ph4"><b aria-hidden="true">4</b> ¡Maitta! Dos palmadas y suelta</span>
+            </figcaption>
+          </figure>
+        </article>
+      </div>
+      <aside class="safety" aria-label="Nota de seguridad">
+        <span class="bubble"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+        <p><strong>Seguridad ante todo.</strong> Estas técnicas se enseñan y practican siempre bajo la supervisión de un adulto responsable. Si el compañero da dos palmadas (<strong>maitta</strong>, «me rindo»), se suelta al instante. Con los peques solo usamos juegos y versiones adaptadas, nunca estrangulaciones reales.</p>
+      </aside>
+    </div>
+  </div>
+</section>

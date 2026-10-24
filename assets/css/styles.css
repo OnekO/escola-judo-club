@@ -1,0 +1,998 @@
+/* =========================================================
+   1. TOKENS DE DISEÑO
+   ========================================================= */
+:root {
+  /* Base tatami + colores de cinturón */
+  --cream: #fff8ea;
+  --cream-2: #fbecd0;
+  --white: #ffffff;
+  --ink: #241f5c;          /* índigo para texto */
+  --ink-soft: #464281;     /* texto secundario (AA sobre fondos claros) */
+  --yellow: #ffd23f;
+  --coral: #ff7f5c;
+  --sky: #49b6f2;
+  --mint: #4fd1a0;
+  --red: #e94b5f;
+  --gi-blue: #3f8fe0;
+  --skin: #ffe3c4;
+
+  /* Tintes suaves para fondos de sección */
+  --t-yellow: #fff1c2;
+  --t-sky: #dff2fd;
+  --t-mint: #dcf7ec;
+  --t-coral: #ffe4da;
+
+  /* Tipografía */
+  --font-display: "Baloo 2", "Fredoka", "Nunito", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fs-hero: clamp(2.6rem, 1.6rem + 5vw, 5rem);
+  --fs-h2: clamp(2rem, 1.4rem + 2.8vw, 3.3rem);
+  --fs-h3: clamp(1.45rem, 1.2rem + 1.1vw, 2rem);
+  --fs-h4: clamp(1.15rem, 1.05rem + .4vw, 1.35rem);
+  --fs-body: clamp(1.05rem, 1rem + .25vw, 1.2rem);
+  --fs-small: .95rem;
+
+  /* Formas */
+  --radius-s: 14px;
+  --radius: 26px;
+  --radius-l: 40px;
+  --border: 3px solid var(--ink);
+  --shadow-sticker: 6px 7px 0 rgba(36, 31, 92, .16);
+  --shadow-soft: 0 14px 30px -14px rgba(36, 31, 92, .35);
+
+  --header-h: 72px;
+  --wrap: 1180px;
+  --ease: cubic-bezier(.45, .05, .35, 1);
+}
+
+/* =========================================================
+   2. RESET Y BASE
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 20px);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.1;
+  margin: 0 0 .4em;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+.skip-link {
+  position: absolute; left: 1rem; top: -100px; z-index: 100;
+  background: var(--ink); color: var(--white);
+  padding: .7rem 1.1rem; border-radius: 12px; font-weight: 800;
+}
+.skip-link:focus { top: 1rem; }
+
+.wrap { width: min(100% - 2.5rem, var(--wrap)); margin-inline: auto; }
+
+/* Iconos del sprite */
+.icon { width: 1.6em; height: 1.6em; flex: none; }
+
+/* =========================================================
+   3. COMPONENTES COMUNES
+   ========================================================= */
+
+/* Botones */
+.btn {
+  display: inline-flex; align-items: center; gap: .55em;
+  min-height: 52px; padding: .7em 1.4em;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.15rem;
+  text-decoration: none; line-height: 1;
+  border: var(--border); border-radius: 999px;
+  box-shadow: 4px 5px 0 var(--ink);
+  cursor: pointer;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.btn:hover { transform: translate(-2px, -3px); box-shadow: 6px 8px 0 var(--ink); }
+.btn:active { transform: translate(2px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+.btn .icon { width: 1.25em; height: 1.25em; }
+.btn-primary { background: var(--coral); }
+.btn-secondary { background: var(--white); }
+.btn-yellow { background: var(--yellow); }
+
+/* Tarjetas "pegatina" */
+.sticker {
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sticker);
+}
+.lift { transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
+.lift:hover { transform: translateY(-6px) rotate(-1deg); box-shadow: 8px 12px 0 rgba(36, 31, 92, .18); }
+.lift:nth-child(even):hover { transform: translateY(-6px) rotate(1deg); }
+.lift:hover .bubble { animation: bounce .6s var(--ease); }
+
+/* Burbuja de icono */
+.bubble {
+  display: grid; place-items: center; flex: none;
+  width: 64px; height: 64px;
+  border: var(--border); border-radius: 50%;
+  background: var(--yellow);
+  margin-bottom: .8rem;
+}
+.bubble .icon { width: 32px; height: 32px; }
+.bg-yellow { background: var(--yellow); }
+.bg-coral { background: var(--coral); }
+.bg-sky { background: var(--sky); }
+.bg-mint { background: var(--mint); }
+.bg-red { background: #ff9aa6; }
+
+/* Etiquetas / chips */
+.chip {
+  display: inline-flex; align-items: center; gap: .4em;
+  padding: .35em .9em;
+  font-weight: 800; font-size: var(--fs-small);
+  border: 2.5px solid var(--ink); border-radius: 999px;
+  background: var(--white);
+}
+.chip .icon { width: 1.2em; height: 1.2em; }
+
+/* Secciones */
+.section {
+  position: relative;
+  padding: clamp(4rem, 3rem + 5vw, 7rem) 0;
+}
+.section-head { max-width: 46rem; margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.2rem); }
+.section-head.center { margin-inline: auto; text-align: center; }
+.section-head h2 { font-size: var(--fs-h2); }
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 1rem; letter-spacing: .08em; text-transform: uppercase;
+  background: var(--yellow); border: 2.5px solid var(--ink);
+  border-radius: 999px; padding: .15em .9em; margin-bottom: .8rem;
+  rotate: -2deg;
+}
+.lead { font-size: clamp(1.15rem, 1.05rem + .5vw, 1.4rem); font-weight: 600; color: var(--ink-soft); }
+.section h3 { font-size: var(--fs-h3); }
+.section h4 { font-size: var(--fs-h4); margin-bottom: .3em; }
+
+/* Divisor ondulado: se coloca arriba de cada sección con su mismo color */
+.wave {
+  position: absolute; left: 0; right: 0; top: 1px;
+  height: clamp(30px, 5vw, 70px);
+  transform: translateY(-100%);
+  width: 100%;
+  pointer-events: none;
+}
+.wave path { fill: var(--section-bg, var(--cream)); }
+/* En cada página la primera sección va pegada a la cabecera: su ola no se vería */
+main > .section:first-child > .wave { display: none; }
+
+/* Fondo tatami (cuadrícula suave) */
+.tatami {
+  background-color: var(--section-bg, var(--cream));
+  background-image:
+    linear-gradient(90deg, rgba(36, 31, 92, .045) 3px, transparent 3px),
+    linear-gradient(rgba(36, 31, 92, .045) 3px, transparent 3px);
+  background-size: 140px 70px;
+}
+
+/* Grids */
+.grid { display: grid; gap: clamp(1rem, .8rem + 1vw, 1.6rem); list-style: none; }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
+.grid-5 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 12.5rem), 1fr)); }
+
+.card { padding: clamp(1.3rem, 1rem + 1vw, 1.8rem); }
+.card p { margin: 0; color: var(--ink-soft); }
+
+/* Pestañas accesibles (Ventajas + Técnicas) */
+.tablist {
+  display: flex; flex-wrap: wrap; gap: .7rem;
+  margin-bottom: 1.8rem;
+}
+.tab {
+  display: inline-flex; align-items: center; gap: .5em;
+  min-height: 52px; padding: .55em 1.2em;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+  background: var(--white);
+  border: var(--border); border-radius: 999px;
+  cursor: pointer;
+  transition: transform .2s var(--ease), background-color .2s;
+}
+.tab:hover { transform: translateY(-2px); }
+.tab[aria-selected="true"] { background: var(--yellow); box-shadow: 4px 5px 0 var(--ink); }
+.tab .icon { width: 1.3em; height: 1.3em; }
+.tab small { font-family: var(--font-body); font-weight: 700; font-size: .85rem; color: var(--ink-soft); }
+[role="tabpanel"]:focus-visible { outline-offset: 8px; }
+/* Deja sitio para la cabecera y la cinta de cinturones al saltar a las pestañas */
+[data-hash-tabs] { scroll-margin-top: calc(var(--header-h) + 50px); }
+
+/* =========================================================
+   4. CABECERA / NAVEGACIÓN
+   ========================================================= */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255, 248, 234, .92);
+  backdrop-filter: blur(8px);
+  border-bottom: 3px solid var(--ink);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  min-height: var(--header-h);
+}
+.brand {
+  display: flex; align-items: center; gap: .6rem;
+  text-decoration: none;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; line-height: 1;
+}
+.brand-logo { width: 46px; height: 46px; transition: transform .4s var(--ease); }
+.brand:hover .brand-logo { transform: rotate(-12deg) scale(1.06); }
+.brand small { display: block; font-family: var(--font-body); font-size: .75rem; font-weight: 700; color: var(--ink-soft); }
+
+.nav-menu { display: flex; align-items: center; gap: .3rem; }
+.nav-links { display: flex; list-style: none; gap: .15rem; }
+.nav-links a {
+  display: block; padding: .5rem .75rem;
+  font-weight: 800; font-size: 1rem; text-decoration: none;
+  border-radius: 999px;
+  transition: background-color .2s;
+}
+.nav-links a:hover { background: var(--t-yellow); }
+.nav-links a[aria-current] { background: var(--yellow); }
+
+.icon-btn {
+  display: inline-grid; place-items: center;
+  width: 48px; height: 48px;
+  background: var(--white);
+  border: var(--border); border-radius: 50%;
+  cursor: pointer;
+  transition: transform .2s var(--ease), background-color .2s;
+}
+.icon-btn:hover { transform: rotate(-8deg) scale(1.05); background: var(--t-yellow); }
+.icon-btn .icon { width: 22px; height: 22px; }
+.motion-toggle .i-play { display: none; }
+.motion-toggle[aria-pressed="true"] { background: var(--yellow); }
+.motion-toggle[aria-pressed="true"] .i-play { display: block; }
+.motion-toggle[aria-pressed="true"] .i-pause { display: none; }
+.nav-cta { min-height: 46px; font-size: 1rem; padding: .55em 1.1em; }
+.menu-toggle { display: none; }
+
+@media (max-width: 1020px) {
+  .menu-toggle { display: inline-grid; }
+  .nav-menu {
+    position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; align-items: stretch; gap: 1rem;
+    padding: 1rem 1.25rem 1.5rem;
+    background: var(--cream);
+    border-bottom: 3px solid var(--ink);
+    box-shadow: var(--shadow-soft);
+    display: none;
+  }
+  .nav-menu.is-open { display: flex; }
+  .nav-links { flex-direction: column; }
+  .nav-links a { padding: .8rem 1rem; font-size: 1.15rem; }
+  .nav-cta { justify-content: center; }
+  .nav-tools { display: flex; gap: .6rem; align-items: center; justify-content: center; }
+}
+.nav-tools { display: flex; gap: .5rem; align-items: center; }
+.menu-toggle .i-close { display: none; }
+.menu-toggle[aria-expanded="true"] .i-close { display: block; }
+.menu-toggle[aria-expanded="true"] .i-menu { display: none; }
+
+/* =========================================================
+   5. HERO
+   ========================================================= */
+.hero { --section-bg: var(--cream); padding: clamp(2.5rem, 2rem + 3vw, 4.5rem) 0 clamp(5rem, 4rem + 4vw, 7rem); overflow: hidden; }
+.hero-grid {
+  display: grid; gap: 2rem; align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) { .hero-grid { grid-template-columns: 1.02fr 1fr; } }
+.hero h1 { font-size: var(--fs-hero); margin-bottom: .25em; }
+.hero h1 .club-name { display: block; }
+.hero h1 .hl {
+  position: relative; display: inline-block; z-index: 0;
+}
+.hero h1 .hl::after {
+  content: ""; position: absolute; z-index: -1;
+  left: -.08em; right: -.08em; bottom: .08em; height: .32em;
+  background: var(--yellow); border-radius: 999px; rotate: -1.5deg;
+}
+.tagline { font-size: clamp(1.2rem, 1.05rem + .7vw, 1.6rem); font-weight: 700; color: var(--ink-soft); max-width: 30rem; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.6rem 0 1.8rem; }
+.badges { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; }
+.badges li:nth-child(1) { background: var(--t-yellow); rotate: -2deg; }
+.badges li:nth-child(2) { background: var(--t-mint); rotate: 1.5deg; }
+.badges li:nth-child(3) { background: var(--t-sky); rotate: -1deg; }
+
+.hero-art { position: relative; }
+.hero-art svg { width: 100%; height: auto; overflow: visible; }
+.hero-art .mountain { will-change: transform; }
+/* Reverencia (rei) del compañero en la ilustración */
+.hero-art .uke .body { rotate: 22deg; }
+
+/* =========================================================
+   6. EL CLUB
+   ========================================================= */
+.club { --section-bg: var(--t-yellow); background: var(--section-bg); }
+.club-intro { display: grid; gap: 2rem; align-items: start; }
+@media (min-width: 900px) { .club-intro { grid-template-columns: 1.1fr .9fr; } }
+.history p { color: var(--ink-soft); max-width: 36rem; }
+.history p:first-of-type::first-letter {
+  float: left; font-family: var(--font-display); font-weight: 800;
+  font-size: 3.4em; line-height: .9; margin: .05em .12em 0 0; color: var(--coral);
+}
+
+/* Línea de tiempo */
+.timeline { list-style: none; display: grid; gap: 1rem; position: relative; }
+.timeline::before {
+  content: ""; position: absolute; left: 27px; top: 10px; bottom: 10px;
+  width: 6px; border-radius: 6px;
+  background: repeating-linear-gradient(var(--ink) 0 10px, transparent 10px 18px);
+  opacity: .25;
+}
+.timeline li { display: grid; grid-template-columns: 60px 1fr; gap: 1rem; align-items: center; position: relative; }
+.timeline .dot {
+  display: grid; place-items: center;
+  width: 60px; height: 60px; border-radius: 50%;
+  border: var(--border); background: var(--yellow);
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
+}
+.timeline li:nth-child(2) .dot { background: var(--coral); }
+.timeline li:nth-child(3) .dot { background: var(--mint); }
+.timeline .card { padding: 1rem 1.2rem; }
+.timeline h4 { margin: 0; }
+.timeline .date { font-weight: 800; font-size: var(--fs-small); color: var(--ink-soft); }
+
+/* Mosaico de fotos (marcadores de posición) */
+.photo-grid {
+  display: grid; gap: 1rem; margin: clamp(2.5rem, 2rem + 2vw, 4rem) 0;
+  grid-template-columns: repeat(2, 1fr);
+}
+.photo-grid .photo:first-child { grid-column: span 2; aspect-ratio: 2 / 1; }
+@media (min-width: 760px) {
+  .photo-grid { grid-template-columns: repeat(4, 1fr); }
+  .photo-grid .photo:first-child { grid-row: span 2; aspect-ratio: auto; }
+}
+.photo {
+  position: relative; margin: 0;
+  aspect-ratio: 1; display: grid; place-items: center;
+  border: var(--border); border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sticker);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, .6) 0 18%, transparent 19%),
+    var(--photo-bg, var(--sky));
+}
+.photo:nth-child(2) { --photo-bg: var(--coral); }
+.photo:nth-child(3) { --photo-bg: var(--mint); }
+.photo:nth-child(4) { --photo-bg: var(--yellow); }
+.photo:nth-child(5) { --photo-bg: #ff9aa6; }
+.photo svg { width: 38%; max-width: 120px; height: auto; opacity: .55; }
+.photo figcaption {
+  position: absolute; left: .7rem; bottom: .7rem;
+  background: var(--white); border: 2.5px solid var(--ink);
+  border-radius: 999px; padding: .1em .8em;
+  font-weight: 800; font-size: .9rem;
+}
+
+/* Valores */
+.value-card { text-align: center; }
+.value-card .bubble { margin-inline: auto; width: 76px; height: 76px; }
+.value-card .bubble .icon { width: 38px; height: 38px; }
+
+/* =========================================================
+   7. QUÉ ES EL JUDO
+   ========================================================= */
+.what { --section-bg: var(--t-sky); background: var(--section-bg); }
+.what-intro { display: grid; gap: 2rem; align-items: center; margin-bottom: 3.5rem; }
+@media (min-width: 900px) { .what-intro { grid-template-columns: 1.2fr .8fr; } }
+.fact-chips { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; }
+.meaning {
+  padding: 1.6rem; text-align: center;
+  background: var(--yellow);
+  rotate: 2deg;
+}
+.meaning .kanji-free { font-family: var(--font-display); font-size: clamp(2.4rem, 2rem + 2vw, 3.4rem); font-weight: 800; line-height: 1; margin: .1em 0; }
+.meaning p { margin: 0; font-weight: 700; }
+
+/* Mini línea de tiempo de la historia */
+.history-cards { list-style: none; counter-reset: hist; margin-bottom: 3.5rem; }
+.history-cards li { position: relative; padding-top: 2.4rem; }
+.history-cards .step {
+  position: absolute; top: -1.1rem; left: 1.4rem;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.05rem;
+  background: var(--coral); border: var(--border); border-radius: 999px;
+  padding: .15em .9em;
+}
+.history-cards li:nth-child(2) .step { background: var(--yellow); }
+.history-cards li:nth-child(3) .step { background: var(--mint); }
+.history-cards li:nth-child(4) .step { background: var(--sky); }
+.history-cards em { font-style: normal; font-weight: 800; color: var(--ink); }
+
+.principles { list-style: none; }
+.principles-main { margin-bottom: 3.5rem; }
+.principles .jp { color: var(--ink); }
+.sub-lead { margin-top: -.2rem; color: var(--ink-soft); font-weight: 600; }
+/* Dos columnas fijas en pantallas medianas y grandes */
+@media (min-width: 760px) { .grid-pair { grid-template-columns: repeat(2, 1fr); } }
+/* El hito soñado: el oro olímpico gallego */
+.history-cards .dream { background: var(--t-yellow); }
+.history-cards .dream::after {
+  content: "★"; position: absolute; right: 1rem; top: .6rem;
+  font-size: 1.8rem; line-height: 1; color: var(--coral);
+}
+.principles li { display: flex; gap: 1rem; align-items: flex-start; }
+.principles .bubble { margin: 0; width: 58px; height: 58px; }
+.principles .bubble .icon { width: 30px; height: 30px; }
+.principles h4 { margin-top: .2rem; }
+.belt-row { display: flex; gap: 4px; margin-top: .6rem; flex-wrap: wrap; }
+.belt-row span { width: 26px; height: 10px; border-radius: 6px; border: 2px solid var(--ink); }
+
+/* =========================================================
+   8. VENTAJAS
+   ========================================================= */
+.benefits { --section-bg: var(--cream); }
+.benefit-card h4 { display: flex; align-items: center; gap: .5rem; }
+.callout {
+  display: grid; gap: 1.5rem;
+  margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.6rem);
+  background: var(--t-mint);
+  border: var(--border); border-radius: var(--radius-l);
+  box-shadow: var(--shadow-sticker);
+  position: relative; overflow: hidden;
+}
+@media (min-width: 860px) { .callout { grid-template-columns: 1.1fr 1fr; } }
+.callout::after {
+  /* Mancha decorativa */
+  content: ""; position: absolute; right: -70px; bottom: -70px;
+  width: 200px; height: 200px; border-radius: 42% 58% 60% 40%;
+  background: var(--yellow); opacity: .5; z-index: 0;
+}
+.callout > * { position: relative; z-index: 1; }
+.callout h3 { display: flex; align-items: center; gap: .5rem; }
+.kid-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: .7rem; margin-top: 1rem; }
+.kid-list li {
+  display: flex; align-items: center; gap: .5rem;
+  background: var(--white); border: 2.5px solid var(--ink); border-radius: 18px;
+  padding: .5rem .8rem; font-weight: 800;
+}
+.kid-list .icon { width: 1.4em; height: 1.4em; }
+.ages { list-style: none; display: grid; gap: .8rem; }
+.ages li { background: var(--white); border: 2.5px solid var(--ink); border-radius: 20px; padding: .8rem 1rem; }
+.ages strong { display: block; font-family: var(--font-display); font-size: 1.15rem; }
+.ages span { color: var(--ink-soft); }
+
+/* =========================================================
+   9. TÉCNICAS + DEMOS ANIMADAS
+   ========================================================= */
+.techniques { --section-bg: var(--t-coral); }
+.families { list-style: none; margin-bottom: 2.5rem; }
+.family {
+  display: block; height: 100%; text-decoration: none;
+  padding: 1.3rem 1.4rem;
+}
+.family strong { display: block; font-family: var(--font-display); font-size: 1.4rem; line-height: 1.15; }
+.family span { color: var(--ink-soft); }
+.family .pill { display: inline-block; margin-bottom: .5rem; font-weight: 800; font-size: .85rem; padding: .1em .7em; border: 2px solid var(--ink); border-radius: 999px; color: var(--ink); }
+
+/* Cinta de cinturones que se rellena con el scroll */
+.belt-progress {
+  position: sticky; top: calc(var(--header-h) + 8px); z-index: 20;
+  height: 22px; margin: 0 0 2rem;
+  border: var(--border); border-radius: 999px;
+  background: var(--white);
+  overflow: hidden;
+  box-shadow: 3px 4px 0 rgba(36, 31, 92, .15);
+}
+.belt-progress::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg,
+    #ffffff 0 14.28%, var(--yellow) 0 28.56%, #ff9f43 0 42.84%,
+    var(--mint) 0 57.12%, var(--gi-blue) 0 71.4%, #8b5a3c 0 85.68%, #222 0);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+  transition: transform .15s linear;
+}
+/* Las demos usan su ancho real, la cinta solo tapa lo justo */
+
+.tech-panel-head { display: grid; gap: 1rem 2rem; align-items: end; margin-bottom: 1.8rem; }
+@media (min-width: 900px) { .tech-panel-head { grid-template-columns: 1fr 1fr; } }
+.tech-panel-head p { margin: 0; color: var(--ink-soft); }
+.tech-grid { display: grid; gap: 1.4rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr)); }
+
+.tech-card { padding: 1.2rem 1.2rem 1rem; display: flex; flex-direction: column; }
+.tech-name { font-size: 1.5rem; margin: 0; }
+.tech-es { margin: 0 0 .4rem; font-weight: 800; color: var(--coral-ink, #b23a1d); }
+.tech-desc { font-size: 1rem; color: var(--ink-soft); margin-bottom: .9rem; }
+
+.demo { margin: auto 0 0; }
+.demo-stage {
+  position: relative;
+  border: 2.5px solid var(--ink); border-radius: 20px;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 50% 0%, #ffffff 0 45%, var(--t-sky) 100%);
+}
+.demo-svg { width: 100%; height: auto; aspect-ratio: 320 / 200; }
+.demo-btn {
+  position: absolute; right: 10px; top: 10px;
+  display: grid; place-items: center;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 2.5px solid var(--ink); background: var(--yellow);
+  cursor: pointer;
+  transition: transform .2s var(--ease);
+}
+.demo-btn:hover { transform: scale(1.08); }
+.demo-btn svg { width: 18px; height: 18px; }
+.demo .i-play { display: none; }
+.demo.is-paused .i-play { display: block; }
+.demo.is-paused .i-pause { display: none; }
+
+/* Pie con la fase actual: las 4 frases se apilan y se van mostrando */
+.phase {
+  display: grid; margin-top: .6rem;
+  font-weight: 800; font-size: .98rem; line-height: 1.3;
+}
+.phase .ph { grid-area: 1 / 1; display: flex; gap: .45rem; align-items: center; }
+.phase b {
+  display: inline-grid; place-items: center; flex: none;
+  width: 1.6rem; height: 1.6rem; border-radius: 50%;
+  border: 2px solid var(--ink); background: var(--t-yellow); font-size: .85rem;
+}
+
+/* --- Personajes: Kumi (panda, tori) y Kata (mapache, uke) ---
+   Mismo esqueleto articulado; cambian cabeza, colores, patas y cola. */
+:root {
+  --panda: #1e1c30; --panda-back: #56546f;
+  --racc: #6f7191; --racc-back: #a4a6be; --racc-face: #bfc1d4; --racc-dark: #2e2c44;
+}
+.demo-svg line, .demo-svg path, .fig line, .fig path {
+  fill: none; stroke: var(--ink); stroke-width: 5;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+.fig.tori line, .fig.tori .thigh path { stroke: var(--panda); stroke-width: 5.5; }
+.fig.tori .lb line, .fig.tori .lb path, .fig.tori .ab line { stroke: var(--panda-back); }
+.fig.uke line, .fig.uke .thigh path { stroke: var(--racc); stroke-width: 5.5; }
+.fig.uke .lb line, .fig.uke .lb path, .fig.uke .ab line { stroke: var(--racc-back); }
+.fig .paw { fill: var(--panda); }
+.fig .ab .paw { fill: var(--panda-back); }
+.fig.uke .paw { fill: var(--racc-dark); }
+.fig.uke .ab .paw { fill: var(--racc); }
+.fig .gi { fill: var(--white); stroke-width: 3.5; }
+.fig.tori .gi { fill: var(--gi-blue); }
+.fig .lapel { stroke-width: 3; stroke: var(--gi-blue); }
+.fig.tori .lapel { stroke: var(--white); }
+.fig .obi { stroke: #ff9f43; stroke-width: 4.5; }
+.fig.tori .obi { stroke: var(--yellow); }
+.fig .face { fill: var(--white); stroke: var(--ink); stroke-width: 3; }
+.fig .ear { fill: var(--panda); stroke: var(--ink); stroke-width: 2; }
+.fig .patch, .fig .nose { fill: var(--panda); }
+.fig .shine { fill: var(--white); }
+.fig .blush { fill: #ff9aa6; opacity: .85; }
+.fig .smile { stroke-width: 2.2; stroke: var(--panda); }
+/* Kata, el mapache */
+.fig.uke .face { fill: var(--racc-face); }
+.fig.uke .ear { fill: var(--racc); stroke-width: 2.5; }
+.fig.uke .mask { fill: var(--racc-dark); stroke: none; }
+.fig.uke .muzzle { fill: #f6f3ec; }
+.fig.uke .nose { fill: var(--racc-dark); }
+.fig .tail path { stroke-width: 10; }
+.fig .tail .tail-base { stroke: var(--racc-face); }
+.fig .tail .tail-ring { stroke: var(--racc-dark); stroke-dasharray: 5 6; stroke-linecap: butt; }
+/* Tumbado de espaldas, la cola descansa sobre el tatami en vez de atravesarlo */
+.demo.ne .uke .tail { transform-origin: -11px -8px; rotate: -134deg; }
+
+/* Presentación de Kumi y Kata */
+.meet { display: flex; flex-wrap: wrap; gap: 1rem; margin: -1rem 0 2.2rem; }
+.meet-card { display: flex; align-items: center; gap: .9rem; padding: .7rem 1.2rem .7rem .7rem; flex: 1 1 18rem; }
+.meet-card svg { width: 72px; height: 72px; flex: none; border-radius: 50%; border: 2.5px solid var(--ink); }
+.meet-card.kumi svg { background: var(--t-sky); }
+.meet-card.kata svg { background: var(--t-yellow); }
+.meet-card p { margin: 0; font-size: 1rem; color: var(--ink-soft); line-height: 1.45; }
+.meet-card strong { display: block; font-family: var(--font-display); font-size: 1.3rem; color: var(--ink); }
+.mascots { display: flex; justify-content: center; gap: .6rem; flex-wrap: wrap; margin-top: .4rem; }
+.mascots .chip:first-child { background: var(--t-sky); }
+.mascots .chip:last-child { background: var(--t-yellow); }
+
+/* Articulaciones: cada pieza gira sobre su propio origen */
+/* --r se reinicia en cada pieza para que no herede el ángulo de la articulación padre */
+.fig .body, .fig .thigh, .fig .shin, .fig .arm, .fig .fore { --r: 0deg; rotate: var(--r); }
+.fig .arm { translate: 0 -40px; }
+.fig .shin { translate: 0 24px; }
+.fig .fore { translate: 0 19px; }
+
+.demo-svg .mat { fill: #ffe08a; stroke: none; }
+.demo-svg .mat-line { stroke: #e6bf55; stroke-width: 3; }
+.demo-svg .cue .trail { stroke: var(--coral); stroke-width: 3.5; stroke-dasharray: 7 7; }
+.demo-svg .cue .head-arrow { stroke: var(--coral); stroke-width: 4; }
+.demo-svg .burst path { stroke: var(--coral); stroke-width: 3.5; }
+.demo-svg .tap circle { fill: none; stroke: var(--red); stroke-width: 3; }
+.demo-svg .kudos path { fill: var(--red); stroke: var(--ink); stroke-width: 2; }
+.demo-svg .timer-bg { fill: var(--white); stroke: #d9d6f0; stroke-width: 5; }
+.demo-svg .timer-fg { fill: none; stroke: var(--mint); stroke-width: 5; stroke-dasharray: 88 88; stroke-dashoffset: 88; stroke-linecap: round; }
+
+/* Aviso de seguridad */
+.safety {
+  display: flex; gap: 1rem; align-items: flex-start;
+  margin-top: 1.6rem; padding: 1.2rem 1.4rem;
+  background: var(--t-mint); border: var(--border); border-radius: var(--radius);
+}
+.safety .bubble { margin: 0; flex: none; background: var(--mint); }
+.safety p { margin: 0; }
+
+/* =========================================================
+   10. ANIMACIONES DE LAS TÉCNICAS
+   Todas las piezas de una demo comparten duración y empiezan a la vez,
+   así se pueden pausar o congelar en un fotograma con un solo retraso.
+   Fases comunes: 0-20% acercarse · 20-40% kuzushi · 40-60% ejecutar ·
+   60-80% caída / control · 80-100% volver al inicio.
+   ========================================================= */
+.demo { --dur: 6s; }  /* lento y fácil de seguir */
+.demo-svg *, .demo .ph {
+  animation-duration: var(--dur);
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-fill-mode: both;
+}
+.demo.is-paused .demo-svg *, .demo.is-paused .ph,
+.demo.is-offscreen .demo-svg *, .demo.is-offscreen .ph { animation-play-state: paused; }
+
+/* Pie de fase sincronizado */
+.demo .ph1 { animation-name: ph1; }
+.demo .ph2 { animation-name: ph2; }
+.demo .ph3 { animation-name: ph3; }
+.demo .ph4 { animation-name: ph4; }
+/* Una frase se apaga antes de que se encienda la siguiente: nunca se solapan */
+@keyframes ph1 { 0%, 18% { opacity: 1; } 19.5%, 98.5% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes ph2 { 0%, 20% { opacity: 0; } 21.5%, 38% { opacity: 1; } 39.5%, 100% { opacity: 0; } }
+@keyframes ph3 { 0%, 40% { opacity: 0; } 41.5%, 58% { opacity: 1; } 59.5%, 100% { opacity: 0; } }
+@keyframes ph4 { 0%, 60% { opacity: 0; } 61.5%, 95% { opacity: 1; } 96.5%, 100% { opacity: 0; } }
+
+/* Señales comunes: flecha, impacto, palmadas, temporizador, corazón */
+.demo .cue { animation-name: cue; }
+.demo .cue .trail { animation-name: trail; animation-timing-function: linear; }
+.demo .burst { animation-name: burst; }
+.demo .tap { animation-name: tap; }
+.demo .timer { animation-name: timer; }
+.demo .timer-fg { animation-name: timer-fill; }
+.demo .kudos { animation-name: kudos; }
+@keyframes cue { 0%, 22% { opacity: 0; } 30%, 56% { opacity: 1; } 64%, 100% { opacity: 0; } }
+@keyframes trail { to { stroke-dashoffset: -56; } }
+@keyframes burst { 0%, 58% { opacity: 0; scale: .4; } 64% { opacity: 1; scale: 1; } 74%, 100% { opacity: 0; scale: 1.2; } }
+@keyframes tap {
+  0%, 61% { opacity: 0; scale: .3; } 64% { opacity: 1; scale: .9; } 66.5% { opacity: 0; scale: 1.3; }
+  67.5% { opacity: 0; scale: .3; } 70% { opacity: 1; scale: .9; } 73%, 100% { opacity: 0; scale: 1.3; }
+}
+@keyframes timer { 0%, 54% { opacity: 0; } 58%, 82% { opacity: 1; } 88%, 100% { opacity: 0; } }
+@keyframes timer-fill { 0%, 58% { stroke-dashoffset: 88; } 80%, 100% { stroke-dashoffset: 0; } }
+@keyframes kudos { 0%, 80% { opacity: 0; translate: 0 6px; scale: .5; } 86%, 94% { opacity: 1; translate: 0 0; scale: 1; } 99%, 100% { opacity: 0; translate: 0 -6px; scale: .8; } }
+
+/* ---------- O-soto-gari ---------- */
+#demo-osoto .tori .body { animation-name: osoto-tori; }
+#demo-osoto .tori .lf { animation-name: osoto-tleg; }
+#demo-osoto .tori .lb { animation-name: osoto-tlegb; }
+#demo-osoto .uke .body { animation-name: osoto-uke; }
+#demo-osoto .uke .lf { animation-name: osoto-uleg; }
+#demo-osoto .uke .af { animation-name: osoto-uarm; }
+@keyframes osoto-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 26px 0; rotate: 0deg; }
+  40% { translate: 30px 0; rotate: 8deg; }
+  55% { translate: 34px 0; rotate: 22deg; }
+  72% { translate: 32px 0; rotate: 14deg; }
+  88% { translate: 12px 0; rotate: 0deg; }
+}
+@keyframes osoto-tleg { 0%, 28%, 88%, 100% { rotate: -12deg; } 42% { rotate: -55deg; } 55% { rotate: 36deg; } 72% { rotate: 22deg; } }
+@keyframes osoto-tlegb { 0%, 28%, 88%, 100% { rotate: 12deg; } 55%, 72% { rotate: -16deg; } }
+@keyframes osoto-uke {
+  0%, 22%, 100% { translate: 0 0; rotate: 0deg; }
+  40% { translate: 0 0; rotate: -14deg; }
+  54% { translate: -8px 14px; rotate: -55deg; }
+  64%, 80% { translate: -18px 37px; rotate: -90deg; }
+}
+@keyframes osoto-uleg { 0%, 40%, 100% { rotate: -12deg; } 55% { rotate: -50deg; } 66%, 80% { rotate: -22deg; } }
+@keyframes osoto-uarm { 0%, 50%, 100% { rotate: -78deg; } 64%, 80% { rotate: -5deg; } }
+
+/* ---------- Ippon-seoi-nage ---------- */
+#demo-seoi .tori .body { animation-name: seoi-tori; }
+#demo-seoi .tori .thigh { animation-name: seoi-tleg; }
+#demo-seoi .tori .shin { animation-name: seoi-tshin; }
+#demo-seoi .tori .af { animation-name: seoi-taf; }
+#demo-seoi .tori .af .fore { animation-name: seoi-tafore; }
+#demo-seoi .tori .ab { animation-name: seoi-tab; }
+#demo-seoi .uke .body { animation-name: seoi-uke; }
+@keyframes seoi-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; scale: 1 1; }
+  9% { translate: 18px 0; rotate: 0deg; scale: 1 1; }
+  20% { translate: 42px 4px; rotate: 0deg; scale: -1 1; }
+  40% { translate: 44px 4px; rotate: -14deg; scale: -1 1; }
+  55% { translate: 44px 4px; rotate: -48deg; scale: -1 1; }
+  70% { translate: 44px 3px; rotate: -18deg; scale: -1 1; }
+  84% { translate: 26px 0; rotate: 0deg; scale: -1 1; }
+}
+@keyframes seoi-tleg { 0%, 9%, 100% { rotate: -12deg; } 20% { rotate: -30deg; } 40% { rotate: -44deg; } 55% { rotate: -78deg; } 70% { rotate: -48deg; } 84% { rotate: -12deg; } }
+@keyframes seoi-tshin { 0%, 9%, 84%, 100% { rotate: 0deg; } 20%, 70% { rotate: 45deg; } }
+@keyframes seoi-taf { 0%, 9%, 84%, 100% { rotate: -85deg; } 20% { rotate: -160deg; } 40% { rotate: -150deg; } 55% { rotate: -70deg; } 70% { rotate: -40deg; } }
+@keyframes seoi-tafore { 0%, 9%, 84%, 100% { rotate: -10deg; } 20%, 40% { rotate: -70deg; } 55%, 70% { rotate: -20deg; } }
+@keyframes seoi-tab { 0%, 9%, 84%, 100% { rotate: -70deg; } 20%, 40% { rotate: -100deg; } 55%, 70% { rotate: -10deg; } }
+@keyframes seoi-uke {
+  0%, 16% { translate: 0 0; rotate: 0deg; }
+  40% { translate: 24px -2px; rotate: 32deg; }
+  50% { translate: 52px -50px; rotate: 150deg; }
+  60%, 80% { translate: 124px 37px; rotate: 270deg; }
+  100% { translate: 0 0; rotate: 360deg; }
+}
+
+/* ---------- De-ashi-barai ---------- */
+#demo-deashi .tori .body { animation-name: deashi-tori; }
+#demo-deashi .tori .lf { animation-name: deashi-tleg; }
+#demo-deashi .uke .body { animation-name: deashi-uke; }
+#demo-deashi .uke .lf { animation-name: deashi-uleg; }
+@keyframes deashi-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 4px 0; rotate: 0deg; }
+  40% { translate: 14px 0; rotate: -5deg; }
+  52% { translate: 16px 0; rotate: -10deg; }
+  66% { translate: 16px 0; rotate: -4deg; }
+  84% { translate: 6px 0; rotate: 0deg; }
+}
+@keyframes deashi-tleg { 0%, 38%, 84%, 100% { rotate: -12deg; } 52% { rotate: -38deg; } 66% { rotate: -18deg; } }
+@keyframes deashi-uke {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 14px 0; rotate: 0deg; }
+  40% { translate: 16px 0; rotate: 6deg; }
+  52% { translate: 12px 6px; rotate: -35deg; }
+  62%, 80% { translate: -4px 37px; rotate: -90deg; }
+}
+@keyframes deashi-uleg { 0%, 100% { rotate: -12deg; } 20%, 40% { rotate: -26deg; } 52% { rotate: -72deg; } 62%, 80% { rotate: -30deg; } }
+
+/* ---------- Ne waza: el compañero intenta escapar (común) ---------- */
+.demo.ne .uke .body { animation-name: ne-uke; }
+.demo.ne .uke .lf { animation-name: ne-ukeleg; }
+.demo.ne .uke .lf .shin { animation-name: ne-ukeshin; }
+@keyframes ne-uke { 0%, 58%, 84%, 100% { rotate: 0deg; translate: 0 0; } 64% { rotate: 4deg; } 70% { rotate: -3deg; translate: 4px 0; } 76% { rotate: 4deg; translate: 0 0; } }
+@keyframes ne-ukeleg { 0%, 58%, 84%, 100% { rotate: -4deg; } 64%, 76% { rotate: -55deg; } 70% { rotate: -15deg; } }
+@keyframes ne-ukeshin { 0%, 58%, 84%, 100% { rotate: 0deg; } 64%, 76% { rotate: 80deg; } 70% { rotate: 20deg; } }
+
+/* ---------- Kesa-gatame ---------- */
+#demo-kesa .tori .body { animation-name: kesa-tori; }
+#demo-kesa .tori .lf { animation-name: kesa-tlf; }
+#demo-kesa .tori .lf .shin { animation-name: kesa-tlfs; }
+#demo-kesa .tori .lb { animation-name: kesa-tlb; }
+#demo-kesa .tori .lb .shin { animation-name: kesa-tlbs; }
+#demo-kesa .tori .af { animation-name: kesa-taf; }
+#demo-kesa .tori .af .fore { animation-name: kesa-tafore; }
+@keyframes kesa-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 24px 0; rotate: 0deg; }
+  40% { translate: 32px 12px; rotate: 25deg; }
+  55%, 84% { translate: 30px 12px; rotate: 38deg; }
+  92% { translate: 14px 2px; rotate: 10deg; }
+}
+@keyframes kesa-tlf { 0%, 20%, 100% { rotate: -4deg; } 40% { rotate: -110deg; } 55%, 84% { rotate: -140deg; } 92% { rotate: -20deg; } }
+@keyframes kesa-tlfs { 0%, 20%, 100% { rotate: 90deg; } 40%, 84% { rotate: 100deg; } }
+@keyframes kesa-tlb { 0%, 20%, 100% { rotate: 4deg; } 40% { rotate: 55deg; } 55%, 84% { rotate: 32deg; } 92% { rotate: 6deg; } }
+@keyframes kesa-tlbs { 0%, 20%, 100% { rotate: 90deg; } 40%, 84% { rotate: 14deg; } 92% { rotate: 80deg; } }
+@keyframes kesa-taf { 0%, 40%, 100% { rotate: -40deg; } 55%, 84% { rotate: -95deg; } }
+@keyframes kesa-tafore { 0%, 40%, 100% { rotate: 0deg; } 55%, 84% { rotate: -40deg; } }
+
+/* ---------- Yoko-shiho-gatame ---------- */
+#demo-yoko .tori .body { animation-name: yoko-tori; }
+#demo-yoko .tori .thigh { animation-name: yoko-tleg; }
+#demo-yoko .tori .shin { animation-name: yoko-tshin; }
+#demo-yoko .tori .af { animation-name: yoko-taf; }
+#demo-yoko .tori .ab { animation-name: yoko-tab; }
+@keyframes yoko-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 22px 0; rotate: 0deg; }
+  40% { translate: 26px 0; rotate: 35deg; }
+  55%, 84% { translate: 26px 2px; rotate: 74deg; }
+  92% { translate: 10px 0; rotate: 12deg; }
+}
+@keyframes yoko-tleg { 0%, 20%, 100% { rotate: -4deg; } 40% { rotate: -55deg; } 55%, 84% { rotate: -94deg; } 92% { rotate: -16deg; } }
+@keyframes yoko-tshin { 0%, 20%, 100% { rotate: 90deg; } 40%, 84% { rotate: 110deg; } 92% { rotate: 95deg; } }
+@keyframes yoko-taf { 0%, 40%, 100% { rotate: -40deg; } 55%, 84% { rotate: -20deg; } }
+@keyframes yoko-tab { 0%, 40%, 100% { rotate: -20deg; } 55%, 84% { rotate: 40deg; } }
+
+/* ---------- Kami-shiho-gatame ---------- */
+#demo-kami .tori .body { animation-name: kami-tori; }
+#demo-kami .tori .thigh { animation-name: kami-tleg; }
+#demo-kami .tori .shin { animation-name: yoko-tshin; }
+#demo-kami .tori .af, #demo-kami .tori .ab { animation-name: kami-tarm; }
+@keyframes kami-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 22px 0; rotate: 0deg; }
+  40% { translate: 26px 0; rotate: 35deg; }
+  55%, 84% { translate: 28px 2px; rotate: 76deg; }
+  92% { translate: 10px 0; rotate: 12deg; }
+}
+@keyframes kami-tleg { 0%, 20%, 100% { rotate: -4deg; } 40% { rotate: -55deg; } 55%, 84% { rotate: -96deg; } 92% { rotate: -16deg; } }
+@keyframes kami-tarm { 0%, 40%, 100% { rotate: -40deg; } 55%, 84% { rotate: -12deg; } }
+
+/* ---------- Shime waza: común (inclinar, palmadas y soltar) ---------- */
+.demo.shime .tori .body { animation-name: shime-tori; }
+.demo.shime .uke .body { animation-name: shime-uke; }
+.demo.shime .uke .af { animation-name: shime-tap; }
+@keyframes shime-tori {
+  0%, 100% { translate: 0 0; rotate: 0deg; }
+  20% { translate: 32px 0; rotate: 0deg; }
+  40% { translate: 38px 0; rotate: -4deg; }
+  60%, 76% { translate: 42px 0; rotate: -8deg; }
+  82% { translate: 24px 0; rotate: -2deg; }
+}
+@keyframes shime-uke { 0%, 20%, 100% { rotate: 0deg; } 40% { rotate: -12deg; } 60%, 76% { rotate: -15deg; } 84% { rotate: 0deg; } }
+@keyframes shime-tap { 0%, 58%, 76%, 100% { rotate: -45deg; } 61%, 67% { rotate: -110deg; } 64%, 70% { rotate: -25deg; } }
+
+/* ---------- Hadaka-jime ---------- */
+#demo-hadaka .tori .af { animation-name: hadaka-taf; }
+#demo-hadaka .tori .af .fore { animation-name: hadaka-tafore; }
+#demo-hadaka .tori .ab { animation-name: hadaka-tab; }
+#demo-hadaka .tori .ab .fore { animation-name: hadaka-tabfore; }
+@keyframes hadaka-taf { 0%, 20%, 77%, 100% { rotate: -40deg; } 40% { rotate: -50deg; } 50%, 76% { rotate: -27deg; } }
+@keyframes hadaka-tafore { 0%, 20%, 77%, 100% { rotate: 0deg; } 40% { rotate: -40deg; } 50%, 76% { rotate: -60deg; } }
+@keyframes hadaka-tab { 0%, 20%, 77%, 100% { rotate: -20deg; } 40%, 76% { rotate: -150deg; } }
+@keyframes hadaka-tabfore { 0%, 20%, 77%, 100% { rotate: 0deg; } 40%, 76% { rotate: -50deg; } }
+
+/* ---------- Okuri-eri-jime ---------- */
+#demo-okuri .tori .af { animation-name: okuri-taf; }
+#demo-okuri .tori .af .fore { animation-name: okuri-tafore; }
+#demo-okuri .tori .ab { animation-name: okuri-tab; }
+#demo-okuri .uke .lapel { animation-name: collar; }
+@keyframes okuri-taf { 0%, 20%, 77%, 100% { rotate: -40deg; } 40% { rotate: -30deg; } 55%, 76% { rotate: -27deg; } }
+@keyframes okuri-tafore { 0%, 20%, 77%, 100% { rotate: 0deg; } 40% { rotate: -30deg; } 55%, 76% { rotate: -58deg; } }
+@keyframes okuri-tab { 0%, 20%, 77%, 100% { rotate: -20deg; } 40%, 76% { rotate: -55deg; } }
+@keyframes collar { 0%, 34%, 80%, 100% { stroke: var(--gi-blue); stroke-width: 3; } 44%, 76% { stroke: var(--coral); stroke-width: 5; } }
+
+/* ---------- Kata-ha-jime ---------- */
+#demo-kataha .tori .af { animation-name: okuri-taf; }
+#demo-kataha .tori .af .fore { animation-name: okuri-tafore; }
+#demo-kataha .tori .ab { animation-name: kataha-tab; }
+#demo-kataha .uke .ab { animation-name: kataha-uab; }
+#demo-kataha .uke .ab .fore { animation-name: kataha-uabfore; }
+@keyframes kataha-tab { 0%, 20%, 77%, 100% { rotate: -20deg; } 38%, 76% { rotate: -150deg; } }
+@keyframes kataha-uab { 0%, 20%, 80%, 100% { rotate: -35deg; } 38%, 76% { rotate: -170deg; } }
+@keyframes kataha-uabfore { 0%, 20%, 80%, 100% { rotate: -10deg; } 38%, 76% { rotate: -40deg; } }
+
+/* =========================================================
+   11. COMPETICIÓN
+   ========================================================= */
+.compete { --section-bg: var(--t-mint); background: var(--section-bg); }
+.compete-block { padding: clamp(1.4rem, 1rem + 1.5vw, 2.2rem); }
+.compete-block h3 { display: flex; gap: .6rem; align-items: center; }
+.rules { list-style: none; display: grid; gap: .8rem; margin-top: 1rem; }
+.rules li { display: grid; grid-template-columns: auto 1fr; gap: .8rem; align-items: start; }
+.rules .tag {
+  font-family: var(--font-display); font-weight: 800; font-size: 1rem;
+  background: var(--yellow); border: 2.5px solid var(--ink); border-radius: 12px;
+  padding: .05em .6em; white-space: nowrap; min-width: 6.6rem; text-align: center;
+}
+.rules li:nth-child(2) .tag { background: var(--sky); }
+.rules li:nth-child(3) .tag { background: var(--mint); }
+.rules li:nth-child(4) .tag { background: #ff9aa6; }
+.rules li:nth-child(5) .tag { background: #b8a6ff; }
+.rules li:nth-child(6) .tag { background: var(--coral); }
+.rules span:last-child { color: var(--ink-soft); }
+.weights { display: flex; flex-wrap: wrap; gap: .45rem; list-style: none; margin: .6rem 0 1rem; }
+.weights li { font-weight: 800; font-size: .9rem; padding: .15em .65em; border: 2px solid var(--ink); border-radius: 999px; background: var(--t-sky); }
+.weights.w li { background: var(--t-coral); }
+.weights-label { font-weight: 800; margin: .6rem 0 0; }
+.optional {
+  display: flex; gap: 1rem; align-items: center;
+  margin-top: 1.6rem; padding: 1.1rem 1.3rem;
+  border: 3px dashed var(--ink); border-radius: var(--radius); background: var(--white);
+}
+.optional p { margin: 0; font-weight: 700; }
+.dare {
+  display: grid; gap: 1.2rem; align-items: center; justify-items: start;
+  margin-top: clamp(2rem, 1.5rem + 2vw, 3rem);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.4rem);
+  background: var(--yellow); border: var(--border); border-radius: var(--radius-l);
+  box-shadow: var(--shadow-sticker);
+}
+@media (min-width: 760px) { .dare { grid-template-columns: auto 1fr auto; } }
+.dare h3 { margin: 0; font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem); }
+.dare p { margin: 0; font-weight: 700; }
+.dare-icon { width: 84px; height: 84px; }
+
+/* =========================================================
+   12. PIE DE PÁGINA
+   ========================================================= */
+.site-footer {
+  --section-bg: var(--ink);
+  position: relative;
+  background: var(--ink); color: #f6f3ff;
+  padding: clamp(3.5rem, 3rem + 3vw, 5rem) 0 2rem;
+}
+.site-footer :focus-visible { outline-color: var(--yellow); }
+.site-footer h2 { font-size: clamp(1.8rem, 1.4rem + 1.5vw, 2.5rem); color: var(--yellow); }
+.site-footer h3 { font-size: 1.35rem; color: var(--white); }
+.footer-grid { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.contact-list, .schedule, .social { list-style: none; display: grid; gap: .7rem; }
+.contact-list li { display: flex; gap: .7rem; align-items: center; }
+.contact-list a { color: inherit; font-weight: 700; text-underline-offset: 3px; }
+.contact-list .icon { width: 1.4em; height: 1.4em; color: var(--yellow); }
+.schedule li { display: flex; flex-direction: column; padding: .55rem .8rem; border: 2px solid rgba(255, 255, 255, .35); border-radius: 16px; }
+.schedule strong { color: var(--yellow); }
+.note { font-size: .92rem; opacity: .9; margin-top: .8rem; }
+.social { grid-auto-flow: column; justify-content: start; gap: .7rem; }
+.social a {
+  display: grid; place-items: center; width: 52px; height: 52px;
+  border-radius: 50%; background: var(--yellow); color: var(--ink);
+  border: 3px solid var(--white);
+  transition: transform .25s var(--ease);
+}
+.social a:hover { transform: translateY(-4px) rotate(-8deg); }
+.social .icon { width: 24px; height: 24px; }
+.footer-bottom {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  margin-top: 3rem; padding-top: 1.4rem;
+  border-top: 2px dashed rgba(255, 255, 255, .35);
+  font-size: .95rem;
+}
+.footer-belt { display: flex; height: 10px; border-radius: 10px; overflow: hidden; margin-top: 1.4rem; }
+.footer-belt span { flex: 1; }
+
+/* =========================================================
+   13. MOVIMIENTO DECORATIVO (suave y escaso)
+   ========================================================= */
+@keyframes float { 0%, 100% { translate: 0 0; rotate: -4deg; } 50% { translate: 0 -12px; rotate: 4deg; } }
+@keyframes sway { 0%, 100% { rotate: -3deg; } 50% { rotate: 3deg; } }
+@keyframes waveHand { 0%, 60%, 100% { rotate: -120deg; } 70%, 90% { rotate: -104deg; } 80% { rotate: -132deg; } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-9px) rotate(-6deg); } 70% { transform: translateY(-3px); } }
+.float-1 { animation: float 6s var(--ease) infinite; transform-box: fill-box; transform-origin: center; }
+.float-2 { animation: sway 7s var(--ease) infinite; transform-box: fill-box; transform-origin: 50% 0; }
+.hero-art .tori .af { animation: waveHand 4.5s var(--ease) infinite; }
+body.motion-paused .float-1, body.motion-paused .float-2,
+body.motion-paused .hero-art .tori .af { animation-play-state: paused; }
+
+/* Aparición al hacer scroll (solo si hay JS) */
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* =========================================================
+   14. MOVIMIENTO REDUCIDO
+   Congela las demos en un fotograma representativo y elimina
+   el movimiento decorativo infinito.
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .01ms !important; }
+  .float-1, .float-2, .hero-art .tori .af { animation: none !important; }
+  .lift:hover, .btn:hover, .tab:hover, .social a:hover, .icon-btn:hover { transform: none; }
+  .lift:hover .bubble { animation: none; }
+  .js .reveal { opacity: 1; transform: none; }
+
+  .demo:not(.is-playing) .demo-svg * {
+    animation-play-state: paused !important;
+    animation-delay: calc(var(--freeze) * -1) !important;
+  }
+  /* El pie muestra las 4 fases a la vez, en lista */
+  .demo .phase { display: flex; flex-direction: column; gap: .3rem; }
+  .demo .ph { animation: none !important; opacity: 1 !important; }
+}
