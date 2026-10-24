@@ -191,6 +191,19 @@
   }, { passive: true });
   onScroll();
 
+  /* ---------- Mapa de contacto: la lista resalta su punto en el mapa ---------- */
+  document.querySelectorAll(".place[data-place]").forEach(function (link) {
+    var pin = document.querySelector('.pin[data-place="' + link.getAttribute("data-place") + '"]');
+    if (!pin) return;
+    function on() { pin.classList.add("is-active"); link.classList.add("is-active"); }
+    function off() { pin.classList.remove("is-active"); link.classList.remove("is-active"); }
+    link.addEventListener("mouseenter", on); link.addEventListener("mouseleave", off);
+    link.addEventListener("focus", on); link.addEventListener("blur", off);
+    pin.addEventListener("mouseenter", on); pin.addEventListener("mouseleave", off);
+    pin.addEventListener("click", function () { link.click(); });
+    pin.style.cursor = "pointer";
+  });
+
   /* ---------- Año actual en el pie ---------- */
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();

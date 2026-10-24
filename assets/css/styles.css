@@ -304,6 +304,7 @@ main > .section:first-child > .wave { display: none; }
   .lang-switch a { min-width: 30px; height: 30px; padding: 0 .4rem; font-size: .85rem; }
 }
 .nav-cta { min-height: 46px; font-size: 1rem; padding: .55em 1.1em; }
+.nav-cta[aria-current] { background: var(--yellow); }
 .menu-toggle { display: none; }
 
 @media (max-width: 1020px) {
@@ -1048,6 +1049,67 @@ main > .section:first-child > .wave { display: none; }
 .dare h3 { margin: 0; font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem); }
 .dare p { margin: 0; font-weight: 700; }
 .dare-icon { width: 84px; height: 84px; }
+
+/* =========================================================
+   11b. CONTACTO Y MAPA
+   ========================================================= */
+.contact-page { --section-bg: var(--cream); }
+.contact-cards { text-align: center; }
+.contact-cards .bubble { margin-inline: auto; }
+.contact-cards h3 { font-size: var(--fs-h4); margin-bottom: .2em; }
+.contact-cards a { font-weight: 800; color: var(--ink); text-underline-offset: 3px; overflow-wrap: anywhere; }
+.contact-trial {
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+  margin: 2rem auto 0; max-width: 40rem; text-align: center; font-weight: 700;
+}
+.contact-trial .icon { color: var(--coral); width: 1.6em; height: 1.6em; }
+
+.where { --section-bg: var(--t-sky); background: var(--section-bg); }
+.map-layout { display: grid; gap: 1.5rem; align-items: start; }
+@media (min-width: 900px) { .map-layout { grid-template-columns: 1.6fr 1fr; } }
+.map-frame { padding: .6rem; overflow: hidden; }
+.place-map { width: 100%; height: auto; }
+.place-map text { font-family: var(--font-display); font-weight: 800; fill: var(--ink); paint-order: stroke; stroke: var(--white); stroke-width: 6px; stroke-linejoin: round; }
+.map-land { fill: #e7f6dd; stroke: #bfe3a8; stroke-width: 3; }
+.map-river { fill: none; stroke: var(--sky); stroke-width: 9; stroke-linecap: round; opacity: .75; }
+.place-map .map-river-label { font-size: 17px; fill: #2a78a8; font-style: italic; }
+.map-peak path { fill: var(--mint); stroke: var(--ink); stroke-width: 2.5; stroke-linejoin: round; }
+.map-peak .map-chapel { fill: var(--white); stroke-width: 2; }
+.map-peak text { font-size: 17px; }
+/* Las chinchetas crecen desde la punta (su origen local) */
+.pin-mark { scale: 1.4; transition: scale .25s var(--ease); }
+.map-peak-mark { scale: 1.4; }
+.pin-drop { stroke: var(--ink); stroke-width: 2.5; }
+.pin-dot { fill: var(--white); stroke: var(--ink); stroke-width: 2; }
+.pin text { font-size: 22px; }
+.pin.is-active .pin-mark { scale: 1.75; }
+/* En móvil las etiquetas serían diminutas: chinchetas grandes y la lista hace de leyenda por colores */
+@media (max-width: 700px) {
+  .pin-mark { scale: 2.2; }
+  .pin.is-active .pin-mark { scale: 2.7; }
+  .pin text { display: none; }
+  .map-peak-mark { scale: 2.2; }
+  .map-peak text { font-size: 30px; translate: 40px -60px; }
+  .place-map .map-river-label { font-size: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .pin-mark { transition: none; } }
+.map-north circle { fill: var(--white); stroke: var(--ink); stroke-width: 2.5; }
+.map-north path { fill: var(--red); }
+.map-north text { font-size: 16px; text-anchor: middle; }
+
+.place-list { list-style: none; display: grid; gap: .7rem; }
+.place {
+  display: flex; align-items: center; gap: .8rem;
+  padding: .8rem 1rem; text-decoration: none;
+  background: var(--white); border: var(--border); border-radius: 18px;
+  box-shadow: 4px 5px 0 rgba(36, 31, 92, .15);
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.place:hover, .place:focus-visible, .place.is-active { transform: translateX(4px); box-shadow: 6px 7px 0 rgba(36, 31, 92, .2); }
+.place-dot { width: 22px; height: 22px; border-radius: 50%; border: 2.5px solid var(--ink); flex: none; }
+.place-name { flex: 1; font-family: var(--font-display); font-weight: 800; font-size: 1.15rem; line-height: 1.15; }
+.place-how { font-size: .9rem; font-weight: 700; color: var(--ink-soft); white-space: nowrap; }
+.map-note { margin: 1.4rem 0 0; text-align: center; font-size: .95rem; color: var(--ink-soft); font-weight: 600; }
 
 /* =========================================================
    12. PIE DE PÁGINA
