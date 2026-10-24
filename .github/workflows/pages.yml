@@ -24,12 +24,9 @@ jobs:
       - name: Descargar el repositorio
         uses: actions/checkout@v5
 
-      - name: Preparar la carpeta del sitio
-        # Solo se publica la web (index.html), no el resto del repositorio.
-        run: |
-          mkdir -p _site
-          cp index.html _site/
-          touch _site/.nojekyll
+      - name: Construir la web
+        # Une la cabecera y el pie comunes con cada página de src/pages/ y copia assets/ en _site/.
+        run: python3 build.py
 
       - name: Configurar GitHub Pages
         uses: actions/configure-pages@v5

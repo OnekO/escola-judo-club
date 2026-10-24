@@ -1,0 +1,87 @@
+  <!-- Cabecera común: sprite de iconos, enlace de salto y navegación -->
+  <!-- Sprite de iconos (se reutilizan con <use>) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.9l12-7.5a1 1 0 0 0 0-1.8l-12-7.5A1 1 0 0 0 7 4.5z" fill="currentColor"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><rect x="5" y="4" width="5" height="16" rx="2" fill="currentColor"/><rect x="14" y="4" width="5" height="16" rx="2" fill="currentColor"/></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.8l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 16.8l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z" fill="currentColor" stroke="#241f5c" stroke-width="1.6" stroke-linejoin="round"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></symbol>
+      <symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 3s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/><path d="M9.5 14.5a2.6 2.6 0 0 0 2.5 2.5" stroke-linecap="round"/></symbol>
+      <symbol id="i-rei" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="15.5" cy="5" r="2.5"/><path d="M13.5 8.5L7 12l1.5 9M7 12l7 2.5M9 13l-1 0"/><path d="M14 14.5l1 6.5"/></symbol>
+      <symbol id="i-friends" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16.5" cy="8" r="3"/><path d="M3 20c0-3.3 2.2-5.5 5-5.5s5 2.2 5 5.5M11.5 20c0-3.3 2.2-5.5 5-5.5S21 16.7 21 20"/></symbol>
+      <symbol id="i-team" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="7" r="2.8"/><circle cx="5" cy="10" r="2.2"/><circle cx="19" cy="10" r="2.2"/><path d="M7.5 20c0-3 2-5 4.5-5s4.5 2 4.5 5M1.8 19c0-2.4 1.4-4 3.2-4M22.2 19c0-2.4-1.4-4-3.2-4"/></symbol>
+      <symbol id="i-muscle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9v6M6 6v12M18 6v12M21 9v6M6 12h12"/></symbol>
+      <symbol id="i-flex" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="17" cy="4.5" r="2"/><path d="M15.5 7.5c-3 1-5 4-5.5 7.5M10 15l-6 2M10 15l4.5 5M14 9.5l5 3"/></symbol>
+      <symbol id="i-coord" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 2.5v4h-4M6 21.5v-4h4"/></symbol>
+      <symbol id="i-balance" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h18M12 15l-3.5 5h7z"/><circle cx="6" cy="11" r="2.4"/><rect x="15" y="8.5" width="5" height="5" rx="1.2"/></symbol>
+      <symbol id="i-posture" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2.3"/><path d="M12 7v8M7 10h10M12 15l-3 6M12 15l3 6"/></symbol>
+      <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+      <symbol id="i-hand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4a1.5 1.5 0 0 1 3 0v7M14 10.5V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.5 7-6.5 7-3 0-4.5-1.6-6-4l-1.6-2.8a1.5 1.5 0 0 1 2.6-1.5L8 15"/></symbol>
+      <symbol id="i-retry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.6-5.9"/><path d="M20 3.5V8h-4.5"/></symbol>
+      <symbol id="i-smile" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8 14.5a4.5 4.5 0 0 0 8 0"/><path d="M9 9.5h.01M15 9.5h.01" stroke-width="3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4.5" width="17" height="16" rx="3"/><path d="M3.5 9h17M8 2.5v4M16 2.5v4M8.5 14.5l2.5 2.5 4.5-4.5"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v5.5c0 5-3.5 8.3-8 9.5-4.5-1.2-8-4.5-8-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+      <symbol id="i-tatami" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 12h9M12 3v18M12 15h9"/></symbol>
+      <symbol id="i-gi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3L3 6l2 5 2-1v11h10V10l2 1 2-5-5-3"/><path d="M8 3l4 7 4-7M7 14h10"/><path d="M11 14l-1.5 4M13 14l1.5 4"/></symbol>
+      <symbol id="i-belt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10h20v4H2z"/><path d="M10 14l-3 7M14 14l3 7"/><rect x="9.5" y="8.5" width="5" height="7" rx="1.5"/></symbol>
+      <symbol id="i-play-ball" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3.5 9.5c5 1 12 1 17 0M3.5 14.5c5-1 12-1 17 0"/></symbol>
+      <symbol id="i-run" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="15" cy="4" r="2.2"/><path d="M8 9l4-2 3 3 3 1M12 7l-2 6 4 3v5M10 13l-3 4H4"/></symbol>
+      <symbol id="i-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-9"/><path d="M12 12C12 7 8.5 5 4 5c0 4.5 3 7 8 7zM12 10c0-4 3-6.5 8-6.5 0 4-3 6.5-8 6.5z"/></symbol>
+      <symbol id="i-medal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2l4 7 4-7"/><circle cx="12" cy="15" r="6"/><path d="M12 12.3l.9 1.8 2 .3-1.4 1.4.3 2-1.8-.9-1.8.9.3-2-1.4-1.4 2-.3z"/></symbol>
+      <symbol id="i-torch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10h8l-2.5 11h-3z"/><path d="M12 2c2.5 2.3 3 4.3 1.5 6.5H10.5C9 6.3 9.6 4.3 12 2z"/></symbol>
+      <symbol id="i-mountain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20l7-9 3 3 2.5-8L22 20z"/><path d="M13.5 9.5l1-3.5 1 3.5"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M4 7l8 6 8-6"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-insta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-fb" viewBox="0 0 24 24"><path d="M13.5 21v-7.5H16l.5-3h-3V8.7c0-.9.3-1.6 1.6-1.6h1.6V4.4a20 20 0 0 0-2.4-.1c-2.4 0-4 1.5-4 4.1v2.1H7.5v3h2.8V21z" fill="currentColor"/></symbol>
+      <symbol id="i-yt" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="currentColor"/><path d="M10 9v6l5-3z" fill="#ffd23f"/></symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- =========================== CABECERA =========================== -->
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Principal">
+      <a class="brand" href="index.html" aria-label="Escola Judo Club, ir al inicio">
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" fill="#ffd23f" stroke="#241f5c" stroke-width="3.5"/>
+          <path d="M14 46 L26 22 L32 30 L38 18 L50 46 Z" fill="#4fd1a0" stroke="#241f5c" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M9 40 H55" stroke="#241f5c" stroke-width="7" stroke-linecap="round"/>
+          <path d="M9 40 H55" stroke="#ff7f5c" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M30 40 l-5 13 M34 40 l5 13" stroke="#241f5c" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+        <span>Escola Judo Club<small>Pico Sacro · Galicia</small></span>
+      </a>
+
+      <div class="nav-tools">
+        <button class="icon-btn motion-toggle" type="button" aria-pressed="false" aria-label="Pausar animaciones" title="Pausar animaciones">
+          <svg class="icon i-pause" aria-hidden="true"><use href="#i-pause"/></svg>
+          <svg class="icon i-play" aria-hidden="true"><use href="#i-play"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú">
+          <svg class="icon i-menu" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon i-close" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
+
+      <div class="nav-menu" id="menu">
+        <ul class="nav-links">
+          <!-- build.py marca con aria-current="page" el enlace de la página actual (data-page) -->
+          <li><a href="club.html" data-page="club">El club</a></li>
+          <li><a href="que-es-el-judo.html" data-page="que-es-el-judo">Qué es el judo</a></li>
+          <li><a href="ventajas.html" data-page="ventajas">Ventajas</a></li>
+          <li><a href="tecnicas.html" data-page="tecnicas">Técnicas</a></li>
+          <li><a href="competicion.html" data-page="competicion">Competición</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a class="btn btn-primary nav-cta" href="#contacto">Ven a probar</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="contenido">
