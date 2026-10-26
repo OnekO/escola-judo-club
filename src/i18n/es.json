@@ -15,15 +15,11 @@
   "nav_contact": "Contacto",
   "footer_title": "¡Te esperamos en el tatami!",
   "address": "Al pie del Pico Sacro, Galicia",
-  "schedule": "Horario",
-  "group_1": "Peques · 4 a 6 años",
-  "group_1_time": "Lunes y miércoles · 17:30–18:15",
-  "group_2": "Infantil · 7 a 12 años",
-  "group_2_time": "Lunes y miércoles · 18:15–19:15",
-  "group_3": "Jóvenes y adultos",
-  "group_3_time": "Martes y jueves · 19:30–21:00",
-  "schedule_note": "Horario orientativo: pregúntanos antes de venir.",
+  "schedule": "Escuelas y horarios",
+  "schedule_note": "Cada escuela tiene su horario, y los viernes entrenamos todos juntos en O Forte.",
   "follow": "Síguenos",
-  "follow_note": "Fotos, avisos y novedades del club.",
-  "made_with": "Hecho con cariño al pie del Pico Sacro"
+  "follow_note": "Fotos, avisos y novedades del club: @escolajudoclub.",
+  "made_with": "Hecho con cariño al pie del Pico Sacro",
+  "motto": "Diferentes escuelas, un mismo tatami.",
+  "schedule_link": "Ver escuelas y horarios"
 }
