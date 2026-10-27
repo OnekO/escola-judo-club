@@ -687,6 +687,45 @@ main > .section:first-child > .wave { display: none; }
 .ages strong { display: block; font-family: var(--font-display); font-size: 1.15rem; }
 .ages span { color: var(--ink-soft); }
 
+/* --- Judo y neurodiversidad: datos con fuentes --- */
+.neuro { --section-bg: var(--t-sky); background: var(--section-bg); }
+.neuro-stats { list-style: none; display: grid; gap: 1rem; margin: 0 0 2.6rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); }
+.stat-card { display: flex; flex-direction: column; gap: .4rem; padding: 1.3rem 1.4rem; }
+.stat-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 1.6rem + 1.6vw, 2.8rem); line-height: 1; color: var(--ink); }
+.stat-card:nth-child(1) .stat-num { color: #b23a1d; }
+.stat-card:nth-child(2) .stat-num { color: #1f6f9c; }
+.stat-card:nth-child(3) .stat-num { color: #1e7a57; }
+.stat-text { color: var(--ink-soft); font-size: 1rem; }
+.cite { font-weight: 800; font-size: .85em; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.cite:hover { text-decoration: underline; }
+
+.neuro-studies { list-style: none; display: grid; gap: 1.2rem; margin: 0 0 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr)); }
+.study { position: relative; padding: 1.2rem 1.3rem 1rem; display: flex; flex-direction: column; }
+.study-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .8rem; }
+.study-type, .study-tag { padding: .1em .7em; border: 2px solid var(--ink); border-radius: 999px; font-weight: 800; font-size: .82rem; }
+.study-type { background: var(--t-yellow); }
+.study-tag { background: var(--t-mint); }
+.study dl { margin: 0 0 .6rem; display: grid; gap: .5rem; }
+.study dt { font-family: var(--font-display); font-weight: 800; font-size: .95rem; }
+.study dd { margin: 0; color: var(--ink-soft); font-size: .98rem; line-height: 1.5; }
+.study .study-limit dd { font-style: italic; }
+.study > .cite { align-self: flex-end; margin-top: auto; }
+
+.neuro-bottom { display: grid; gap: 1.2rem; margin-bottom: 1.6rem; }
+@media (min-width: 860px) { .neuro-bottom { grid-template-columns: 1fr 1.3fr; } }
+.neuro-review, .neuro-summary { padding: 1.3rem 1.5rem; }
+.neuro-review p, .neuro-summary p { color: var(--ink-soft); margin-bottom: .6rem; }
+.neuro-review p:last-child, .neuro-summary p:last-child { margin-bottom: 0; }
+.neuro-summary { background: linear-gradient(135deg, #fde7f0, #e4f0ff 50%, #e3f8ec); }
+.neuro-summary h4 { display: flex; align-items: center; gap: .45rem; }
+.neuro-summary strong { color: var(--ink); }
+.neuro-summary a { font-weight: 800; color: var(--ink); text-underline-offset: 3px; }
+.neuro-sources { padding: 1rem 1.3rem; background: var(--white); border: 2.5px solid var(--ink); border-radius: 18px; }
+.neuro-sources summary { cursor: pointer; font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; }
+.neuro-sources ol { margin: .8rem 0 0; padding-left: 1.4rem; display: grid; gap: .55rem; font-size: .92rem; color: var(--ink-soft); }
+.neuro-sources li:target { background: var(--t-yellow); border-radius: 6px; }
+.neuro-sources a { color: var(--ink); font-weight: 700; overflow-wrap: anywhere; }
+
 /* =========================================================
    9. TÉCNICAS + DEMOS ANIMADAS
    ========================================================= */

@@ -204,6 +204,14 @@
     pin.style.cursor = "pointer";
   });
 
+  /* ---------- Citas [n]: abren la lista de fuentes antes de saltar ---------- */
+  document.querySelectorAll('a.cite[href^="#fonte-"]').forEach(function (cite) {
+    cite.addEventListener("click", function () {
+      var box = document.querySelector(".neuro-sources");
+      if (box) box.open = true;
+    });
+  });
+
   /* ---------- Año actual en el pie ---------- */
   var year = document.querySelector("[data-year]");
   if (year) year.textContent = new Date().getFullYear();
