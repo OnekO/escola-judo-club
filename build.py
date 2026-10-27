@@ -20,8 +20,10 @@ Marcadores que se pueden usar en src/layout/:
     {{url:es}} {{url:gl}}                         esta misma página en cada idioma (ruta relativa)
     {{abs:es}} {{abs:gl}}                         ídem, con la dirección completa (para buscadores)
     {{current:es}} {{current:gl}}                 aria-current="true" en el idioma actual
+    {{v:css}} {{v:js}}                            huella del CSS/JS, para que la caché no sirva versiones viejas
 El enlace del menú cuyo data-page coincide con el nombre del archivo se marca como página actual.
 """
+import hashlib
 import html
 import json
 import pathlib
@@ -34,7 +36,7 @@ OUT = ROOT / "_site"
 SITE_URL = "https://oneko.github.io/escola-judo-club/"
 LANGS = {"es": "", "gl": "gl/"}  # idioma → carpeta de publicación
 FRONT_MATTER = re.compile(r"\A<!--\n(.*?)\n-->\n", re.S)
-MARKER = re.compile(r"\{\{(?:(t|url|abs|current):)?(\w+)\}\}")
+MARKER = re.compile(r"\{\{(?:(t|url|abs|current|v):)?(\w+)\}\}")
 
 
 def read(path):
@@ -83,6 +85,8 @@ def render(template, lang, strings, values, rel, absolute, where):
             return absolute[key]
         if kind == "current":
             return ' aria-current="true"' if key == lang else ""
+        if kind == "v":
+            return values["versions"][key]
         return values[key]
     return MARKER.sub(fill, template)
 
@@ -94,6 +98,9 @@ def build():
         shutil.rmtree(OUT)
     OUT.mkdir()
     shutil.copytree(ROOT / "assets", OUT / "assets")
+    # Huella corta de cada recurso: cambia solo cuando cambia su contenido
+    versions = {kind: hashlib.sha256((ROOT / "assets" / path).read_bytes()).hexdigest()[:10]
+                for kind, path in (("css", "css/styles.css"), ("js", "js/main.js"))}
 
     names = {lang: sorted(p.name for p in (SRC / "pages" / lang).glob("*.html")) for lang in LANGS}
     reference = names["es"]
@@ -110,7 +117,7 @@ def build():
             page = SRC / "pages" / lang / name
             meta, body = parse_page(page)
             root, rel, absolute = page_urls(lang, name)
-            values = {"lang": lang, "root": root,
+            values = {"lang": lang, "root": root, "versions": versions,
                       "title": html.escape(meta["title"]), "description": html.escape(meta["description"])}
             parts = [render(layout[part], lang, strings, values, rel, absolute, page) for part in ("head", "header", "footer")]
             stem = page.stem
